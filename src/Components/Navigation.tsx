@@ -4,6 +4,7 @@ export const Navigation = () => {
   return (
     <>
       <NavLink exact to="/">
+        Home
       </NavLink>
       <NavLink
         to="/cash"

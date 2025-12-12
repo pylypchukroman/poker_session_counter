@@ -1,9 +1,9 @@
-import { Navigation } from '../Components/Navigation';
+import { Header } from '../Components/Header';
 
 export const HomePage = () => {
   return (
     <>
-      <Navigation />
+      <Header />
       <div>Home Page</div>
     </>
   );

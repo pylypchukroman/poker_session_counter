@@ -1,5 +1,10 @@
+import { Header } from '../Components/Header';
+
 export const CashPage = () => {
   return (
-    <div>Cash</div>
+    <div>
+      <Header />
+      Cash
+    </div>
   )
 }

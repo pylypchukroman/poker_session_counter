@@ -1,5 +1,10 @@
+import { Header } from '../Components/Header';
+
 export const TournamentsPage = () => {
   return (
-    <div>TournamentsPage</div>
+    <div>
+      <Header />
+      TournamentsPage
+    </div>
   )
 }
