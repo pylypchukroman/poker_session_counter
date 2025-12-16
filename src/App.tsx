@@ -4,6 +4,7 @@ import { HomePage } from './Pages/HomePage';
 import { CashPage } from './Pages/CashPage';
 import { TournamentsPage } from './Pages/TournamentsPage';
 import { Routes, Route } from "react-router-dom";
+import { NotFoundPage } from './Components/NotFoundPage';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/cash" element={<CashPage />} />
         <Route path="/tournaments" element={<TournamentsPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>
   );
