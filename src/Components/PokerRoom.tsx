@@ -1,5 +1,6 @@
 import { Item, ItemActions } from '@/Components/ui/item';
 import { Button } from '@/Components/ui/button';
+import { RoomBalancePopover } from '@/Components/RoomBalancePopover';
 
 export const PokerRoom = ({ roomData }: any) => {
   return (
@@ -9,9 +10,7 @@ export const PokerRoom = ({ roomData }: any) => {
     >
       {roomData.name}: {roomData.balance}
       <ItemActions>
-        <Button size="sm">
-          Action
-        </Button>
+        <RoomBalancePopover roomData={roomData}/>
       </ItemActions>
     </Item>
 

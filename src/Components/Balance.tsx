@@ -50,7 +50,9 @@ export const Balance = () => {
           </div>
         </div>
         <SheetFooter>
-          <Button type="submit">Save changes</Button>
+          <SheetClose asChild>
+            <Button type="submit">Save changes</Button>
+          </SheetClose>
           <SheetClose asChild>
             <Button variant="outline">Close</Button>
           </SheetClose>
