@@ -1,29 +1,61 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { Button } from "@/components/ui/button"
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+import { useSelector } from 'react-redux';
 import { selectBalance } from '@/redux/balance/selectors';
-import { setBalance } from '@/redux/balance/BalanceSlice';
 import { store } from '@/redux/store';
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-
+import { Button } from '@/Components/ui/button';
+import { pokerRooms } from '@/data/rooms';
+import { PokerRoom } from '@/Components/PokerRoom';
 export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+
 
 export const Balance = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const balance: number = useSelector((state: RootState) => selectBalance(state))
-  const buttonClick = () => {
-    // @ts-ignore
-    dispatch(setBalance(balance + 10));//
-  }
+  const balance: number = useSelector((state: RootState) => selectBalance(state));
 
   return (
-    <div>
-      Balance: ${balance}
-      <Button type="button" onClick={buttonClick}>Change balance</Button>
-      <Avatar className="size-12">
-        <AvatarImage src="https://github.com/shadcn.png" />
-        <AvatarFallback>CN</AvatarFallback>
-      </Avatar>
-    </div>
+    <Sheet >
+      <SheetTrigger asChild>
+        <Button variant="default">Total Balance: {balance}</Button>
+      </SheetTrigger>
+      <SheetContent className="bg-black text-white">
+        <SheetHeader>
+          <SheetTitle className="mt-14 mb-10 text-white">
+            Your total balance is: {balance} USD
+          </SheetTitle>
+          <SheetDescription>
+            Balance pour room
+          </SheetDescription>
+        </SheetHeader>
+        <div className="grid flex-1 auto-rows-min gap-6 px-4">
+          <div className="grid gap-3">
+            <ul>
+              {pokerRooms.map((room) => (
+                <li
+                  key={room.id}
+                  className="mt-6"
+                >
+                  <PokerRoom roomData={room}>
+                  </PokerRoom>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <SheetFooter>
+          <Button type="submit">Save changes</Button>
+          <SheetClose asChild>
+            <Button variant="outline">Close</Button>
+          </SheetClose>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
   );
 }
