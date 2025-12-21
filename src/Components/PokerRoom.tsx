@@ -1,5 +1,4 @@
 import { Item, ItemActions } from '@/Components/ui/item';
-import { Button } from '@/Components/ui/button';
 import { RoomBalancePopover } from '@/Components/RoomBalancePopover';
 
 export const PokerRoom = ({ roomData }: any) => {
