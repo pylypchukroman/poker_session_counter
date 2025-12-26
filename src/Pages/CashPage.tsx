@@ -9,7 +9,7 @@ export const CashPage = () => {
 
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/balance")
+    fetch("http://localhost:3000/api/balances")
       .then(res => res.json())
       .then(data => setData(data.roomsBalance))
       .catch(err => console.error(err));
