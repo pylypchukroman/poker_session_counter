@@ -8,27 +8,32 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import { useSelector } from 'react-redux';
-import { selectBalance } from '@/redux/balance/selectors';
-import { store } from '@/redux/store';
 import { Button } from '@/Components/ui/button';
-import { pokerRooms } from '@/data/rooms';
 import { PokerRoom } from '@/Components/PokerRoom';
-export type RootState = ReturnType<typeof store.getState>
+import { useEffect, useState } from 'react';
+import { getBalances } from '@/api/balanceApi';
 
 
 export const Balance = () => {
-  const balance: number = useSelector((state: RootState) => selectBalance(state));
+  // const balance: number = useSelector((state: RootState) => selectBalance(state));
+  const [roomsBalance, setRoomsBalance] = useState(null);
+  const totalBalance = roomsBalance?.map(roomBalance => Number(roomBalance.balance)).reduce((acc, x) => acc += x);
+
+  useEffect(() => {
+    getBalances(setRoomsBalance);
+  }, []);
+
+  if (!roomsBalance) return;
 
   return (
     <Sheet >
       <SheetTrigger asChild>
-        <Button variant="default">Total Balance: {balance}</Button>
+        <Button variant="default">Total Balance: {totalBalance}</Button>
       </SheetTrigger>
       <SheetContent className="bg-black text-white">
         <SheetHeader>
           <SheetTitle className="mt-14 mb-10 text-white">
-            Your total balance is: {balance} USD
+            Your total balance is: {totalBalance} USD
           </SheetTitle>
           <SheetDescription>
             Balance pour room
@@ -37,22 +42,19 @@ export const Balance = () => {
         <div className="grid flex-1 auto-rows-min gap-6 px-4">
           <div className="grid gap-3">
             <ul>
-              {pokerRooms.map((room) => (
+              {roomsBalance.map((roomBalance) => (
                 <li
-                  key={room.id}
+                  key={roomBalance.id}
                   className="mt-6"
                 >
-                  <PokerRoom roomData={room}>
-                  </PokerRoom>
+                  <PokerRoom roomBalance={roomBalance} />
                 </li>
               ))}
             </ul>
           </div>
         </div>
         <SheetFooter>
-          <SheetClose asChild>
-            <Button type="submit">Save changes</Button>
-          </SheetClose>
+            <Button type="button">Add room balance</Button>
           <SheetClose asChild>
             <Button variant="outline">Close</Button>
           </SheetClose>

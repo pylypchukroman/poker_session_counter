@@ -3,8 +3,3 @@ export type RoomsBalance = {
   name: string;
   balance: number;
 }
-
-export type BalanceResponse = {
-  id: number;
-  roomsBalance: RoomsBalance[];
-}

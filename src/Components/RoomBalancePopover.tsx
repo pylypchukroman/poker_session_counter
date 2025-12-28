@@ -10,9 +10,17 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
+import { useState } from 'react';
+import { editBalance } from '@/api/balanceApi';
 
-export const RoomBalancePopover = ({ roomData }: any ) => {
+export const RoomBalancePopover = ({ roomBalance }: any ) => {
+  const [balance, setBalance] = useState(roomBalance.balance);
+
+
+
   const onButtonClick = () => {
+    const body = {balance: balance}
+    editBalance(roomBalance._id, body)
   }
 
   return (
@@ -23,7 +31,7 @@ export const RoomBalancePopover = ({ roomData }: any ) => {
       <DialogContent className="sm:max-w-md bg-black">
         <DialogHeader>
           <DialogTitle>
-            { roomData.name }
+            { roomBalance.name }
           </DialogTitle>
           <DialogDescription>
             Change your room balance
@@ -33,7 +41,8 @@ export const RoomBalancePopover = ({ roomData }: any ) => {
           <div className="grid flex-1 gap-2">
             <Input
               id="link"
-              defaultValue={roomData.balance}
+              defaultValue={roomBalance.balance}
+              onChange={(e) =>setBalance(Number(e.target.value))}
             />
           </div>
         </div>
