@@ -10,18 +10,18 @@ import {
 } from "@/components/ui/sheet"
 import { Button } from '@/Components/ui/button';
 import { PokerRoom } from '@/Components/PokerRoom';
-import { useEffect, useState } from 'react';
-import { getBalances } from '@/api/balanceApi';
+import { useEffect } from 'react';
+import { useBalanceData } from '@/Hooks/useBalanceData';
+import { AddBalancePopover } from '@/Components/addBalancePopover';
 
 
 export const Balance = () => {
-  // const balance: number = useSelector((state: RootState) => selectBalance(state));
-  const [roomsBalance, setRoomsBalance] = useState(null);
+  const {roomsBalance ,getBalances} = useBalanceData();
   const totalBalance = roomsBalance?.map(roomBalance => Number(roomBalance.balance)).reduce((acc, x) => acc += x);
 
   useEffect(() => {
-    getBalances(setRoomsBalance);
-  }, []);
+    getBalances();
+  }, [roomsBalance]);
 
   if (!roomsBalance) return;
 
@@ -54,7 +54,7 @@ export const Balance = () => {
           </div>
         </div>
         <SheetFooter>
-            <Button type="button">Add room balance</Button>
+          <AddBalancePopover />
           <SheetClose asChild>
             <Button variant="outline">Close</Button>
           </SheetClose>

@@ -11,11 +11,11 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { useState } from 'react';
-import { editBalance } from '@/api/balanceApi';
+import { useBalanceData } from '@/Hooks/useBalanceData';
 
 export const RoomBalancePopover = ({ roomBalance }: any ) => {
   const [balance, setBalance] = useState(roomBalance.balance);
-
+  const {editBalance} = useBalanceData();
 
 
   const onButtonClick = () => {

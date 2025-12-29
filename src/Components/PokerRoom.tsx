@@ -1,10 +1,10 @@
 import { Item, ItemActions } from '@/Components/ui/item';
 import { RoomBalancePopover } from '@/Components/RoomBalancePopover';
 import { Button } from '@/Components/ui/button';
-import { deleteBalance } from '@/api/balanceApi';
+import { useBalanceData } from '@/Hooks/useBalanceData';
 
 export const PokerRoom = ({ roomBalance }: any) => {
-
+const {deleteBalance} = useBalanceData();
   return (
     <Item
       variant="outline"
