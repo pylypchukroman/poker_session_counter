@@ -16,7 +16,7 @@ const deleteBalance = useDeleteBalance();
         <RoomBalancePopover roomBalance={roomBalance}/>
         <Button
           type="button"
-          onClick={() => deleteBalance.mutate(roomBalance._id)}
+          onClick={() => deleteBalance.mutate(roomBalance.id)}
         >
           Delete
         </Button>

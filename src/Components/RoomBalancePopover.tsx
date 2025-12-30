@@ -45,7 +45,7 @@ export const RoomBalancePopover = ({ roomBalance }: any ) => {
             <Button
               type="button"
               variant="primary"
-              onClick={() => editBalance.mutate({id: roomBalance._id, body: {balance}})}
+              onClick={() => editBalance.mutate({id: roomBalance.id, body: {balance}})}
             >
               Confirm
             </Button>
