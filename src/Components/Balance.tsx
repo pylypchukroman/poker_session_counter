@@ -10,18 +10,16 @@ import {
 } from "@/components/ui/sheet"
 import { Button } from '@/Components/ui/button';
 import { PokerRoom } from '@/Components/PokerRoom';
-import { useEffect } from 'react';
-import { useBalanceData } from '@/Hooks/useBalanceData';
 import { AddBalancePopover } from '@/Components/addBalancePopover';
+import { useBalances } from '@/Hooks/useBalances';
 
 
 export const Balance = () => {
-  const {roomsBalance ,getBalances} = useBalanceData();
-  const totalBalance = roomsBalance?.map(roomBalance => Number(roomBalance.balance)).reduce((acc, x) => acc += x);
-
-  useEffect(() => {
-    getBalances();
-  }, [roomsBalance]);
+  const { data: roomsBalance, isLoading } = useBalances();
+  const totalBalance = roomsBalance?.reduce(
+    (acc, room) => acc + Number(room.balance),
+    0
+  );
 
   if (!roomsBalance) return;
 

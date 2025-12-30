@@ -11,7 +11,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useState } from 'react';
-import { useBalanceData } from '@/Hooks/useBalanceData';
+import { useAddBalance } from '@/Hooks/useBalanceMutations';
 
 
 export const AddBalancePopover = () => {
@@ -19,7 +19,7 @@ export const AddBalancePopover = () => {
     name: "",
     balance: 0
   }
-  const {addBalance} = useBalanceData();
+  const addBalance = useAddBalance();
   const [newBalance, setNewBalance] = useState(initState);
   const reset = () => {
     setNewBalance(initState)
@@ -29,7 +29,7 @@ export const AddBalancePopover = () => {
       name: newBalance.name,
       balance: newBalance.balance
     }
-    addBalance(newBalanceBody);
+    addBalance.mutate(newBalanceBody);
     reset();
   }
 

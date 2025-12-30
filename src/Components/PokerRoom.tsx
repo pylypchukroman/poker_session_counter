@@ -1,10 +1,11 @@
 import { Item, ItemActions } from '@/Components/ui/item';
 import { RoomBalancePopover } from '@/Components/RoomBalancePopover';
 import { Button } from '@/Components/ui/button';
-import { useBalanceData } from '@/Hooks/useBalanceData';
+import { useDeleteBalance } from '@/Hooks/useBalanceMutations';
 
 export const PokerRoom = ({ roomBalance }: any) => {
-const {deleteBalance} = useBalanceData();
+const deleteBalance = useDeleteBalance();
+
   return (
     <Item
       variant="outline"
@@ -15,7 +16,7 @@ const {deleteBalance} = useBalanceData();
         <RoomBalancePopover roomBalance={roomBalance}/>
         <Button
           type="button"
-          onClick={() => deleteBalance(roomBalance._id)}
+          onClick={() => deleteBalance.mutate(roomBalance._id)}
         >
           Delete
         </Button>

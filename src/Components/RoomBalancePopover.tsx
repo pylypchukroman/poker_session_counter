@@ -11,17 +11,11 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { useState } from 'react';
-import { useBalanceData } from '@/Hooks/useBalanceData';
+import { useEditBalance } from '@/Hooks/useBalanceMutations';
 
 export const RoomBalancePopover = ({ roomBalance }: any ) => {
   const [balance, setBalance] = useState(roomBalance.balance);
-  const {editBalance} = useBalanceData();
-
-
-  const onButtonClick = () => {
-    const body = {balance: balance}
-    editBalance(roomBalance._id, body)
-  }
+  const editBalance = useEditBalance();
 
   return (
     <Dialog>
@@ -51,7 +45,7 @@ export const RoomBalancePopover = ({ roomBalance }: any ) => {
             <Button
               type="button"
               variant="primary"
-              onClick={onButtonClick}
+              onClick={() => editBalance.mutate({id: roomBalance._id, body: {balance}})}
             >
               Confirm
             </Button>
