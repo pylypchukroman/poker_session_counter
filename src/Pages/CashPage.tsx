@@ -1,15 +1,15 @@
 import { Header } from '@/Components/Header';
-import { AspectRatio } from '@/Components/ui/aspect-ratio';
+import { useCashSessions } from '@/Hooks/useCashSessions';
+import { CashSessionsList } from '@/Components/CashSessionsList';
 
 export const CashPage = () => {
+  const { data: cashSession, isLoading } = useCashSessions();
 
   return (
     <>
       <Header />
       <div className="bg-black w-screen h-lvh">
-        <AspectRatio ratio={16 / 9} className="bg-muted rounded-lg h-1/2 w-1/2">
-
-        </AspectRatio>
+        <CashSessionsList cashSession={cashSession}/>
       </div>
     </>
   )
