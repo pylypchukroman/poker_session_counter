@@ -20,3 +20,12 @@ export const addCashSession = async (body) => {
     balancesEnd: []
   });
 };
+
+export const finishCashSession = async ({ id, body }) => {
+  const normalizedBody = body.map(({ id, ...rest }) => rest)
+  return axios.patch(`${BASE_URL}/${id}/session`, {
+    balancesEnd: normalizedBody,
+    finishedAt: new Date().toISOString(),
+    status: "finished",
+  });
+};

@@ -6,15 +6,32 @@ import {
   DrawerTitle,
   DrawerTrigger
 } from '@/Components/ui/drawer';
-import { Button } from '@/Components/ui/button';
 import { useBalances } from '@/Hooks/useBalances';
 import { Input } from '@/Components/ui/input';
 import { useState } from 'react';
+import { useFinishCashSession } from '@/Hooks/useCashSessionMutations';
+import { useCashSessions } from '@/Hooks/useCashSessions';
+import { useEditBalance } from '@/Hooks/useBalanceMutations';
 
 export const FinishNewSession = () => {
-  const { data: roomsBalance, isLoading } = useBalances();
-  const [test, setTest] = useState('');
-  const body = [];
+
+  const { data: roomsBalance } = useBalances();
+  const { data: cashSession } = useCashSessions();
+  const sessionId = cashSession?.find(session => session.status === "running").id;
+  const finishSession = useFinishCashSession();
+  const editBalance = useEditBalance();
+  const [pokerRoom, setPokerRoom] = useState(roomsBalance);
+  const handleChange = (id, field, value) => {
+    setPokerRoom(prev =>
+      prev.map(item => (item.id === id ? { ...item, [field]: value } : item))
+    );
+  };
+  const handleSubmit = () => {
+    finishSession.mutate({id: sessionId, body: pokerRoom});
+    pokerRoom.forEach(room => {
+      editBalance.mutate({id: room.id, body: {name: room.name ,balance: room.balance}})
+    })
+  }
 
   return (
     <div className="h-1/3 w-full rounded-md border mt-8 flex items-center justify-center">
@@ -25,19 +42,17 @@ export const FinishNewSession = () => {
             <DrawerTitle>Finish running session</DrawerTitle>
             <DrawerDescription>Enter balance for every room </DrawerDescription>
             <ul className='flex items-center justify-center gap-x-4'>
-              {roomsBalance?.map((room) => (
+              {pokerRoom?.map((room) => (
                 <li key={room.id} className="flex items-center justify-center mt-6">
                   <DrawerDescription>Room: {room.name} Balance:
                     <span className="flex">
                       <Input
-                        value={test}
-                        onChange={(e) => setTest(e.target.value)}
+                        type="number"
+                        name="balance"
                         placeholder={room.balance}
+                        value={pokerRoom.balance}
+                        onChange={e => handleChange(room.id, e.target.name, Number(e.target.value))}
                       />
-                      <Button
-                        onClick={() => body.push({name: room.name, balance: test})}
-                      >
-                        Confirm new balance</Button>
                       </span>
                   </DrawerDescription>
                 </li>
@@ -47,7 +62,7 @@ export const FinishNewSession = () => {
           <DrawerFooter className="flex items-center justify-center">
             <DrawerClose
               className="h-1/2 w-1/2"
-              onClick={() => console.log("click")}
+              onClick={handleSubmit}
             >
               Finish running session
             </DrawerClose>

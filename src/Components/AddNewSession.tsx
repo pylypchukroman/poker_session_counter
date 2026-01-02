@@ -6,17 +6,17 @@ import {
   DrawerTitle,
   DrawerTrigger
 } from '@/Components/ui/drawer';
-import { Button } from '@/Components/ui/button';
 import { useBalances } from '@/Hooks/useBalances';
 import { useAddCashSession } from '@/Hooks/useCashSessionMutations';
 
 export const AddNewSession = () => {
-  const { data: roomsBalance, isLoading } = useBalances();
+  const { data: roomsBalance } = useBalances();
   const totalBalance = roomsBalance?.reduce(
     (acc, room) => acc + Number(room.balance),
     0
   );
-  const addCashSession = useAddCashSession()
+  const addCashSession = useAddCashSession();
+
   const click = () => {
     addCashSession.mutate(roomsBalance);
   }
