@@ -23,9 +23,10 @@ export const CashSessionItem = ({session}) => {
   const endSessionBalance: sessionBalance = session.balancesEnd
     .reduce((sum, { balance }) => sum + balance, 0);
   const sessionResult: number = startSessionBalance - endSessionBalance;
+
   return (
-    <>
-      <li key={session.id} className="text-sm flex gap-20 items-center justify-between">
+    <div>
+      <li className="text-sm flex gap-20 items-center justify-between">
         <p>Status: {session.status}</p>
         <p>Start session total balance: {startSessionBalance}</p>
         <p>End session total balance: {endSessionBalance}</p>
@@ -38,6 +39,6 @@ export const CashSessionItem = ({session}) => {
         </Button>
       </li>
       <Separator className="my-2" />
-    </>
+    </div>
   )
 };

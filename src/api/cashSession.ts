@@ -10,3 +10,13 @@ export const fetchCashSessions = async () => {
 export const deleteCashSession = async (id: string) => {
   return axios.delete(`${BASE_URL}/${id}`);
 };
+
+export const addCashSession = async (body) => {
+  const normalizedBody = body.map(({ id, ...rest }) => rest)
+  return axios.post(`${BASE_URL}`, {
+    balancesStart: normalizedBody,
+    startedAt: new Date().toISOString(),
+    status: "running",
+    balancesEnd: []
+  });
+};
