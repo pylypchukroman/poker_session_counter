@@ -5,7 +5,7 @@ import { CashPage } from './Pages/CashPage';
 import { TournamentsPage } from './Pages/TournamentsPage';
 import { Routes, Route } from "react-router-dom";
 import { NotFoundPage } from './Components/NotFoundPage';
-import { DashboardPage } from './Pages/DAshboardPage';
+import { DashboardPage } from './Pages/DashboardPage';
 
 
 function App() {

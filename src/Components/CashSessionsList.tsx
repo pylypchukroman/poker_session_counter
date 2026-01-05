@@ -14,5 +14,5 @@ export const CashSessionsList = ({cashSession}) => {
         </ul>
       </div>
     </ScrollArea>
-  )
-}
+  );
+};
