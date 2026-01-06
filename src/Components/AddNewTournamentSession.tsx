@@ -1,29 +1,31 @@
 import {
-  Drawer, DrawerClose,
+  Drawer,
+  DrawerClose,
   DrawerContent,
-  DrawerDescription, DrawerFooter,
+  DrawerDescription,
+  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger
 } from '@/Components/ui/drawer';
 import { useBalances } from '@/Hooks/useBalances';
-import { useAddCashSession } from '@/Hooks/useCashSessionMutations';
+import { useAddTournamentSession } from '@/Hooks/useTournamentSessionsMutations';
 
-export const AddNewSession = () => {
+export const AddNewTournamentSession = () => {
   const { data: roomsBalance } = useBalances();
   const totalBalance = roomsBalance?.reduce(
     (acc, room) => acc + Number(room.balance),
     0
   );
-  const addCashSession = useAddCashSession();
+  const addTournamentSession = useAddTournamentSession();
 
   return (
     <div className="h-1/3 w-full rounded-md border mt-8 flex items-center justify-center">
       <Drawer>
-        <DrawerTrigger>Start new session</DrawerTrigger>
+        <DrawerTrigger>Start new tournament session</DrawerTrigger>
         <DrawerContent className="h-1/2">
           <DrawerHeader>
-            <DrawerTitle>Start new cash session</DrawerTitle>
+            <DrawerTitle>Start new tournament session</DrawerTitle>
             <DrawerDescription>Your total balance from every rooms: {totalBalance}</DrawerDescription>
             <ul>
               {roomsBalance?.map((room) => (
@@ -36,7 +38,7 @@ export const AddNewSession = () => {
           <DrawerFooter className="flex items-center justify-center">
             <DrawerClose
               className="h-1/2 w-1/2"
-              onClick={() => addCashSession.mutate(roomsBalance)}
+              onClick={() => addTournamentSession.mutate()}
             >
               Start new cash session
             </DrawerClose>
