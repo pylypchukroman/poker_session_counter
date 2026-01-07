@@ -7,8 +7,11 @@ import {
   DrawerTitle,
   DrawerTrigger
 } from '@/Components/ui/drawer';
+import { SessionTournaments } from '@/Components/SessionTournaments';
 
 export const AddNewTournamentToSession = ({ runningSessionId }) => {
+
+
   return (
     <div className="h-full w-full rounded-md border flex items-center justify-center">
       <Drawer>
@@ -18,11 +21,16 @@ export const AddNewTournamentToSession = ({ runningSessionId }) => {
             <DrawerTitle>Manage running session</DrawerTitle>
           </DrawerHeader>
           <div className="flex flex-col gap-4">
-            <div className="text-black flex border h-48 p-4">
+            <div className="text-black flex border h-24 p-4">
               Add new tournaments to session
             </div>
-            <div className="text-black flex border h-48 p-4">
-              Session's tournaments
+            <div className="text-black flex flex-col border h-80 p-4">
+              <p className="mb-4">
+                Session's tournaments
+              </p>
+              <ul>
+                <SessionTournaments runningSessionId={runningSessionId}/>
+              </ul>
             </div>
           </div>
           <DrawerFooter className="flex items-center justify-center">
