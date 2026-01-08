@@ -7,15 +7,20 @@ export const fetchTournaments = async (sessionId) => {
   return data;
 };
 
-export const deleteTournament = async (id: string) => {
-  return axios.delete(`${BASE_URL}/${id}`);
+export const deleteTournament = async ({runningSessionId, tournamentId}) => {
+  console.log("here")
+  return axios.delete(`${BASE_URL}/${runningSessionId}/tournaments/${tournamentId}`);
 };
 
-export const addTournament = async () => {
+export const addTournament = async (payload) => {
 
-  return axios.post(`${BASE_URL}`, {
+  return axios.post(`${BASE_URL}/${payload.runningSessionId}/tournaments`, {
     startedAt: new Date().toISOString(),
     status: "running",
+    name: payload.name,
+    buyIn: payload.buyIn,
+    room: payload.room,
+    result: 0
   });
 };
 

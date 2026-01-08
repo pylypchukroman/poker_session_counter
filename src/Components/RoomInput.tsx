@@ -1,0 +1,56 @@
+import { useState } from 'react';
+import { Popover, PopoverContent, PopoverTrigger } from '@/Components/ui/popover';
+import { Button } from '@/Components/ui/button';
+import { Check, ChevronsUpDown } from 'lucide-react';
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/Components/ui/command';
+import { roomTournaments } from '@/assets/tournaments';
+
+export const RoomInput = ({ room, setRoom }) => {
+
+  const [open, setOpen] = useState(false);
+
+  return (
+    <Popover open={open} onOpenChange={setOpen}>
+      <PopoverTrigger asChild>
+        <Button
+          variant="secondary"
+          role="combobox"
+          aria-expanded={open}
+          className="w-[200px] justify-between text-white"
+        >
+          {room
+            ? roomTournaments.find((pokerRoom: any) => pokerRoom.pokerRoom === room)?.pokerRoom
+            : "Select room..."}
+          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-[200px] p-0">
+        <Command>
+          <CommandInput placeholder="Search framework..." />
+          <CommandList>
+            <CommandEmpty>No framework found.</CommandEmpty>
+            <CommandGroup>
+              {roomTournaments.map((r) => (
+                <CommandItem
+                  key={r.pokerRoom}
+                  value={r.pokerRoom}
+                  onSelect={(currentValue) => {
+                    setRoom(currentValue === room ? "" : currentValue)
+                    setOpen(false)
+                  }}
+                >
+                  <Check
+                    className={`mr-2 h-4 w-4 ${
+                      room === r.pokerRoom ? "opacity-100" : "opacity-0"
+                    }`}
+                  />
+                  {r.pokerRoom}
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          </CommandList>
+        </Command>
+      </PopoverContent>
+    </Popover>
+  )
+}

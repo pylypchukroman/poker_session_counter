@@ -6,14 +6,14 @@ import { RunningTournamentSessionSection } from '@/Components/RunningTournamentS
 
 export const TournamentsPage = () => {
   const {data: tournamentSessions, isLoading} = useTournamentSessions();
-  const reversedCashSessions = tournamentSessions?.slice().reverse();
-  const isSessionRunning = reversedCashSessions?.some(session => session.status === "running");
+  const reversedTournamentSessions = tournamentSessions?.slice().reverse();
+  const isSessionRunning = reversedTournamentSessions?.some(session => session.status === "running");
 
   return (
     <>
       <Header />
       <div className="bg-black w-screen h-lvh">
-        <TournamentSessionsList tournamentSessions={reversedCashSessions}/>
+        <TournamentSessionsList tournamentSessions={reversedTournamentSessions}/>
         {isSessionRunning ? <RunningTournamentSessionSection tournamentSessions={tournamentSessions}/> : <AddNewTournamentSession />}
       </div>
     </>

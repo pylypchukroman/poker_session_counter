@@ -8,7 +8,7 @@ export const TournamentDetailsList = ({ tournaments }) => {
         {tournaments.map((tournament) => (
           <>
             <li key={tournament.id} className="text-sm flex gap-4">
-             <p>Room: Stars!!!!!!</p>
+             <p>Room: {tournament.room}</p>
              <p>Name: {tournament.name}</p>
              <p>Buy-In: {tournament.buyIn}</p>
              <p>Pay out: {tournament.result}</p>

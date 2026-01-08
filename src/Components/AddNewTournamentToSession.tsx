@@ -1,45 +1,47 @@
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger
-} from '@/Components/ui/drawer';
-import { SessionTournaments } from '@/Components/SessionTournaments';
+import { RoomInput } from '@/Components/RoomInput';
+import { useState } from 'react';
+import { TournamentInput } from '@/Components/TournamentInput';
+import { Button } from '@/Components/ui/button';
+import { useAddTournament } from '@/Hooks/useTournamentsMutation';
 
 export const AddNewTournamentToSession = ({ runningSessionId }) => {
-
+  const initState = { name: "", buyIn: 0 }
+  const [room, setRoom] = useState("");
+  const [tournament, setTournament] = useState(initState);
+  const addTournament = useAddTournament()
+  const click = () => {
+    const payload = {
+      runningSessionId: runningSessionId,
+      room: room,
+      name: tournament.name,
+      buyIn: tournament.buyIn,
+    };
+    addTournament.mutate(payload);
+    setTournament(initState);
+    setRoom("");
+  }
 
   return (
-    <div className="h-full w-full rounded-md border flex items-center justify-center">
-      <Drawer>
-        <DrawerTrigger>Manage running session</DrawerTrigger>
-        <DrawerContent className="h-full">
-          <DrawerHeader>
-            <DrawerTitle>Manage running session</DrawerTitle>
-          </DrawerHeader>
-          <div className="flex flex-col gap-4">
-            <div className="text-black flex border h-24 p-4">
-              Add new tournaments to session
-            </div>
-            <div className="text-black flex flex-col border h-80 p-4">
-              <p className="mb-4">
-                Session's tournaments
-              </p>
-              <ul>
-                <SessionTournaments runningSessionId={runningSessionId}/>
-              </ul>
-            </div>
-          </div>
-          <DrawerFooter className="flex items-center justify-center">
-            <DrawerClose className="w-1/2 flex items-center justify-center">
-              Cancel
-            </DrawerClose>
-          </DrawerFooter>
-        </DrawerContent>
-      </Drawer>
+    <div className="flex items-center">
+      <p className="mr-4">Room</p>
+      <RoomInput
+        room={room}
+        setRoom={setRoom}
+      />
+      <p className="mr-4">Tournament</p>
+      <TournamentInput
+        tournament={tournament}
+        setTournament={setTournament}
+        room={room}
+      />
+      <Button
+        disabled={!room || !tournament.name}
+        className="ml-6"
+        type="button"
+        onClick={click}
+      >
+        Add tournament
+      </Button>
     </div>
   )
 }
