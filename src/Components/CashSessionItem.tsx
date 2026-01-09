@@ -1,5 +1,5 @@
 import { Separator } from '@/Components/ui/separator';
-import { formatDateForUser } from '@/helpers/formatIsoDate';
+import { formatIsoDate } from '@/helpers/formatIsoDate';
 import { useDeleteCashSession } from '@/Hooks/useCashSessionMutations';
 import { Button } from '@/Components/ui/button';
 type balance = {
@@ -18,8 +18,8 @@ type sessionBalance = {
 
 export const CashSessionItem = ({session}) => {
   const deleteSession = useDeleteCashSession();
-  const startDate = formatDateForUser(session.startedAt);
-  const finishDate = formatDateForUser(session.finishedAt);
+  const startDate = formatIsoDate(session.startedAt);
+  const finishDate = formatIsoDate(session.finishedAt);
 
   const startSessionBalance: sessionBalance = session.balancesStart
     .reduce((sum, { balance }) => sum + balance, 0);

@@ -1,13 +1,13 @@
 import { ScrollArea } from '@/Components/ui/scroll-area';
 import { Separator } from '@/Components/ui/separator';
-import { useTournaments } from '@/Hooks/useTournaments';
 import { FinishTournamentPopover } from '@/Components/FinishTournamentPopover';
 import { Button } from '@/Components/ui/button';
 import { useDeleteTournament } from '@/Hooks/useTournamentsMutation';
+import { useTournamentData } from '@/Hooks/useTournamentData';
 
 export const SessionTournaments = ({ runningSessionId }) => {
-  const {data: sessionTournaments, isLoading} = useTournaments(runningSessionId);
-  const deleteTournament = useDeleteTournament()
+  const { sessionTournaments } = useTournamentData(runningSessionId);
+  const deleteTournament = useDeleteTournament();
 
   return (
     <ScrollArea className="h-64 w-full">

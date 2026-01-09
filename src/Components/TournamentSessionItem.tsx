@@ -1,4 +1,4 @@
-import { formatDateForUser } from '@/helpers/formatIsoDate';
+import { formatIsoDate } from '@/helpers/formatIsoDate';
 import { Button } from '@/Components/ui/button';
 import { Separator } from '@/Components/ui/separator';
 import { useDeleteTournamentSession } from '@/Hooks/useTournamentSessionsMutations';
@@ -6,8 +6,8 @@ import { TournamentDetailsPopover } from '@/Components/TournamentDetailsPopover'
 
 export const TournamentSessionItem = ({session}) => {
   const deleteSession = useDeleteTournamentSession();
-  const startDate = formatDateForUser(session.startedAt);
-  const finishDate = formatDateForUser(session.finishedAt);
+  const startDate = formatIsoDate(session.startedAt);
+  const finishDate = formatIsoDate(session.finishedAt);
   const totalBuyIns = session.tournaments.reduce((sum, { buyIn })=>  sum + buyIn, 0);
   const totalResult = session.tournaments.reduce((sum, { result })=>  sum + result, 0);
 

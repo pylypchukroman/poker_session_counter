@@ -9,15 +9,13 @@ import {
 import { Input } from '@/Components/ui/input';
 import { useState } from 'react';
 import { useFinishCashSession } from '@/Hooks/useCashSessionMutations';
-import { useCashSessions } from '@/Hooks/useCashSessions';
 import { useEditBalance } from '@/Hooks/useBalanceMutations';
 import { useBalanceData } from '@/Hooks/useBalanceData';
+import { useCashSessionData } from '@/Hooks/useCashSessionData';
 
 export const FinishNewSession = () => {
-
+  const { runningSessionId } = useCashSessionData();
   const { roomsBalance } = useBalanceData();
-  const { data: cashSession } = useCashSessions();
-  const sessionId = cashSession?.find(session => session.status === "running").id;
   const finishSession = useFinishCashSession();
   const editBalance = useEditBalance();
   const [pokerRoom, setPokerRoom] = useState(roomsBalance);
@@ -27,7 +25,7 @@ export const FinishNewSession = () => {
     );
   };
   const handleSubmit = () => {
-    finishSession.mutate({id: sessionId, body: pokerRoom});
+    finishSession.mutate({id: runningSessionId, body: pokerRoom});
     pokerRoom.forEach(room => {
       editBalance.mutate({id: room.id, body: {name: room.name ,balance: room.balance}})
     })
