@@ -26,6 +26,7 @@ export const SessionTournaments = ({ runningSessionId }) => {
                 tournamentId={tournament.id}
                 runningSessionId={runningSessionId}
                 tournamentStatus={tournament.status}
+                tournamentRoom={tournament.room}
               />
               <Button
                 type="button"

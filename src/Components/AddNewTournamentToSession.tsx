@@ -3,13 +3,28 @@ import { useState } from 'react';
 import { TournamentInput } from '@/Components/TournamentInput';
 import { Button } from '@/Components/ui/button';
 import { useAddTournament } from '@/Hooks/useTournamentsMutation';
+import { useEditBalance } from '@/Hooks/useBalanceMutations';
+import { useBalances } from '@/Hooks/useBalances';
 
 export const AddNewTournamentToSession = ({ runningSessionId }) => {
   const initState = { name: "", buyIn: 0 }
   const [room, setRoom] = useState("");
   const [tournament, setTournament] = useState(initState);
-  const addTournament = useAddTournament()
+  const addTournament = useAddTournament();
+  const editBalance = useEditBalance();
+  const { data: roomsBalance } = useBalances();
+
   const click = () => {
+    //balance logic
+    const currentRoomBalance = roomsBalance.find(b => b.name === room);
+    const newBalance = currentRoomBalance.balance - tournament.buyIn;
+    const body = {
+      name: currentRoomBalance.name,
+      balance: newBalance
+    }
+    editBalance.mutate({id: currentRoomBalance.id, body: body})
+    //balance logic
+    //tournament logic
     const payload = {
       runningSessionId: runningSessionId,
       room: room,
@@ -17,6 +32,7 @@ export const AddNewTournamentToSession = ({ runningSessionId }) => {
       buyIn: tournament.buyIn,
     };
     addTournament.mutate(payload);
+    //tournament logic
     setTournament(initState);
     setRoom("");
   }
