@@ -6,16 +6,16 @@ import {
   DrawerTitle,
   DrawerTrigger
 } from '@/Components/ui/drawer';
-import { useBalances } from '@/Hooks/useBalances';
 import { Input } from '@/Components/ui/input';
 import { useState } from 'react';
 import { useFinishCashSession } from '@/Hooks/useCashSessionMutations';
 import { useCashSessions } from '@/Hooks/useCashSessions';
 import { useEditBalance } from '@/Hooks/useBalanceMutations';
+import { useBalanceData } from '@/Hooks/useBalanceData';
 
 export const FinishNewSession = () => {
 
-  const { data: roomsBalance } = useBalances();
+  const { roomsBalance } = useBalanceData();
   const { data: cashSession } = useCashSessions();
   const sessionId = cashSession?.find(session => session.status === "running").id;
   const finishSession = useFinishCashSession();

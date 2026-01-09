@@ -12,17 +12,16 @@ import { Input } from '@/Components/ui/input';
 import { useState } from 'react';
 import { useFinishTournament } from '@/Hooks/useTournamentsMutation';
 import { useEditBalance } from '@/Hooks/useBalanceMutations';
-import { useBalances } from '@/Hooks/useBalances';
+import { useBalanceData } from '@/Hooks/useBalanceData';
 
 export const FinishTournamentPopover = ({ tournamentName, tournamentId, runningSessionId, tournamentStatus, tournamentRoom  }) => {
   const [result, setResult] = useState(0);
   const finishTournament = useFinishTournament();
   const editBalance = useEditBalance();
-  const { data: roomsBalance } = useBalances();
+  const { currentRoomBalance } = useBalanceData(tournamentRoom);
 
   const onClick = () => {
     //balance logic
-    const currentRoomBalance = roomsBalance.find(b => b.name === tournamentRoom);
     const newBalance = currentRoomBalance.balance + result;
     const body = {
       name: currentRoomBalance.name,

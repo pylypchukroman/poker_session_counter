@@ -4,7 +4,7 @@ import { TournamentInput } from '@/Components/TournamentInput';
 import { Button } from '@/Components/ui/button';
 import { useAddTournament } from '@/Hooks/useTournamentsMutation';
 import { useEditBalance } from '@/Hooks/useBalanceMutations';
-import { useBalances } from '@/Hooks/useBalances';
+import { useBalanceData } from '@/Hooks/useBalanceData';
 
 export const AddNewTournamentToSession = ({ runningSessionId }) => {
   const initState = { name: "", buyIn: 0 }
@@ -12,11 +12,10 @@ export const AddNewTournamentToSession = ({ runningSessionId }) => {
   const [tournament, setTournament] = useState(initState);
   const addTournament = useAddTournament();
   const editBalance = useEditBalance();
-  const { data: roomsBalance } = useBalances();
+  const { currentRoomBalance } = useBalanceData(room);
 
   const click = () => {
     //balance logic
-    const currentRoomBalance = roomsBalance.find(b => b.name === room);
     const newBalance = currentRoomBalance.balance - tournament.buyIn;
     const body = {
       name: currentRoomBalance.name,

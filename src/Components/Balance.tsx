@@ -11,15 +11,10 @@ import {
 import { Button } from '@/Components/ui/button';
 import { PokerRoom } from '@/Components/PokerRoom';
 import { AddBalancePopover } from '@/Components/addBalancePopover';
-import { useBalances } from '@/Hooks/useBalances';
-
+import { useBalanceData } from '@/Hooks/useBalanceData';
 
 export const Balance = () => {
-  const { data: roomsBalance, isLoading } = useBalances();
-  const totalBalance = roomsBalance?.reduce(
-    (acc, room) => acc + Number(room.balance),
-    0
-  );
+  const { roomsBalance, totalBalance } = useBalanceData();
 
   if (!roomsBalance) return;
 

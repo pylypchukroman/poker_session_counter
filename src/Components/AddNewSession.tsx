@@ -6,15 +6,11 @@ import {
   DrawerTitle,
   DrawerTrigger
 } from '@/Components/ui/drawer';
-import { useBalances } from '@/Hooks/useBalances';
 import { useAddCashSession } from '@/Hooks/useCashSessionMutations';
+import { useBalanceData } from '@/Hooks/useBalanceData';
 
 export const AddNewSession = () => {
-  const { data: roomsBalance } = useBalances();
-  const totalBalance = roomsBalance?.reduce(
-    (acc, room) => acc + Number(room.balance),
-    0
-  );
+  const { roomsBalance, totalBalance } = useBalanceData();
   const addCashSession = useAddCashSession();
 
   return (
