@@ -10,9 +10,11 @@ export const CashPage = () => {
   return (
     <>
       <Header />
-      <div className="bg-black w-screen h-lvh">
-        <CashSessionsList cashSession={reversedCashSessions}/>
-        {isSessionRunning ? <FinishNewSession /> : <AddNewSession />}
+      <div className="min-w-7xl flex items-center justify-between flex-col gap-y-4 bg-black p-4">
+        <div className="bg-black max-w-7xl h-lvh">
+          <CashSessionsList cashSession={reversedCashSessions}/>
+          {isSessionRunning ? <FinishNewSession /> : <AddNewSession />}
+        </div>
       </div>
     </>
   );

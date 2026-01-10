@@ -32,7 +32,7 @@ export const FinishNewSession = () => {
   }
 
   return (
-    <div className="h-1/3 w-full rounded-md border mt-8 flex items-center justify-center">
+    <div className="h-[20vh] w-full rounded-md bg-neutral-800 mt-8 flex items-center justify-center">
       <Drawer>
         <DrawerTrigger>Finish running session</DrawerTrigger>
         <DrawerContent className="h-1/2">
