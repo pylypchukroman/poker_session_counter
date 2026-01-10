@@ -10,6 +10,7 @@ import { Button } from '@/Components/ui/button';
 import { TournamentDetailsList } from '@/Components/TournamentDetailsList';
 
 export const TournamentDetailsPopover = ({ startDate, finishDate, totalBuyIns, totalResult, sessionResult, tournaments }) => {
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -57,5 +58,5 @@ export const TournamentDetailsPopover = ({ startDate, finishDate, totalBuyIns, t
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  )
-}
+  );
+};

@@ -23,5 +23,5 @@ const deleteBalance = useDeleteBalance();
       </ItemActions>
     </Item>
 
-  )
-}
+  );
+};

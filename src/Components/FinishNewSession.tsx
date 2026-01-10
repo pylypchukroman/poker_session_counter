@@ -71,5 +71,5 @@ export const FinishNewSession = () => {
         </DrawerContent>
       </Drawer>
     </div>
-  )
-}
+  );
+};

@@ -33,5 +33,5 @@ export const FinishTournamentNewSession = ({ runningSessionId }) => {
         </DrawerContent>
       </Drawer>
     </div>
-  )
-}
+  );
+};

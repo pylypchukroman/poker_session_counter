@@ -7,7 +7,7 @@ import { useEditBalance } from '@/Hooks/useBalanceMutations';
 import { useBalanceData } from '@/Hooks/useBalanceData';
 
 export const AddNewTournamentToSession = ({ runningSessionId }) => {
-  const initState = { name: "", buyIn: 0 }
+  const initState = { name: "", buyIn: 0 };
   const [room, setRoom] = useState("");
   const [tournament, setTournament] = useState(initState);
   const addTournament = useAddTournament();
@@ -34,7 +34,7 @@ export const AddNewTournamentToSession = ({ runningSessionId }) => {
     //tournament logic
     setTournament(initState);
     setRoom("");
-  }
+  };
 
   return (
     <div className="flex items-center">
@@ -58,5 +58,5 @@ export const AddNewTournamentToSession = ({ runningSessionId }) => {
         Add tournament
       </Button>
     </div>
-  )
-}
+  );
+};

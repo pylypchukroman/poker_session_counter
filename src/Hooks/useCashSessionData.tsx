@@ -7,6 +7,7 @@ export const useCashSessionData = () => {
 
   const reversedCashSessions = cashSession?.slice().reverse();
 
-  return { cashSession, isLoading, runningSessionId, reversedCashSessions }
+  const isSessionRunning = reversedCashSessions?.some(session => session.status === "running");
 
+  return { cashSession, isLoading, runningSessionId, reversedCashSessions, isSessionRunning };
 }

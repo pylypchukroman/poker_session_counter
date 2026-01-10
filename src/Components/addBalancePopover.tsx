@@ -18,12 +18,12 @@ export const AddBalancePopover = () => {
   const initState = {
     name: "",
     balance: 0
-  }
+  };
   const addBalance = useAddBalance();
   const [newBalance, setNewBalance] = useState(initState);
   const reset = () => {
     setNewBalance(initState)
-  }
+  };
   const onSubmit = () => {
     const newBalanceBody = {
       name: newBalance.name,
@@ -31,7 +31,7 @@ export const AddBalancePopover = () => {
     }
     addBalance.mutate(newBalanceBody);
     reset();
-  }
+  };
 
   return (
     <Dialog>
@@ -79,5 +79,5 @@ export const AddBalancePopover = () => {
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  )
-}
+  );
+};

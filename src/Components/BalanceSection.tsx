@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Balance } from '@/Components/Balance';
 
 export const BalanceSection = () => {
@@ -12,4 +12,4 @@ export const BalanceSection = () => {
       </Avatar>
     </div>
   );
-}
+};

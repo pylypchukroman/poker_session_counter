@@ -32,7 +32,8 @@ export const FinishTournamentPopover = ({ tournamentName, tournamentId, runningS
     //tournament logic
     finishTournament.mutate({runningSessionId, tournamentId, result})
     //tournament logic
-  }
+  };
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -80,5 +81,5 @@ export const FinishTournamentPopover = ({ tournamentName, tournamentId, runningS
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  )
-}
+  );
+};

@@ -42,5 +42,5 @@ export const ManageRunningSession = ({ runningSessionId }) => {
         </DrawerContent>
       </Drawer>
     </div>
-  )
-}
+  );
+};

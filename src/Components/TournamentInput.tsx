@@ -3,13 +3,13 @@
 import { useState } from 'react';
 import { Popover, PopoverContent, PopoverTrigger } from '@/Components/ui/popover';
 import { Button } from '@/Components/ui/button';
-import { roomTournaments } from '@/assets/tournaments';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/Components/ui/command';
 import { Check, ChevronsUpDown } from 'lucide-react';
+import { getRoomTournaments } from '@/helpers/getRoomTournaments';
 
 export const TournamentInput = ({ tournament, setTournament, room}) => {
   const [open, setOpen] = useState(false);
-  const tournaments = roomTournaments.find(r => r.pokerRoom === room)?.tournaments;
+  const tournaments = getRoomTournaments(room);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -56,5 +56,5 @@ export const TournamentInput = ({ tournament, setTournament, room}) => {
         </Command>
       </PopoverContent>
     </Popover>
-  )
-}
+  );
+};

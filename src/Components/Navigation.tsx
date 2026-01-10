@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 
 export const Navigation = () => {
+
   return (
     <div className="flex space-x-30">
       <NavLink to="/">
@@ -17,5 +18,5 @@ export const Navigation = () => {
         Tournaments
       </NavLink>
     </div>
-  )
-}
+  );
+};

@@ -2,6 +2,7 @@ import { Separator } from '@/Components/ui/separator';
 import { formatIsoDate } from '@/helpers/formatIsoDate';
 import { useDeleteCashSession } from '@/Hooks/useCashSessionMutations';
 import { Button } from '@/Components/ui/button';
+import { getBalancesSum } from '@/helpers/getBalancesSum';
 type balance = {
   room: string,
   balance: number
@@ -16,15 +17,12 @@ type sessionBalance = {
   balancesEnd: [balance]
 }
 
-export const CashSessionItem = ({session}) => {
+export const CashSessionItem = ({ session }) => {
   const deleteSession = useDeleteCashSession();
   const startDate = formatIsoDate(session.startedAt);
   const finishDate = formatIsoDate(session.finishedAt);
-
-  const startSessionBalance: sessionBalance = session.balancesStart
-    .reduce((sum, { balance }) => sum + balance, 0);
-  const endSessionBalance: sessionBalance = session.balancesEnd
-    .reduce((sum, { balance }) => sum + balance, 0);
+  const startSessionBalance: sessionBalance = getBalancesSum(session.balancesStart);
+  const endSessionBalance: sessionBalance = getBalancesSum(session.balancesEnd);
   const sessionResult: sessionBalance | number = session.status === "running" ? 0 : (endSessionBalance - startSessionBalance);
 
   return (
@@ -45,5 +43,5 @@ export const CashSessionItem = ({session}) => {
       </li>
       <Separator className="my-2" />
     </div>
-  )
+  );
 };

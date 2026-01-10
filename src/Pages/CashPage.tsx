@@ -5,8 +5,7 @@ import { FinishNewSession } from '@/Components/FinishNewSession';
 import { useCashSessionData } from '@/Hooks/useCashSessionData';
 
 export const CashPage = () => {
-  const { reversedCashSessions } = useCashSessionData();
-  const isSessionRunning = reversedCashSessions?.some(session => session.status === "running");
+  const { reversedCashSessions, isSessionRunning } = useCashSessionData();
 
   return (
     <>
@@ -16,5 +15,5 @@ export const CashPage = () => {
         {isSessionRunning ? <FinishNewSession /> : <AddNewSession />}
       </div>
     </>
-  )
-}
+  );
+};

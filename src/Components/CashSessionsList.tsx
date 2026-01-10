@@ -1,7 +1,7 @@
 import { ScrollArea } from '@/Components/ui/scroll-area';
 import { CashSessionItem } from '@/Components/CashSessionItem';
 
-export const CashSessionsList = ({cashSession}) => {
+export const CashSessionsList = ({ cashSession }) => {
 
   return (
     <ScrollArea className="h-1/2 w-full rounded-md border">

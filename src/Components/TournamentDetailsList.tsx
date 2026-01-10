@@ -2,6 +2,7 @@ import { ScrollArea } from '@/Components/ui/scroll-area';
 import { Separator } from '@/Components/ui/separator';
 
 export const TournamentDetailsList = ({ tournaments }) => {
+
   return (
     <ScrollArea className="h-44 w-full">
       <ul>
@@ -19,5 +20,5 @@ export const TournamentDetailsList = ({ tournaments }) => {
         ))}
       </ul>
     </ScrollArea>
-  )
-}
+  );
+};

@@ -9,4 +9,4 @@ export const useBalanceData = (room?: string) => {
   const currentRoomBalance = roomsBalance?.find(b => b.name === room);
 
   return {roomsBalance, isLoading, totalBalance, currentRoomBalance};
-}
+};

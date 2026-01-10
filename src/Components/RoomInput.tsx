@@ -6,7 +6,6 @@ import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, Command
 import { roomTournaments } from '@/assets/tournaments';
 
 export const RoomInput = ({ room, setRoom }) => {
-
   const [open, setOpen] = useState(false);
 
   return (
@@ -52,5 +51,5 @@ export const RoomInput = ({ room, setRoom }) => {
         </Command>
       </PopoverContent>
     </Popover>
-  )
-}
+  );
+};

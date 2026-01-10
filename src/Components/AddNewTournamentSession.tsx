@@ -45,5 +45,5 @@ export const AddNewTournamentSession = () => {
         </DrawerContent>
       </Drawer>
     </div>
-  )
-}
+  );
+};

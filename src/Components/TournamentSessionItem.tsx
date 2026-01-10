@@ -3,14 +3,14 @@ import { Button } from '@/Components/ui/button';
 import { Separator } from '@/Components/ui/separator';
 import { useDeleteTournamentSession } from '@/Hooks/useTournamentSessionsMutations';
 import { TournamentDetailsPopover } from '@/Components/TournamentDetailsPopover';
+import { calculateTournamentTotal } from '@/helpers/calculateTournamentTotal';
 
-export const TournamentSessionItem = ({session}) => {
+export const TournamentSessionItem = ({ session }) => {
   const deleteSession = useDeleteTournamentSession();
   const startDate = formatIsoDate(session.startedAt);
   const finishDate = formatIsoDate(session.finishedAt);
-  const totalBuyIns = session.tournaments.reduce((sum, { buyIn })=>  sum + buyIn, 0);
-  const totalResult = session.tournaments.reduce((sum, { result })=>  sum + result, 0);
-
+  const totalBuyIns = calculateTournamentTotal(session.tournaments, "buyIn");
+  const totalResult = calculateTournamentTotal(session.tournaments, "result");
   const sessionResult = session.status === "running" ? 0 : (totalResult - totalBuyIns);
 
   return (
@@ -39,5 +39,5 @@ export const TournamentSessionItem = ({session}) => {
       </li>
       <Separator className="my-2" />
     </div>
-  )
+  );
 };
