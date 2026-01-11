@@ -17,7 +17,7 @@ export const AddNewSession = () => {
     <div className="h-[20vh] w-full rounded-md mt-8 flex items-center justify-center bg-neutral-800">
       <Drawer>
         <DrawerTrigger>Start new session</DrawerTrigger>
-        <DrawerContent className="h-[25vh] max-w-7xl bg-neutral-800">
+        <DrawerContent className="h-[38vh] max-w-7xl bg-neutral-800">
           <DrawerHeader>
             <DrawerTitle className="text-white mb-4">Start new cash session</DrawerTitle>
             <DrawerDescription className="text-white-900">Your total balance from every rooms: {totalBalance} $</DrawerDescription>

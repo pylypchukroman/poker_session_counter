@@ -15,7 +15,7 @@ export const FinishTournamentNewSession = ({ runningSessionId }) => {
     <div className="h-[20vh] w-full rounded-md flex items-center justify-center bg-neutral-800">
       <Drawer>
         <DrawerTrigger>Finish running tournament session</DrawerTrigger>
-        <DrawerContent className="h-[25vh] max-w-7xl bg-neutral-800">
+        <DrawerContent className="h-[28vh] max-w-7xl bg-neutral-800">
           <DrawerHeader>
             <DrawerTitle className="text-white mb-2">Finish running tournament session</DrawerTitle>
           </DrawerHeader>

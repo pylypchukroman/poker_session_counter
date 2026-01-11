@@ -16,7 +16,7 @@ export const ManageRunningSession = ({ runningSessionId }) => {
     <div className="h-[20vh] w-full rounded-md flex items-center justify-center bg-neutral-800">
       <Drawer>
         <DrawerTrigger>Manage running session</DrawerTrigger>
-        <DrawerContent className="h-[50vh] max-w-7xl bg-neutral-800">
+        <DrawerContent className="h-[80vh] max-w-7xl bg-neutral-800">
           <DrawerHeader>
             <DrawerTitle className="text-white">Manage running session</DrawerTitle>
           </DrawerHeader>
@@ -26,7 +26,7 @@ export const ManageRunningSession = ({ runningSessionId }) => {
               <AddNewTournamentToSession runningSessionId={runningSessionId}/>
             </div>
             <div className="flex flex-col h-80 p-4">
-              <span className="mb-4 text-white-900">
+              <span className="text-white-900">
                 Session's tournaments
               </span>
               <ul>
