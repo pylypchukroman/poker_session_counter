@@ -13,22 +13,22 @@ import { AddNewTournamentToSession } from '@/Components/AddNewTournamentToSessio
 export const ManageRunningSession = ({ runningSessionId }) => {
 
   return (
-    <div className="h-full w-full rounded-md border flex items-center justify-center">
+    <div className="h-[20vh] w-full rounded-md flex items-center justify-center bg-neutral-800">
       <Drawer>
         <DrawerTrigger>Manage running session</DrawerTrigger>
-        <DrawerContent className="h-full">
+        <DrawerContent className="h-[50vh] max-w-7xl bg-neutral-800">
           <DrawerHeader>
-            <DrawerTitle>Manage running session</DrawerTitle>
+            <DrawerTitle className="text-white">Manage running session</DrawerTitle>
           </DrawerHeader>
           <div className="flex flex-col gap-4">
-            <div className="text-black flex flex-col border h-24 p-4">
-              Add new tournaments to session
+            <div className="flex flex-col border-t border-b border-neutral-600 h-24 items-center justify-center">
+              <span className="text-white-900 mb-4">Add new tournaments to session</span>
               <AddNewTournamentToSession runningSessionId={runningSessionId}/>
             </div>
-            <div className="text-black flex flex-col border h-80 p-4">
-              <p className="mb-4">
+            <div className="flex flex-col h-80 p-4">
+              <span className="mb-4 text-white-900">
                 Session's tournaments
-              </p>
+              </span>
               <ul>
                 <SessionTournaments runningSessionId={runningSessionId}/>
               </ul>

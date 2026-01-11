@@ -15,7 +15,7 @@ export const RoomInput = ({ room, setRoom }) => {
           variant="secondary"
           role="combobox"
           aria-expanded={open}
-          className="w-[200px] justify-between text-white"
+          className="w-[230px] justify-between text-white"
         >
           {room
             ? roomTournaments.find((pokerRoom: any) => pokerRoom.pokerRoom === room)?.pokerRoom
@@ -23,14 +23,15 @@ export const RoomInput = ({ room, setRoom }) => {
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0">
+      <PopoverContent className="w-[230px] p-0 bg">
         <Command>
-          <CommandInput placeholder="Search framework..." />
-          <CommandList>
-            <CommandEmpty>No framework found.</CommandEmpty>
+          <CommandInput className="text-white" placeholder="Search framework..." />
+          <CommandList className="bg-neutral-800">
+            <CommandEmpty >No framework found.</CommandEmpty>
             <CommandGroup>
               {roomTournaments.map((r) => (
                 <CommandItem
+                  className="text-white"
                   key={r.pokerRoom}
                   value={r.pokerRoom}
                   onSelect={(currentValue) => {

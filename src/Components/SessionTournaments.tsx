@@ -10,17 +10,26 @@ export const SessionTournaments = ({ runningSessionId }) => {
   const deleteTournament = useDeleteTournament();
 
   return (
-    <ScrollArea className="h-64 w-full">
+    <li>
+    <div className="text-xs flex items-center sticky top-0 left-0 h-8">
+      <p className="w-27">Status</p>
+      <p className="w-32">Room</p>
+      <p className="w-82">Name</p>
+      <p className="w-26">Buy-In</p>
+      <p className="w-26">Pay out</p>
+      <p className="w-26">Result</p>
+    </div>
+    <ScrollArea className="h-70 w-full">
       <ul>
         {sessionTournaments?.map((tournament) => (
           <li key={tournament.id}>
-            <div className="text-sm flex gap-4 flex items-center justify-between">
-              <p>Status: {tournament.status}</p>
-              <p>Room: {tournament.room}</p>
-              <p>Name: {tournament.name}</p>
-              <p>Buy-In: {tournament.buyIn}</p>
-              <p>Pay out: {tournament.result}</p>
-              <p>Result: {tournament.result - tournament.buyIn}</p>
+            <div className="text-sm flex items-center">
+              <p className="w-27">{tournament.status}</p>
+              <p className="w-32">{tournament.room}</p>
+              <p className="w-82">{tournament.name}</p>
+              <p className="w-26">{tournament.buyIn} $</p>
+              <p className="w-26">{tournament.result} $</p>
+              <p className="w-26">{tournament.result - tournament.buyIn} $</p>
               <FinishTournamentPopover
                 tournamentName={tournament.name}
                 tournamentId={tournament.id}
@@ -30,6 +39,7 @@ export const SessionTournaments = ({ runningSessionId }) => {
               />
               <Button
                 type="button"
+                className="ml-6"
                 onClick={() =>
                   deleteTournament.mutate(
                     {runningSessionId: runningSessionId, tournamentId: tournament.id}
@@ -38,10 +48,11 @@ export const SessionTournaments = ({ runningSessionId }) => {
                 Delete tournament
               </Button>
             </div>
-            <Separator className="my-2" />
+            <Separator className="my-2 bg-neutral-600" />
           </li>
         ))}
       </ul>
     </ScrollArea>
+    </li>
   );
 };

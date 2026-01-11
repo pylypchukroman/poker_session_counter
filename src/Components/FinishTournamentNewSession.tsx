@@ -12,12 +12,12 @@ export const FinishTournamentNewSession = ({ runningSessionId }) => {
   const finishTournamentSession = useFinishTournamentSession();
 
   return (
-    <div className="h-full w-full rounded-md border flex items-center justify-center">
+    <div className="h-[20vh] w-full rounded-md flex items-center justify-center bg-neutral-800">
       <Drawer>
         <DrawerTrigger>Finish running tournament session</DrawerTrigger>
-        <DrawerContent className="h-1/2">
+        <DrawerContent className="h-[25vh] max-w-7xl bg-neutral-800">
           <DrawerHeader>
-            <DrawerTitle>Finish running tournament session</DrawerTitle>
+            <DrawerTitle className="text-white mb-2">Finish running tournament session</DrawerTitle>
           </DrawerHeader>
           <DrawerFooter className="flex items-center justify-center">
             <DrawerClose

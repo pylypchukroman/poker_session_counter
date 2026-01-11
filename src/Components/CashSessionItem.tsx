@@ -33,10 +33,11 @@ export const CashSessionItem = ({ session }) => {
         <p className='text-xs flex flex-col gap-y-2 w-18'>Start time:<span className='text-sm'>{startDate}</span></p>
         <p className='text-xs flex flex-col gap-y-2 w-18'>Finish time:<span className='text-sm'>{isSessionRunning ? "running" : finishDate}</span></p>
         <p className='text-xs flex flex-col gap-y-2 w-13'>Status:<span className='text-sm'>{session.status}</span></p>
-        <p className='text-xs flex flex-col gap-y-2 w-32'>Start session balance:<span className='text-sm'>{startSessionBalance}</span></p>
-        <p className='text-xs flex flex-col gap-y-2 w-30'>End session balance:<span className='text-sm'>{endSessionBalance}</span></p>
-        <p className='text-xs flex flex-col gap-y-2 w-30'>Session result:<span className={sessionResult >= 0 ? 'text-sm text-green-600' : 'text-sm text-red-600'}>{sessionResult}</span></p>
+        <p className='text-xs flex flex-col gap-y-2 w-32'>Start session balance:<span className='text-sm'>{startSessionBalance} $</span></p>
+        <p className='text-xs flex flex-col gap-y-2 w-30'>End session balance:<span className='text-sm'>{endSessionBalance} $</span></p>
+        <p className='text-xs flex flex-col gap-y-2 w-30'>Session result:<span className={sessionResult >= 0 ? 'text-sm text-green-600' : 'text-sm text-red-600'}>{sessionResult} $</span></p>
         <Button
+          className="hover:text-white"
           size="default"
           variant="outline"
           onClick={() => deleteSession.mutate(session.id)}

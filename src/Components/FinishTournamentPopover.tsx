@@ -7,7 +7,6 @@ import {
   DialogTrigger
 } from '@/Components/ui/dialog';
 import { Button } from '@/Components/ui/button';
-import { Label } from '@/Components/ui/label';
 import { Input } from '@/Components/ui/input';
 import { useState } from 'react';
 import { useFinishTournament } from '@/Hooks/useTournamentsMutation';
@@ -15,7 +14,7 @@ import { useEditBalance } from '@/Hooks/useBalanceMutations';
 import { useBalanceData } from '@/Hooks/useBalanceData';
 
 export const FinishTournamentPopover = ({ tournamentName, tournamentId, runningSessionId, tournamentStatus, tournamentRoom  }) => {
-  const [result, setResult] = useState(0);
+  const [result, setResult] = useState<number | null>(null);
   const finishTournament = useFinishTournament();
   const editBalance = useEditBalance();
   const { currentRoomBalance } = useBalanceData(tournamentRoom);
@@ -46,24 +45,21 @@ export const FinishTournamentPopover = ({ tournamentName, tournamentId, runningS
           Finish tournament
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="bg-neutral-800">
         <DialogHeader>
-          <DialogTitle>Share link</DialogTitle>
+          <DialogTitle>{tournamentName}</DialogTitle>
           <DialogDescription>
-            Enter result for {tournamentName}
+            Enter your tournament result
           </DialogDescription>
         </DialogHeader>
         <div className="flex items-center space-x-2">
           <div className="grid flex-1 gap-2">
-            <Label htmlFor="result" className="sr-only">
-              Link
-            </Label>
             <Input
-              className="text-black"
+              className="text-white"
               type="number"
-              id="result"
-              placeholder="0"
-              value={result}
+              min={0}
+              // placeholder="0"
+              value={result?.toString()}
               onChange={(e) => setResult(Number(e.target.value))}
             />
           </div>

@@ -14,7 +14,7 @@ export const AddNewSession = () => {
   const addCashSession = useAddCashSession();
 
   return (
-    <div className="h-[20vh] w-full rounded-md border mt-8 flex items-center justify-center">
+    <div className="h-[20vh] w-full rounded-md mt-8 flex items-center justify-center bg-neutral-800">
       <Drawer>
         <DrawerTrigger>Start new session</DrawerTrigger>
         <DrawerContent className="h-[25vh] max-w-7xl bg-neutral-800">

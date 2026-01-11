@@ -32,23 +32,24 @@ export const FinishNewSession = () => {
   }
 
   return (
-    <div className="h-[20vh] w-full rounded-md bg-neutral-800 mt-8 flex items-center justify-center">
+    <div className="h-[20vh] w-full rounded-md mt-8 flex items-center justify-center bg-neutral-800">
       <Drawer>
         <DrawerTrigger>Finish running session</DrawerTrigger>
-        <DrawerContent className="h-1/2">
+        <DrawerContent className="h-[25vh] max-w-7xl bg-neutral-800">
           <DrawerHeader>
-            <DrawerTitle>Finish running session</DrawerTitle>
-            <DrawerDescription>Enter balance for every room </DrawerDescription>
+            <DrawerTitle className="text-white mb-4">Finish running session</DrawerTitle>
+            <DrawerDescription className="text-white-900">Enter balance for your rooms </DrawerDescription>
             <ul className='flex items-center justify-center gap-x-4'>
               {pokerRoom?.map((room) => (
-                <li key={room.id} className="flex items-center justify-center mt-6">
-                  <DrawerDescription>Room: {room.name} Balance:
-                    <span className="flex">
+                <li key={room.id} className="flex items-center justify-center mt-4">
+                  <DrawerDescription className="text-white-900">{room.name} Balance:
+                    <span className="flex mt-2">
                       <Input
                         type="number"
                         name="balance"
                         placeholder={room.balance}
                         value={pokerRoom.balance}
+                        min={0}
                         onChange={e => handleChange(room.id, e.target.name, Number(e.target.value))}
                       />
                       </span>

@@ -37,13 +37,11 @@ export const AddNewTournamentToSession = ({ runningSessionId }) => {
   };
 
   return (
-    <div className="flex items-center">
-      <p className="mr-4">Room</p>
+    <div className="flex items-center w-180 justify-between">
       <RoomInput
         room={room}
         setRoom={setRoom}
       />
-      <p className="mr-4">Tournament</p>
       <TournamentInput
         tournament={tournament}
         setTournament={setTournament}
@@ -51,7 +49,6 @@ export const AddNewTournamentToSession = ({ runningSessionId }) => {
       />
       <Button
         disabled={!room || !tournament.name}
-        className="ml-6"
         type="button"
         onClick={click}
       >
