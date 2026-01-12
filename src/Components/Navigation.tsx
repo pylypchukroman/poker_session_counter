@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 export const Navigation = () => {
 
   return (
-    <div className="flex space-x-30">
+    <div className="flex items-center justify-between w-md">
       <NavLink
         className={({ isActive }) =>
           isActive

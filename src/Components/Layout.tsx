@@ -4,7 +4,7 @@ import { Header } from '@/Components/Header';
 export const Layout = () => {
   return (
     <div className="min-h-screen bg-black">
-      {/*<Header/>*/}
+      <Header/>
       <main className="max-w-7xl mx-auto">
         <Outlet />
       </main>
