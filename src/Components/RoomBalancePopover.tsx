@@ -20,7 +20,12 @@ export const RoomBalancePopover = ({ roomBalance }: any ) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Change</Button>
+        <Button
+          variant="outline"
+          className="hover:text-amber-50"
+        >
+          Change
+        </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md bg-black">
         <DialogHeader>

@@ -15,7 +15,7 @@ export const AddNewSession = () => {
 
   return (
     <Drawer>
-      <DrawerTrigger className="h-[20vh] px-4 py-2 text-white rounded-md bg-neutral-800">
+      <DrawerTrigger className="h-[18vh] px-4 py-2 text-white rounded-md bg-neutral-800">
         Start new session
       </DrawerTrigger>
 

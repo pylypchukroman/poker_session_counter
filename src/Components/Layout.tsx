@@ -8,8 +8,6 @@ export const Layout = () => {
       <main className="max-w-7xl mx-auto">
         <Outlet />
       </main>
-
-      {/* тут може бути Footer */}
     </div>
   )
 }

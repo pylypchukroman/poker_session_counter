@@ -16,16 +16,17 @@ export const AddNewTournamentSession = () => {
   const addTournamentSession = useAddTournamentSession();
 
   return (
-    <div className="h-[20vh] w-full rounded-md mt-8 flex items-center justify-center bg-neutral-800">
       <Drawer>
-        <DrawerTrigger>Start new tournament session</DrawerTrigger>
-        <DrawerContent className="h-[38vh] max-w-7xl bg-neutral-800">
-          <DrawerHeader>
-            <DrawerTitle className="text-white mb-4">Start new tournament session</DrawerTitle>
-            <DrawerDescription className="text-white-900">Your total balance from every rooms: {totalBalance} $</DrawerDescription>
-            <ul className="flex gap-15 items-center justify-center">
+        <DrawerTrigger className="h-[18vh] px-4 py-2 text-white rounded-md bg-neutral-800">
+          Start new tournament session
+        </DrawerTrigger>
+        <DrawerContent className="h-[38vh] max-w-7xl mx-auto bg-neutral-800 rounded-md p-6 flex flex-col justify-between">
+          <DrawerHeader className="flex flex-col gap-4">
+            <DrawerTitle className="text-white text-lg">Start new tournament session</DrawerTitle>
+            <DrawerDescription className="text-neutral-300">Your total balance from every rooms: {totalBalance} $</DrawerDescription>
+            <ul className="flex flex-wrap mx-auto gap-6 mt-4">
               {roomsBalance?.map((room) => (
-                <li key={room.id} className="flex items-center justify-center mt-6">
+                <li key={room.id} className="flex items-center gap-2">
                   <DrawerDescription className="text-white=900">{room.name} {room.balance} $</DrawerDescription>
                 </li>
               ))}
@@ -44,6 +45,5 @@ export const AddNewTournamentSession = () => {
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
-    </div>
   );
 };

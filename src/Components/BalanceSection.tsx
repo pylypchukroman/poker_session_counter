@@ -4,7 +4,7 @@ import { Balance } from '@/Components/Balance';
 export const BalanceSection = () => {
 
   return (
-    <div className="flex justify-between w-xs items-center">
+    <div className="flex justify-between w-xs items-center relative">
       <Balance />
       <Avatar className="size-8">
         <AvatarImage src="https://github.com/shadcn.png" />

@@ -59,7 +59,7 @@ export const CashSessionItem = ({ session }) => {
         <Button
           size="sm"
           variant="outline"
-          className="justify-self-end"
+          className="justify-self-end hover:text-amber-50"
           onClick={() => deleteSession.mutate(session.id)}
         >
           Delete

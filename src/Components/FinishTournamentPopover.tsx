@@ -38,7 +38,7 @@ export const FinishTournamentPopover = ({ tournamentName, tournamentId, runningS
       <DialogTrigger asChild>
         <Button
           disabled={tournamentStatus !== "running"}
-          className="text-amber-50"
+          className="text-amber-50 hover:text-amber-50"
           size="sm"
           variant="outline"
         >
@@ -67,6 +67,7 @@ export const FinishTournamentPopover = ({ tournamentName, tournamentId, runningS
         <DialogFooter className="sm:justify-start">
           <DialogClose asChild>
             <Button
+              className="hover:text-amber-50"
               type="button"
               variant="outline"
               onClick={onClick}

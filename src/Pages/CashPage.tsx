@@ -1,4 +1,3 @@
-import { Header } from '@/Components/Header';
 import { CashSessionsList } from '@/Components/CashSessionsList';
 import { AddNewSession } from '@/Components/AddNewSession';
 import { FinishNewSession } from '@/Components/FinishNewSession';

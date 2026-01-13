@@ -33,10 +33,10 @@ export const FinishNewSession = () => {
 
   return (
       <Drawer>
-        <DrawerTrigger className="h-[20vh] px-4 py-2 text-white rounded-md bg-neutral-800">
+        <DrawerTrigger className="h-[18vh] px-4 py-2 text-white rounded-md bg-neutral-800">
           Finish running session
         </DrawerTrigger>
-        <DrawerContent className="h-[38vh] max-w-7xl mx-auto bg-neutral-800 rounded-md p-6 flex flex-col justify-between">
+        <DrawerContent className="h-[46vh] max-w-7xl mx-auto bg-neutral-800 rounded-md p-6 flex flex-col justify-between">
           <DrawerHeader>
             <DrawerTitle className="text-white mb-4">Finish running session</DrawerTitle>
             <DrawerDescription className="text-white-900">Enter balance for your rooms </DrawerDescription>

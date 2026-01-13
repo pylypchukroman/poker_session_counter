@@ -8,14 +8,9 @@ export const TournamentsPage = () => {
 const { reversedTournamentSessions, isSessionRunning, runningSessionId } = useTournamentSessionData();
 
   return (
-    <>
-      <Header />
-      <div className="min-w-7xl flex items-center justify-between flex-col gap-y-4 bg-black p-4">
-        <div className="bg-black max-w-7xl h-lvh">
-          <TournamentSessionsList tournamentSessions={reversedTournamentSessions}/>
-          {isSessionRunning ? <RunningTournamentSessionSection runningSessionId={runningSessionId}/> : <AddNewTournamentSession />}
-        </div>
-      </div>
-    </>
+    <div className="flex flex-col gap-y-4">
+      <TournamentSessionsList tournamentSessions={reversedTournamentSessions}/>
+      {isSessionRunning ? <RunningTournamentSessionSection runningSessionId={runningSessionId}/> : <AddNewTournamentSession />}
+    </div>
   );
 };

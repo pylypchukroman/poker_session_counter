@@ -6,7 +6,7 @@ import { useDeleteTournament } from '@/Hooks/useTournamentsMutation';
 import { useTournamentData } from '@/Hooks/useTournamentData';
 
 export const SessionTournaments = ({ runningSessionId }) => {
-  const { sessionTournaments } = useTournamentData(runningSessionId);
+  const { reversedTournamentSessions } = useTournamentData(runningSessionId);
   const deleteTournament = useDeleteTournament();
 
   return (
@@ -19,9 +19,9 @@ export const SessionTournaments = ({ runningSessionId }) => {
       <p className="w-26">Pay out</p>
       <p className="w-26">Result</p>
     </div>
-    <ScrollArea className="h-70 w-full">
+    <ScrollArea className="h-66 w-full">
       <ul>
-        {sessionTournaments?.map((tournament) => (
+        {reversedTournamentSessions?.map((tournament) => (
           <li key={tournament.id}>
             <div className="text-sm flex items-center">
               <p className="w-27">{tournament.status}</p>

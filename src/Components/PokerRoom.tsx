@@ -9,9 +9,11 @@ const deleteBalance = useDeleteBalance();
   return (
     <Item
       variant="outline"
-      className="w-full flex justify-between"
+      className="max-w-2xl flex-col justify-between"
     >
-      {roomBalance.name}: {roomBalance.balance}
+      <div className=" grid grid-cols-[1fr_1fr_1fr] items-center px-2 text-sm">
+        <span>{roomBalance.name}</span>
+        <span>{roomBalance.balance} $</span>
       <ItemActions>
         <RoomBalancePopover roomBalance={roomBalance}/>
         <Button
@@ -21,6 +23,7 @@ const deleteBalance = useDeleteBalance();
           Delete
         </Button>
       </ItemActions>
+      </div>
     </Item>
 
   );

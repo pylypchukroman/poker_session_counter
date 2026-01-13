@@ -5,6 +5,7 @@ import { useDeleteTournamentSession } from '@/Hooks/useTournamentSessionsMutatio
 import { TournamentDetailsPopover } from '@/Components/TournamentDetailsPopover';
 import { calculateTournamentTotal } from '@/helpers/calculateTournamentTotal';
 import { useTournamentSessionData } from '@/Hooks/useTournamentSessionData';
+import { InfoBlock } from '@/Components/InfoBlock';
 
 export const TournamentSessionItem = ({ session }) => {
   const deleteSession = useDeleteTournamentSession();
@@ -16,14 +17,37 @@ export const TournamentSessionItem = ({ session }) => {
   const sessionResult = isSessionRunning ? 0 : (totalResult - totalBuyIns);
 
   return (
-    <div className='w-300'>
-      <li className={sessionResult >= 0 ? 'h-20 flex items-center justify-between p-2 bg-green-900/8 rounded-md' : 'h-20 flex items-center justify-between p-2 bg-red-900/5 rounded-md'}>
-        <p className='text-xs flex flex-col gap-y-2 w-18'>Start time:<span className='text-sm'>{startDate}</span></p>
-        <p className='text-xs flex flex-col gap-y-2 w-18'>Finish time:<span className='text-sm'>{isSessionRunning ? "running" : finishDate}</span></p>
-        <p className='text-xs flex flex-col gap-y-2 w-13'>Status:<span className='text-sm'>{session.status}</span></p>
-        <p className='text-xs flex flex-col gap-y-2 w-32'>Total buy-ins:<span className='text-sm'>{totalBuyIns} $</span></p>
-        <p className='text-xs flex flex-col gap-y-2 w-30'>Total payouts:<span className={totalResult >= 0 ? 'text-sm text-green-600' : 'text-sm text-red-600'}>{totalResult} $</span></p>
-        <p className='text-xs flex flex-col gap-y-2 w-30'>Session result:<span className={sessionResult >= 0 ? 'text-sm text-green-600' : 'text-sm text-red-600'}>{sessionResult} $</span></p>
+    <>
+      <li
+        className={`
+        grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_auto_auto]
+        items-center gap-4
+        p-3 rounded-md
+        min-w-0 w-full
+        h-24
+        ${sessionResult >= 0 ? "bg-green-900/8" : "bg-red-900/5"}
+      `}
+      >
+        <InfoBlock label="Start time" value={startDate} />
+        <InfoBlock
+          label="Finish time"
+          value={isSessionRunning ? "running" : finishDate}
+        />
+        <InfoBlock label="Status" value={session.status} />
+        <InfoBlock
+          label="Total buy-ins"
+          value={`${totalBuyIns} $`}
+        />
+        <InfoBlock
+          label="Total payouts"
+          value={`${totalResult} $`}
+          valueClass={totalResult >= 0 ? "text-green-600" : "text-red-600"}
+        />
+        <InfoBlock
+          label="Session result"
+          value={`${sessionResult} $`}
+          valueClass={sessionResult >= 0 ? "text-green-600" : "text-red-600"}
+        />
         <TournamentDetailsPopover
           startDate={startDate}
           finishDate={finishDate}
@@ -33,15 +57,15 @@ export const TournamentSessionItem = ({ session }) => {
           tournaments={session.tournaments}
         />
         <Button
-          className="hover:text-white"
-          size="default"
+          size="sm"
           variant="outline"
+          className="justify-self-end hover:text-white"
           onClick={() => deleteSession.mutate(session.id)}
         >
-          <span className="text-sm">Delete session</span>
+          Delete
         </Button>
       </li>
-      <Separator className="my-2 bg-neutral-600" />
-    </div>
+      <Separator className="my-2 bg-neutral-700" />
+    </>
   );
 };
