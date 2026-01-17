@@ -1,16 +1,11 @@
 import { formatIsoDate } from '@/helpers/formatIsoDate';
-import { Button } from '@/Components/ui/button';
 import { Separator } from '@/Components/ui/separator';
-import { useDeleteTournamentSession } from '@/Hooks/useTournamentSessionsMutations';
 import { TournamentDetailsPopover } from '@/Components/TournamentDetailsPopover';
 import { calculateTournamentTotal } from '@/helpers/calculateTournamentTotal';
 import { useTournamentSessionData } from '@/Hooks/useTournamentSessionData';
 import { InfoBlock } from '@/Components/InfoBlock';
-import { useAuth } from '@/context/AuthContext';
 
 export const TournamentSessionItem = ({ session }) => {
-  const deleteSession = useDeleteTournamentSession();
-  const { accessToken } = useAuth();
   const startDate = formatIsoDate(session.startedAt);
   const finishDate = formatIsoDate(session.finishedAt);
   const totalBuyIns = calculateTournamentTotal(session.tournaments, "buyIn");
@@ -58,14 +53,6 @@ export const TournamentSessionItem = ({ session }) => {
           sessionResult={sessionResult}
           tournaments={session.tournaments}
         />
-        <Button
-          size="sm"
-          variant="outline"
-          className="justify-self-end hover:text-white"
-          onClick={() => deleteSession.mutate({ id: session.id, token: accessToken })}
-        >
-          Delete
-        </Button>
       </li>
       <Separator className="my-2 bg-neutral-700" />
     </>

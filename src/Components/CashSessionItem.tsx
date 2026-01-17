@@ -1,11 +1,8 @@
 import { Separator } from '@/Components/ui/separator';
 import { formatIsoDate } from '@/helpers/formatIsoDate';
-import { useDeleteCashSession } from '@/Hooks/useCashSessionMutations';
-import { Button } from '@/Components/ui/button';
 import { getBalancesSum } from '@/helpers/getBalancesSum';
 import { useCashSessionData } from '@/Hooks/useCashSessionData';
 import { InfoBlock } from '@/Components/InfoBlock';
-import { useAuth } from '@/context/AuthContext';
 type balance = {
   room: string,
   balance: number
@@ -22,8 +19,6 @@ type sessionBalance = {
 
 export const CashSessionItem = ({ session }) => {
   const { isSessionRunning } = useCashSessionData();
-  const { accessToken } = useAuth();
-  const deleteSession = useDeleteCashSession();
   const startDate = formatIsoDate(session.startedAt);
   const finishDate = formatIsoDate(session.finishedAt);
   const startSessionBalance: sessionBalance = getBalancesSum(session.balancesStart);
@@ -34,7 +29,7 @@ export const CashSessionItem = ({ session }) => {
     <>
       <li
         className={`
-        grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_auto]
+        grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr]
         items-center gap-4
         p-3 rounded-md
         min-w-0 w-full
@@ -57,17 +52,7 @@ export const CashSessionItem = ({ session }) => {
             sessionResult >= 0 ? "text-green-600" : "text-red-600"
           }
         />
-
-        <Button
-          size="sm"
-          variant="outline"
-          className="justify-self-end hover:text-amber-50"
-          onClick={() => deleteSession.mutate({id: session.id, token: accessToken})}
-        >
-          Delete
-        </Button>
       </li>
-
       <Separator className="my-2 bg-neutral-700" />
     </>
   );
