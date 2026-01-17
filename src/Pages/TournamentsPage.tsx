@@ -1,4 +1,4 @@
-import { Header } from '@/Components/Header';
+
 import { TournamentSessionsList } from '@/Components/TournamentSessionsList';
 import { AddNewTournamentSession } from '@/Components/AddNewTournamentSession';
 import { RunningTournamentSessionSection } from '@/Components/RunningTournamentSessionSection';

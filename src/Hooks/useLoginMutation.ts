@@ -11,7 +11,7 @@ export const useLoginMutation = () => {
     mutationFn:(data) => loginUser(data),
     onSuccess: (data) => {
       setAuth(data.user, data.tokens.accessToken);
-      navigate("/home");
+      navigate("/cash");
     },
   });
 };

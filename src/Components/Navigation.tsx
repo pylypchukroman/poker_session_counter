@@ -10,9 +10,9 @@ export const Navigation = () => {
             ? "text-white-500 font-semibold border-b-2 border-white h-full"
             : "text-gray-500 hover:text-white h-1/2"
         }
-        to="/"
+        to="/dashboard"
       >
-        Home
+        Dashboard
       </NavLink>
       <NavLink
         className={({ isActive }) =>

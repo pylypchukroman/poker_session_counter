@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode, useEffect } from "react";
+import { createContext, useState, ReactNode, useEffect, useContext } from "react";
 
 interface User {
   email: string;
@@ -8,6 +8,8 @@ interface User {
 interface AuthContextType {
   user: User | null;
   accessToken: string | null;
+  isAuthenticated: boolean;
+  isLoading: boolean;
   setAuth: (user: User, token: string) => void;
   logout: () => void;
 }
@@ -17,6 +19,7 @@ export const AuthContext = createContext<AuthContextType | undefined>(undefined)
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [accessToken, setAccessToken] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true); // ❗ КЛЮЧ
 
   const setAuth = (userData: User, token: string) => {
     setUser(userData);
@@ -28,24 +31,40 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const logout = () => {
     setUser(null);
     setAccessToken(null);
-    localStorage.removeItem("accessToken");
+    localStorage.removeItem("token");
     localStorage.removeItem("user");
-    console.log('logout')
+    // ❗ isLoading НЕ чіпаємо
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    const userData = localStorage.getItem("user");
+    try {
+      const token = localStorage.getItem("token");
+      const userData = localStorage.getItem("user");
 
-    if (token) setAccessToken(token);
-    if (userData) setUser(JSON.parse(userData));
+      if (token && userData) {
+        setAccessToken(token);
+        setUser(JSON.parse(userData));
+      }
+    } finally {
+      // ❗ БЕЗ ЦЬОГО БУДЕ ВІЧНИЙ LOADING
+      setIsLoading(false);
+    }
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, accessToken, setAuth, logout }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        accessToken,
+        isAuthenticated: Boolean(accessToken),
+        isLoading,
+        setAuth,
+        logout,
+      }}
+    >
       {children}
     </AuthContext.Provider>
-);
+  );
 };
 
 export const useAuth = () => {
