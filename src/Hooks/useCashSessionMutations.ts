@@ -5,7 +5,7 @@ export const useDeleteCashSession = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (id) => deleteCashSession(id),
+    mutationFn: ({ id, token }) => deleteCashSession({ id, token }),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['cash_sessions'],
@@ -18,7 +18,7 @@ export const useAddCashSession = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (body: any) => addCashSession(body),
+    mutationFn: ({ body, token }) => addCashSession({ body, token }),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['cash_sessions'],
@@ -31,7 +31,7 @@ export const useFinishCashSession = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ id, body }) => finishCashSession({ id, body }),
+    mutationFn: ({ id, body, token }) => finishCashSession({ id, body, token }),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['cash_sessions'],

@@ -5,6 +5,7 @@ import { Button } from '@/Components/ui/button';
 import { getBalancesSum } from '@/helpers/getBalancesSum';
 import { useCashSessionData } from '@/Hooks/useCashSessionData';
 import { InfoBlock } from '@/Components/InfoBlock';
+import { useAuth } from '@/context/AuthContext';
 type balance = {
   room: string,
   balance: number
@@ -21,6 +22,7 @@ type sessionBalance = {
 
 export const CashSessionItem = ({ session }) => {
   const { isSessionRunning } = useCashSessionData();
+  const { accessToken } = useAuth();
   const deleteSession = useDeleteCashSession();
   const startDate = formatIsoDate(session.startedAt);
   const finishDate = formatIsoDate(session.finishedAt);
@@ -60,7 +62,7 @@ export const CashSessionItem = ({ session }) => {
           size="sm"
           variant="outline"
           className="justify-self-end hover:text-amber-50"
-          onClick={() => deleteSession.mutate(session.id)}
+          onClick={() => deleteSession.mutate({id: session.id, token: accessToken})}
         >
           Delete
         </Button>
