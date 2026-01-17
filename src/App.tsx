@@ -11,6 +11,7 @@ import { PrivateRoute } from '@/routes/PrivateRoute';
 import { PublicLayout } from '@/layouts/PublicLayout';
 import { PrivateLayout } from '@/layouts/PrivateLayout';
 import { NotFoundPage } from '@/Pages/NotFoundPage';
+import { HomeRedirect } from '@/Pages/HomeRedirect';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
   return (
     <Suspense fallback={<h1>LOADING...</h1>}>
       <Routes>
+        <Route path="/" element={<HomeRedirect />} />
         <Route element={<PublicRoute />}>
           <Route element={<PublicLayout />}>
             <Route path="/login" element={<Login />} />

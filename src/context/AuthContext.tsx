@@ -1,29 +1,42 @@
-import { createContext, useState, ReactNode, useEffect, useContext } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  ReactNode,
+} from "react";
 
-interface User {
+export type User = {
+  id: string;
   email: string;
-  name: string;
-}
+  name?: string;
+};
 
-interface AuthContextType {
+type AuthStatus = "loading" | "authenticated" | "unauthenticated";
+
+type AuthContextType = {
   user: User | null;
   accessToken: string | null;
   isAuthenticated: boolean;
   isLoading: boolean;
   setAuth: (user: User, token: string) => void;
   logout: () => void;
-}
+};
 
-export const AuthContext = createContext<AuthContextType | undefined>(undefined);
+export const AuthContext = createContext<AuthContextType | undefined>(
+  undefined
+);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [accessToken, setAccessToken] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true); // ❗ КЛЮЧ
+  const [status, setStatus] = useState<AuthStatus>("loading");
 
   const setAuth = (userData: User, token: string) => {
     setUser(userData);
     setAccessToken(token);
+    setStatus("authenticated");
+
     localStorage.setItem("token", token);
     localStorage.setItem("user", JSON.stringify(userData));
   };
@@ -31,24 +44,30 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const logout = () => {
     setUser(null);
     setAccessToken(null);
+    setStatus("unauthenticated");
+
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    // ❗ isLoading НЕ чіпаємо
   };
 
   useEffect(() => {
-    try {
-      const token = localStorage.getItem("token");
-      const userData = localStorage.getItem("user");
+    const initAuth = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const userData = localStorage.getItem("user");
 
-      if (token && userData) {
+        if (!token || !userData) {
+          throw new Error("No auth data");
+        }
         setAccessToken(token);
         setUser(JSON.parse(userData));
+        setStatus("authenticated");
+      } catch {
+        setStatus("unauthenticated");
       }
-    } finally {
-      // ❗ БЕЗ ЦЬОГО БУДЕ ВІЧНИЙ LOADING
-      setIsLoading(false);
-    }
+    };
+
+    initAuth();
   }, []);
 
   return (
@@ -56,8 +75,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       value={{
         user,
         accessToken,
-        isAuthenticated: Boolean(accessToken),
-        isLoading,
+        isAuthenticated: status === "authenticated",
+        isLoading: status === "loading",
         setAuth,
         logout,
       }}
@@ -69,7 +88,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
 export const useAuth = () => {
   const ctx = useContext(AuthContext);
-  if (!ctx) throw new Error("useAuth must be used within AuthProvider");
+  if (!ctx) {
+    throw new Error("useAuth must be used within AuthProvider");
+  }
   return ctx;
 };
-
