@@ -8,11 +8,11 @@ export const TournamentDetailsList = ({ tournaments }) => {
       <div className="sticky top-0 z-10 bg-neutral-800">
         <div className="grid grid-cols-[1.5fr_2.5fr_1fr_1fr_1fr] items-center h-8 px-2 text-sm font-medium"
         >
-          <span>Room</span>
-          <span>Name</span>
-          <span>Buy-In</span>
-          <span>Pay out</span>
-          <span>Result</span>
+          <span className="text-xs md:text-sm">Room</span>
+          <span className="text-xs md:text-sm">Name</span>
+          <span className="text-xs md:text-sm">Buy-In</span>
+          <span className="text-xs md:text-sm">Pay out</span>
+          <span className="text-xs md:text-sm">Result</span>
         </div>
         <Separator className="bg-neutral-700" />
       </div>
@@ -24,15 +24,11 @@ export const TournamentDetailsList = ({ tournaments }) => {
             return (
               <li key={tournament.id}>
                 <div className="grid grid-cols-[1.5fr_2.5fr_1fr_1fr_1fr] items-center px-2 py-2 text-sm">
-                  <span className="truncate">{tournament.room}</span>
-                  <span className="truncate">{tournament.name}</span>
-                  <span>{tournament.buyIn} $</span>
-                  <span>{tournament.result} $</span>
-                  <span
-                    className={result}
-                  >
-                {result} $
-              </span>
+                  <span className="truncate text-[11px] md:text-sm">{tournament.room}</span>
+                  <span className="truncate text-[11px] md:text-sm">{tournament.name}</span>
+                  <span className="text-[11px] md:text-sm">{tournament.buyIn} $</span>
+                  <span className="text-[11px] md:text-sm">{tournament.result} $</span>
+                  <span className="text-[11px] md:text-sm">{result} $</span>
                 </div>
 
                 <Separator className="bg-neutral-700" />

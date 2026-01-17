@@ -15,7 +15,7 @@ export const RoomInput = ({ room, setRoom }) => {
           variant="secondary"
           role="combobox"
           aria-expanded={open}
-          className="w-[230px] justify-between text-white"
+          className="w=[180px] md:w-[230px] justify-between text-white"
         >
           {room
             ? roomTournaments.find((pokerRoom: any) => pokerRoom.pokerRoom === room)?.pokerRoom

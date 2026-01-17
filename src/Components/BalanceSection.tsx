@@ -3,7 +3,7 @@ import { Balance } from '@/Components/Balance';
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem, DropdownMenuShortcut,
+  DropdownMenuItem,
   DropdownMenuTrigger
 } from '@/Components/ui/dropdown-menu';
 import { useLogoutMutation } from '@/Hooks/useLogoutMutation';
@@ -20,7 +20,7 @@ export const BalanceSection = () => {
 
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Avatar className="size-8">
+          <Avatar className="size-6 md:size-8">
             <AvatarImage src="https://github.com/shadcn.png" />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>

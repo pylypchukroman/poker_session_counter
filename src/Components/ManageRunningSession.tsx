@@ -14,14 +14,14 @@ export const ManageRunningSession = ({ runningSessionId }) => {
 
   return (
       <Drawer>
-        <DrawerTrigger className="h-[18vh] px-4 py-2 text-white rounded-md bg-neutral-800 w-7xl">Manage running session</DrawerTrigger>
-        <DrawerContent className="max-w-7xl mx-auto bg-neutral-800 rounded-md p-6 flex flex-col justify-between">
+        <DrawerTrigger className="h-[12vh] md:h-[18vh] px-4 py-2 text-white rounded-md bg-neutral-800 w-7xl">Manage running session</DrawerTrigger>
+        <DrawerContent className="h-[84vh] max-w-7xl mx-auto bg-neutral-800 rounded-md p-6 flex flex-col justify-between">
           <DrawerHeader>
-            <DrawerTitle className="text-white">Manage running session</DrawerTitle>
+            <DrawerTitle className="text-white text-sm md:text-lg">Manage running session</DrawerTitle>
           </DrawerHeader>
           <div className="flex flex-col gap-4">
-            <div className="flex flex-col border-t border-b border-neutral-600 h-24 items-center justify-center">
-              <span className="text-white-900 mb-4">Add new tournaments to session</span>
+            <div className="h-[120px] md:h-[90px] flex flex-col border-t border-b border-neutral-600 h-24 items-center justify-center">
+              <span className="text-white-900 mb-4 text-xs md:text-sm">Add new tournaments to session</span>
               <AddNewTournamentToSession runningSessionId={runningSessionId}/>
             </div>
             <div className="flex flex-col h-80">

@@ -18,7 +18,7 @@ export const TournamentInput = ({ tournament, setTournament, room}) => {
           variant="secondary"
           role="combobox"
           aria-expanded={open}
-          className="w-[230px] justify-between text-white overflow-hidden text-xs"
+          className="w=[180px] md:w-[230px] justify-between text-white overflow-hidden text-xs"
         >
           {tournament.name
             ? tournaments.find((t) => t.name === tournament.name)?.name

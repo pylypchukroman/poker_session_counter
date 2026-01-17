@@ -15,7 +15,7 @@ import { useBalanceData } from '@/Hooks/useBalanceData';
 import { useAuth } from '@/context/AuthContext';
 
 export const FinishTournamentPopover = ({ tournamentName, tournamentId, runningSessionId, tournamentStatus, tournamentRoom  }) => {
-  const [result, setResult] = useState<number | null>(null);
+  const [result, setResult] = useState<number>(0);
   const finishTournament = useFinishTournament();
   const editBalance = useEditBalance();
   const { currentRoomBalance } = useBalanceData(tournamentRoom);
@@ -40,7 +40,7 @@ export const FinishTournamentPopover = ({ tournamentName, tournamentId, runningS
       <DialogTrigger asChild>
         <Button
           disabled={tournamentStatus !== "running"}
-          className="text-amber-50 hover:text-amber-50"
+          className="text-amber-50 hover:text-amber-50 !px-14"
           size="sm"
           variant="outline"
         >

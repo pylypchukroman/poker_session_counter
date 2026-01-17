@@ -15,7 +15,7 @@ export const TournamentDetailsPopover = ({ startDate, finishDate, totalBuyIns, t
     <Dialog>
       <DialogTrigger asChild>
         <Button
-          className="hover:text-amber-50"
+          className="hover:text-amber-50 !text-sm !px-2 !py-1 md:!text-base md:!px-4 md:!py-2"
           size="sm"
           variant="outline"
         >
@@ -28,7 +28,7 @@ export const TournamentDetailsPopover = ({ startDate, finishDate, totalBuyIns, t
           <DialogTitle>Session details</DialogTitle>
         </DialogHeader>
         <div
-          className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-2"
+          className="grid gap-4 grid-cols-1 grid-cols-2 lg:grid-cols-3 mt-2"
         >
           <InfoBlock label="Session start" value={startDate} />
           <InfoBlock label="Total buy-in" value={`${totalBuyIns} $`} />
@@ -50,7 +50,9 @@ export const TournamentDetailsPopover = ({ startDate, finishDate, totalBuyIns, t
         </div>
         <DialogFooter>
           <DialogClose asChild>
-            <Button variant="primary">Close</Button>
+            <Button
+              variant="primary"
+            >Close</Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>

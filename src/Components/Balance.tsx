@@ -20,7 +20,12 @@ export const Balance = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="default">Balance: {totalBalance} $</Button>
+        <Button
+          className="!text-sm !px-2 !py-1 md:!text-base md:!px-4 md:!py-2"
+          variant="default"
+        >
+          Balance: {totalBalance} $
+        </Button>
       </SheetTrigger>
       <SheetContent className="bg-neutral-800 max-w-7xl mx-auto items-center" side="top">
         <SheetHeader>

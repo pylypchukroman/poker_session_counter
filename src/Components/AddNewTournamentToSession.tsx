@@ -39,7 +39,7 @@ export const AddNewTournamentToSession = ({ runningSessionId }) => {
   };
 
   return (
-    <div className="flex items-center w-180 justify-between">
+    <div className="grid grid-cols-2 md:grid-cols-3 items-center gap-2 md:gap-12">
       <RoomInput
         room={room}
         setRoom={setRoom}

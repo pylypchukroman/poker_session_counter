@@ -3,7 +3,7 @@ import { AddNewSession } from '@/Components/AddNewSession';
 import { FinishNewSession } from '@/Components/FinishNewSession';
 import { useCashSessionData } from '@/Hooks/useCashSessionData';
 
-export const CashPage = () => {
+export const  CashPage = () => {
   const { reversedCashSessions, isSessionRunning } = useCashSessionData();
 
   return (

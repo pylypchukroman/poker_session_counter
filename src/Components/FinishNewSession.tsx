@@ -36,19 +36,20 @@ export const FinishNewSession = () => {
 
   return (
       <Drawer>
-        <DrawerTrigger className="h-[18vh] px-4 py-2 text-white rounded-md bg-neutral-800">
+        <DrawerTrigger className="h-[12vh] md:h-[18vh] text-white px-4 py-2 rounded-md bg-neutral-800">
           Finish running session
         </DrawerTrigger>
-        <DrawerContent className="h-[46vh] max-w-7xl mx-auto bg-neutral-800 rounded-md p-6 flex flex-col justify-between">
+        <DrawerContent className="h-[38vh] md:h-[46vh] max-w-7xl mx-auto bg-neutral-800 rounded-md p-6 flex flex-col justify-between">
           <DrawerHeader>
-            <DrawerTitle className="text-white mb-4">Finish running session</DrawerTitle>
-            <DrawerDescription className="text-white-900">Enter balance for your rooms </DrawerDescription>
+            <DrawerTitle className="text-white mb-4 text-sm md:text-lg">Finish running session</DrawerTitle>
+            <DrawerDescription className="text-white-900 text-xs md:text-sm">Enter balance for your rooms </DrawerDescription>
             <ul className='flex items-center justify-center gap-x-4'>
               {pokerRoom?.map((room) => (
                 <li key={room.id} className="flex items-center justify-center mt-4">
-                  <DrawerDescription className="text-white-900">{room.name} Balance:
+                  <DrawerDescription className="text-white-900 text-xs md:text-sm">{room.name} Balance:
                     <span className="flex mt-2">
                       <Input
+                        className="h-7 md:h-9"
                         type="number"
                         name="balance"
                         placeholder={room.balance}
@@ -64,12 +65,12 @@ export const FinishNewSession = () => {
           </DrawerHeader>
           <DrawerFooter className="flex items-center justify-center">
             <DrawerClose
-              className="h-1/2 w-1/2"
+              className="h-1/2 w-1/2 !text-sm !px-2 !py-1 md:!text-base md:!px-4 md:!py-2"
               onClick={handleSubmit}
             >
               Finish running session
             </DrawerClose>
-            <DrawerClose className="w-1/2 h-1/3 flex items-center justify-center">
+            <DrawerClose className="w-1/2 h-1/3 flex items-center justify-center !text-sm !px-2 !py-1 md:!text-base md:!px-4 md:!py-2">
               Cancel
             </DrawerClose>
           </DrawerFooter>

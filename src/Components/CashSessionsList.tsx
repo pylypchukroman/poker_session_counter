@@ -5,7 +5,7 @@ export const CashSessionsList = ({ cashSession }) => {
 
   return (
     <section className="max-w-full overflow-x-hidden">
-      <h4 className="mb-4 mt-4 text-sm font-medium leading-none">
+      <h4 className="mb-4 mt-4 text-xs md:text-sm font-medium leading-none">
         Cash Sessions
       </h4>
       <ScrollArea className="h-[65vh] w-full max-w-full rounded-md bg-neutral-800 py-4 overflow-x-hidden">
