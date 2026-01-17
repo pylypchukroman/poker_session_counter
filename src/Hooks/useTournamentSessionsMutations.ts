@@ -5,7 +5,7 @@ export const useDeleteTournamentSession = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (id) => deleteTournamentSession(id),
+    mutationFn: ({ id, token }) => deleteTournamentSession({ id, token }),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['tournament_sessions'],
@@ -18,7 +18,7 @@ export const useAddTournamentSession = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: () => addTournamentSession(),
+    mutationFn: (token) => addTournamentSession(token),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['tournament_sessions'],
@@ -31,7 +31,7 @@ export const useFinishTournamentSession = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (id) => finishTournamentSession(id),
+    mutationFn: ({ id, token }) => finishTournamentSession({ id, token }),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['tournament_sessions'],

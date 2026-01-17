@@ -1,7 +1,10 @@
 import { useTournaments } from '@/Hooks/useTournaments';
+import { useAuth } from '@/context/AuthContext';
 
 export const useTournamentData = (runningSessionId?: string) => {
-  const {data: sessionTournaments, isLoading} = useTournaments(runningSessionId);
+  const { accessToken } = useAuth();
+
+  const {data: sessionTournaments, isLoading} = useTournaments(runningSessionId, accessToken);
 
   const reversedTournamentSessions = sessionTournaments?.slice().reverse();
 

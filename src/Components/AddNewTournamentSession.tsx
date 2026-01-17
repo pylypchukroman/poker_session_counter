@@ -10,10 +10,12 @@ import {
 } from '@/Components/ui/drawer';
 import { useAddTournamentSession } from '@/Hooks/useTournamentSessionsMutations';
 import { useBalanceData } from '@/Hooks/useBalanceData';
+import { useAuth } from '@/context/AuthContext';
 
 export const AddNewTournamentSession = () => {
   const { roomsBalance, totalBalance } = useBalanceData();
   const addTournamentSession = useAddTournamentSession();
+  const { accessToken } = useAuth();
 
   return (
       <Drawer>
@@ -35,7 +37,7 @@ export const AddNewTournamentSession = () => {
           <DrawerFooter className="flex items-center justify-center">
             <DrawerClose
               className="h-1/2 w-1/2"
-              onClick={() => addTournamentSession.mutate()}
+              onClick={() => addTournamentSession.mutate(accessToken)}
             >
               Start new tournament session
             </DrawerClose>

@@ -5,6 +5,7 @@ import { Button } from '@/Components/ui/button';
 import { useAddTournament } from '@/Hooks/useTournamentsMutation';
 import { useEditBalance } from '@/Hooks/useBalanceMutations';
 import { useBalanceData } from '@/Hooks/useBalanceData';
+import { useAuth } from '@/context/AuthContext';
 
 export const AddNewTournamentToSession = ({ runningSessionId }) => {
   const initState = { name: "", buyIn: 0 };
@@ -13,6 +14,7 @@ export const AddNewTournamentToSession = ({ runningSessionId }) => {
   const addTournament = useAddTournament();
   const editBalance = useEditBalance();
   const { currentRoomBalance } = useBalanceData(room);
+  const { accessToken } = useAuth();
 
   const click = () => {
     //balance logic
@@ -21,7 +23,7 @@ export const AddNewTournamentToSession = ({ runningSessionId }) => {
       name: currentRoomBalance.name,
       balance: newBalance
     }
-    editBalance.mutate({id: currentRoomBalance.id, body: body})
+    editBalance.mutate({id: currentRoomBalance.id, body: body, token: accessToken})
     //balance logic
     //tournament logic
     const payload = {
@@ -30,7 +32,7 @@ export const AddNewTournamentToSession = ({ runningSessionId }) => {
       name: tournament.name,
       buyIn: tournament.buyIn,
     };
-    addTournament.mutate(payload);
+    addTournament.mutate({ body: payload, token: accessToken });
     //tournament logic
     setTournament(initState);
     setRoom("");

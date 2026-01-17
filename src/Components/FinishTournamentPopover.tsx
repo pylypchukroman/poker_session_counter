@@ -12,12 +12,14 @@ import { useState } from 'react';
 import { useFinishTournament } from '@/Hooks/useTournamentsMutation';
 import { useEditBalance } from '@/Hooks/useBalanceMutations';
 import { useBalanceData } from '@/Hooks/useBalanceData';
+import { useAuth } from '@/context/AuthContext';
 
 export const FinishTournamentPopover = ({ tournamentName, tournamentId, runningSessionId, tournamentStatus, tournamentRoom  }) => {
   const [result, setResult] = useState<number | null>(null);
   const finishTournament = useFinishTournament();
   const editBalance = useEditBalance();
   const { currentRoomBalance } = useBalanceData(tournamentRoom);
+  const { accessToken } = useAuth();
 
   const onClick = () => {
     //balance logic
@@ -26,10 +28,10 @@ export const FinishTournamentPopover = ({ tournamentName, tournamentId, runningS
       name: currentRoomBalance.name,
       balance: newBalance
     }
-    editBalance.mutate({id: currentRoomBalance.id, body: body});
+    editBalance.mutate({ id: currentRoomBalance.id, body: body, token: accessToken });
     //balance logic
     //tournament logic
-    finishTournament.mutate({runningSessionId, tournamentId, result})
+    finishTournament.mutate({runningSessionId, tournamentId, result, accessToken})
     //tournament logic
   };
 

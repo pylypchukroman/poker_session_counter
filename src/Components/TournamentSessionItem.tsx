@@ -6,9 +6,11 @@ import { TournamentDetailsPopover } from '@/Components/TournamentDetailsPopover'
 import { calculateTournamentTotal } from '@/helpers/calculateTournamentTotal';
 import { useTournamentSessionData } from '@/Hooks/useTournamentSessionData';
 import { InfoBlock } from '@/Components/InfoBlock';
+import { useAuth } from '@/context/AuthContext';
 
 export const TournamentSessionItem = ({ session }) => {
   const deleteSession = useDeleteTournamentSession();
+  const { accessToken } = useAuth();
   const startDate = formatIsoDate(session.startedAt);
   const finishDate = formatIsoDate(session.finishedAt);
   const totalBuyIns = calculateTournamentTotal(session.tournaments, "buyIn");
@@ -60,7 +62,7 @@ export const TournamentSessionItem = ({ session }) => {
           size="sm"
           variant="outline"
           className="justify-self-end hover:text-white"
-          onClick={() => deleteSession.mutate(session.id)}
+          onClick={() => deleteSession.mutate({ id: session.id, token: accessToken })}
         >
           Delete
         </Button>

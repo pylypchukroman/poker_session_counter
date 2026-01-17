@@ -2,33 +2,48 @@ import axios from 'axios';
 
 const BASE_URL = 'http://localhost:3000/api/tournament_sessions';
 
-export const fetchTournaments = async (sessionId) => {
-  const { data } = await axios.get(`${BASE_URL}/${sessionId}/tournaments`);
+export const fetchTournaments = async ({ sessionId, token}) => {
+  const { data } = await axios.get(`${BASE_URL}/${sessionId}/tournaments`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  });
   return data;
 };
 
-export const deleteTournament = async ({runningSessionId, tournamentId}) => {
-  console.log("here")
-  return axios.delete(`${BASE_URL}/${runningSessionId}/tournaments/${tournamentId}`);
-};
-
-export const addTournament = async (payload) => {
-
-  return axios.post(`${BASE_URL}/${payload.runningSessionId}/tournaments`, {
-    startedAt: new Date().toISOString(),
-    status: "running",
-    name: payload.name,
-    buyIn: payload.buyIn,
-    room: payload.room,
-    result: 0
+export const deleteTournament = async ({runningSessionId, tournamentId, token}) => {
+  return axios.delete(`${BASE_URL}/${runningSessionId}/tournaments/${tournamentId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
   });
 };
 
-export const finishTournament = async ({runningSessionId, tournamentId, result}) => {
+export const addTournament = async ({ body, token }) => {
+
+  return axios.post(`${BASE_URL}/${body.runningSessionId}/tournaments`, {
+    startedAt: new Date().toISOString(),
+    status: "running",
+    name: body.name,
+    buyIn: body.buyIn,
+    room: body.room,
+    result: 0
+  }, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  });
+};
+
+export const finishTournament = async ({ runningSessionId, tournamentId, result, accessToken }) => {
 
   return axios.patch(`${BASE_URL}/${runningSessionId}/tournaments/${tournamentId}/finish_tournament`, {
     finishedAt: new Date().toISOString(),
     status: "finished",
     result: result
+  }, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    }
   });
 };

@@ -4,10 +4,12 @@ import { FinishTournamentPopover } from '@/Components/FinishTournamentPopover';
 import { Button } from '@/Components/ui/button';
 import { useDeleteTournament } from '@/Hooks/useTournamentsMutation';
 import { useTournamentData } from '@/Hooks/useTournamentData';
+import { useAuth } from '@/context/AuthContext';
 
 export const SessionTournaments = ({ runningSessionId }) => {
   const { reversedTournamentSessions } = useTournamentData(runningSessionId);
   const deleteTournament = useDeleteTournament();
+  const { accessToken } = useAuth();
 
   return (
     <li>
@@ -42,7 +44,11 @@ export const SessionTournaments = ({ runningSessionId }) => {
                 className="ml-6"
                 onClick={() =>
                   deleteTournament.mutate(
-                    {runningSessionId: runningSessionId, tournamentId: tournament.id}
+                    {
+                      runningSessionId: runningSessionId,
+                      tournamentId: tournament.id,
+                      token:accessToken
+                    }
                   )}
               >
                 Delete tournament
