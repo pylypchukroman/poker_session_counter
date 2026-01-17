@@ -7,5 +7,5 @@ export const Login = () => {
         <LoginForm />
       </div>
     </div>
-  )
-}
+  );
+};

@@ -7,6 +7,8 @@ import { NotFoundPage } from './Components/NotFoundPage';
 import { DashboardPage } from './Pages/DashboardPage';
 import { Layout } from '@/Components/Layout';
 import { Login } from '@/Pages/Login';
+import { Register } from '@/Pages/Register';
+import { HomePage } from '@/Pages/HomePage';
 
 
 function App() {
@@ -15,7 +17,9 @@ function App() {
     <Suspense fallback={<h1>LOADING...</h1>}>
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/" element={<Login />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/cash" element={<CashPage />} />
           <Route path="/tournaments" element={<TournamentsPage />} />
           <Route path="/dashboard" element={<DashboardPage/>} />

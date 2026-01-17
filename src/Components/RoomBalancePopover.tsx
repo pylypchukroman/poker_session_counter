@@ -12,10 +12,12 @@ import {
 import { Input } from "@/components/ui/input";
 import { useState } from 'react';
 import { useEditBalance } from '@/Hooks/useBalanceMutations';
+import { useAuth } from '@/context/AuthContext';
 
 export const RoomBalancePopover = ({ roomBalance }: any ) => {
   const [balance, setBalance] = useState(roomBalance.balance);
   const editBalance = useEditBalance();
+  const { accessToken } = useAuth();
 
   return (
     <Dialog>
@@ -50,7 +52,7 @@ export const RoomBalancePopover = ({ roomBalance }: any ) => {
             <Button
               type="button"
               variant="primary"
-              onClick={() => editBalance.mutate({id: roomBalance.id, body: {balance}})}
+              onClick={() => editBalance.mutate({id: roomBalance.id, body: {balance}, token: accessToken})}
             >
               Confirm
             </Button>

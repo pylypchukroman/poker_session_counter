@@ -5,7 +5,7 @@ export const useEditBalance = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ id, body }) => editBalance({ id, body }),
+    mutationFn: ({ id, body, token }) => editBalance({ id, body, token }),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['balances'],
@@ -18,7 +18,7 @@ export const useDeleteBalance = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (id) => deleteBalance(id),
+    mutationFn: ({ id, token }) => deleteBalance({ id, token}),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['balances'],
@@ -31,7 +31,7 @@ export const useAddBalance = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (body: any) => addBalance(body),
+    mutationFn: ({ body, token }) => addBalance({ body, token }),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['balances'],

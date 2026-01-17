@@ -12,9 +12,11 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useState } from 'react';
 import { useAddBalance } from '@/Hooks/useBalanceMutations';
+import { useAuth } from '@/context/AuthContext';
 
 
 export const AddBalancePopover = () => {
+  const { accessToken } = useAuth();
   const initState = {
     name: "",
     balance: 0
@@ -29,7 +31,7 @@ export const AddBalancePopover = () => {
       name: newBalance.name,
       balance: newBalance.balance
     }
-    addBalance.mutate(newBalanceBody);
+    addBalance.mutate({body: newBalanceBody, token: accessToken});
     reset();
   };
 

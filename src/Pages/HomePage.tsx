@@ -1,8 +1,9 @@
+import { useBalanceData } from '@/Hooks/useBalanceData';
 
 export const HomePage = () => {
+  const { roomsBalance } = useBalanceData();
   return (
-      <div className="bg-black w-screen h-lvh">
-            home
+      <div className="w-screen h-lvh">
       </div>
   );
 };
