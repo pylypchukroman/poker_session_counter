@@ -18,7 +18,7 @@ export const useAddTournamentSession = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (token) => addTournamentSession(token),
+    mutationFn: (token: string | null) => addTournamentSession(token),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['tournament_sessions'],

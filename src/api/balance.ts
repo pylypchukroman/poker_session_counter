@@ -1,13 +1,15 @@
 import axios from 'axios';
+import type { Room } from '@/types/types';
 
 const BASE_URL = 'http://localhost:3000/api/balances';
 
-export const fetchBalances = async (token) => {
+export const fetchBalances = async (token: string | null): Promise<[Room]> => {
   const { data } = await axios.get(BASE_URL, {
     headers: {
       Authorization: `Bearer ${token}`,
     }
   });
+
   return data;
 };
 

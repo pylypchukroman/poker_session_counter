@@ -13,16 +13,17 @@ import { Label } from "@/components/ui/label"
 import { useState } from 'react';
 import { useAddBalance } from '@/Hooks/useBalanceMutations';
 import { useAuth } from '@/context/AuthContext';
+import type { RoomBalance } from '@/types/types';
 
 
 export const AddBalancePopover = () => {
   const { accessToken } = useAuth();
-  const initState = {
+  const initState: RoomBalance = {
     name: "",
     balance: 0
   };
   const addBalance = useAddBalance();
-  const [newBalance, setNewBalance] = useState(initState);
+  const [newBalance, setNewBalance] = useState<RoomBalance>(initState);
   const reset = () => {
     setNewBalance(initState)
   };

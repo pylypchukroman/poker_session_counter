@@ -1,14 +1,13 @@
-// noinspection TypeScriptValidateTypes
-
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { Popover, PopoverContent, PopoverTrigger } from '@/Components/ui/popover';
 import { Button } from '@/Components/ui/button';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/Components/ui/command';
 import { Check, ChevronsUpDown } from 'lucide-react';
 import { getRoomTournaments } from '@/helpers/getRoomTournaments';
+import type { Tournament } from '@/types/types';
 
-export const TournamentInput = ({ tournament, setTournament, room}) => {
-  const [open, setOpen] = useState(false);
+export const TournamentInput = ({ tournament, setTournament, room}: {tournament: Tournament, setTournament: Dispatch<SetStateAction<Tournament>>, room: string | null}) => {
+  const [open, setOpen] = useState<boolean>(false);
   const tournaments = getRoomTournaments(room);
 
   return (

@@ -5,8 +5,8 @@ import { Check, ChevronsUpDown } from 'lucide-react';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/Components/ui/command';
 import { roomTournaments } from '@/assets/tournaments';
 
-export const RoomInput = ({ room, setRoom }) => {
-  const [open, setOpen] = useState(false);
+export const RoomInput = ({ room, setRoom }: { room: string | null, setRoom: (room) => void }) => {
+  const [open, setOpen] = useState<boolean>(false);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>

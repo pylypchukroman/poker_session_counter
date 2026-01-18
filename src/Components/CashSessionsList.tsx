@@ -1,7 +1,8 @@
 import { ScrollArea } from '@/Components/ui/scroll-area';
 import { CashSessionItem } from '@/Components/CashSessionItem';
+import type { CashSessionsListProps } from '@/types/types';
 
-export const CashSessionsList = ({ cashSession }) => {
+export const CashSessionsList = ({ cashSession }: CashSessionsListProps) => {
 
   return (
     <section className="max-w-full overflow-x-hidden">
