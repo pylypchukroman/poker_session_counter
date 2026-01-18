@@ -1,12 +1,12 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import { Popover, PopoverContent, PopoverTrigger } from '@/Components/ui/popover';
 import { Button } from '@/Components/ui/button';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/Components/ui/command';
 import { Check, ChevronsUpDown } from 'lucide-react';
 import { getRoomTournaments } from '@/helpers/getRoomTournaments';
-import type { Tournament } from '@/types/types';
+import type { TournamentInputProps } from '@/types/propTypes';
 
-export const TournamentInput = ({ tournament, setTournament, room}: {tournament: Tournament, setTournament: Dispatch<SetStateAction<Tournament>>, room: string | null}) => {
+export const TournamentInput = ({ tournament, setTournament, room}: TournamentInputProps) => {
   const [open, setOpen] = useState<boolean>(false);
   const tournaments = getRoomTournaments(room);
 

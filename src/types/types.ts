@@ -48,10 +48,6 @@ export type CashSession = {
   balancesEnd: RoomBalance[]
 }
 
-export type CashSessionsListProps = {
-  cashSession: CashSession[]
-}
-
 export type SessionTournament = {
   id: string
   name: string

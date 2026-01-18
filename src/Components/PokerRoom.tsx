@@ -3,8 +3,9 @@ import { RoomBalancePopover } from '@/Components/RoomBalancePopover';
 import { Button } from '@/Components/ui/button';
 import { useDeleteBalance } from '@/Hooks/useBalanceMutations';
 import { useAuth } from '@/context/AuthContext';
+import type { PokerRoomProps } from '@/types/propTypes';
 
-export const PokerRoom = ({ roomBalance }: any) => {
+export const PokerRoom = ({ roomBalance }: PokerRoomProps) => {
 const deleteBalance = useDeleteBalance();
   const { accessToken } = useAuth();
 

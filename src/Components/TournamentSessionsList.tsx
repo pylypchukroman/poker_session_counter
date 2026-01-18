@@ -1,7 +1,8 @@
 import { ScrollArea } from '@/Components/ui/scroll-area';
 import { TournamentSessionItem } from '@/Components/TournamentSessionItem';
+import type { TournamentSessionsListProps } from '@/types/propTypes';
 
-export const TournamentSessionsList = ({ tournamentSessions }) => {
+export const TournamentSessionsList = ({ tournamentSessions }: TournamentSessionsListProps) => {
 
   return (
     <section className="max-w-full overflow-x-hidden">

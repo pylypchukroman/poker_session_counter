@@ -8,8 +8,9 @@ import {
 import { Button } from '@/Components/ui/button';
 import { TournamentDetailsList } from '@/Components/TournamentDetailsList';
 import { InfoBlock } from '@/Components/InfoBlock';
+import type { TournamentDetailsPopoverProps } from '@/types/propTypes';
 
-export const TournamentDetailsPopover = ({ startDate, finishDate, totalBuyIns, totalResult, sessionResult, tournaments }) => {
+export const TournamentDetailsPopover = ({ startDate, finishDate, totalBuyIns, totalResult, sessionResult, tournaments }: TournamentDetailsPopoverProps) => {
 
   return (
     <Dialog>
@@ -35,13 +36,13 @@ export const TournamentDetailsPopover = ({ startDate, finishDate, totalBuyIns, t
           <InfoBlock
             label="Session result"
             value={`${sessionResult} $`}
-            valueClass={sessionResult}
+            valueClass={sessionResult.toString()}
           />
           <InfoBlock label="Session end" value={finishDate ? finishDate : 'running'} />
           <InfoBlock
             label="Total payouts"
             value={`${totalResult} $`}
-            valueClass={totalResult}
+            valueClass={totalResult.toString()}
           />
         </div>
         <div className="mt-6">

@@ -13,8 +13,9 @@ import { Input } from "@/components/ui/input";
 import { useState } from 'react';
 import { useEditBalance } from '@/Hooks/useBalanceMutations';
 import { useAuth } from '@/context/AuthContext';
+import type { PokerRoomProps } from '@/types/propTypes';
 
-export const RoomBalancePopover = ({ roomBalance }: any ) => {
+export const RoomBalancePopover = ({ roomBalance }: PokerRoomProps ) => {
   const [balance, setBalance] = useState(roomBalance.balance);
   const editBalance = useEditBalance();
   const { accessToken } = useAuth();

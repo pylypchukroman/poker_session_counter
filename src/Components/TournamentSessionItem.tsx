@@ -4,8 +4,9 @@ import { TournamentDetailsPopover } from '@/Components/TournamentDetailsPopover'
 import { calculateTournamentTotal } from '@/helpers/calculateTournamentTotal';
 import { useTournamentSessionData } from '@/Hooks/useTournamentSessionData';
 import { InfoBlock } from '@/Components/InfoBlock';
+import type { TournamentSessionItemProps } from '@/types/propTypes';
 
-export const TournamentSessionItem = ({ session }) => {
+export const TournamentSessionItem = ({ session }: TournamentSessionItemProps) => {
   const startDate = formatIsoDate(session.startedAt);
   const finishDate = formatIsoDate(session.finishedAt);
   const totalBuyIns = calculateTournamentTotal(session.tournaments, "buyIn");

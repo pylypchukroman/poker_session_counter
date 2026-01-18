@@ -4,8 +4,9 @@ import { getBalancesSum } from '@/helpers/getBalancesSum';
 import { useCashSessionData } from '@/Hooks/useCashSessionData';
 import { InfoBlock } from '@/Components/InfoBlock';
 import type { SessionBalance } from '@/types/types';
+import type { CashSessionItemProps } from '@/types/propTypes';
 
-export const CashSessionItem = ({ session }) => {
+export const CashSessionItem = ({ session }: CashSessionItemProps) => {
   const { isSessionRunning } = useCashSessionData();
   const startDate = formatIsoDate(session.startedAt);
   const finishDate = formatIsoDate(session.finishedAt);

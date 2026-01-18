@@ -1,6 +1,6 @@
 import { ScrollArea } from '@/Components/ui/scroll-area';
 import { CashSessionItem } from '@/Components/CashSessionItem';
-import type { CashSessionsListProps } from '@/types/types';
+import type { CashSessionsListProps } from '@/types/propTypes';
 
 export const CashSessionsList = ({ cashSession }: CashSessionsListProps) => {
 

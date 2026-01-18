@@ -1,7 +1,9 @@
 import { ScrollArea } from '@/Components/ui/scroll-area';
 import { Separator } from '@/Components/ui/separator';
+import type { TournamentDetailsListProps } from '@/types/propTypes';
 
-export const TournamentDetailsList = ({ tournaments }) => {
+
+export const TournamentDetailsList = ({ tournaments }: TournamentDetailsListProps) => {
 
   return (
     <ScrollArea className="h-[22rem] w-full">

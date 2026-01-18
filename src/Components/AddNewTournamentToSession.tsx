@@ -7,8 +7,9 @@ import { useEditBalance } from '@/Hooks/useBalanceMutations';
 import { useBalanceData } from '@/Hooks/useBalanceData';
 import { useAuth } from '@/context/AuthContext';
 import type { Tournament } from '@/types/types';
+import type { AddNewTournamentToSessionProps } from '@/types/propTypes';
 
-export const AddNewTournamentToSession = ({ runningSessionId }) => {
+export const AddNewTournamentToSession = ({ runningSessionId }: AddNewTournamentToSessionProps) => {
   const initState: Tournament = { name: "", buyIn: 0 };
   const [room, setRoom] = useState<string | null>(null);
   const [tournament, setTournament] = useState<Tournament>(initState);

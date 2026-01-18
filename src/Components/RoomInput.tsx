@@ -4,8 +4,9 @@ import { Button } from '@/Components/ui/button';
 import { Check, ChevronsUpDown } from 'lucide-react';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/Components/ui/command';
 import { roomTournaments } from '@/assets/tournaments';
+import type { RoomInputProps } from '@/types/propTypes';
 
-export const RoomInput = ({ room, setRoom }: { room: string | null, setRoom: (room) => void }) => {
+export const RoomInput = ({ room, setRoom }: RoomInputProps) => {
   const [open, setOpen] = useState<boolean>(false);
 
   return (

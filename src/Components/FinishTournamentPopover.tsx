@@ -13,8 +13,9 @@ import { useFinishTournament } from '@/Hooks/useTournamentsMutation';
 import { useEditBalance } from '@/Hooks/useBalanceMutations';
 import { useBalanceData } from '@/Hooks/useBalanceData';
 import { useAuth } from '@/context/AuthContext';
+import type { FinishTournamentPopoverProps } from '@/types/propTypes';
 
-export const FinishTournamentPopover = ({ tournamentName, tournamentId, runningSessionId, tournamentStatus, tournamentRoom  }) => {
+export const FinishTournamentPopover = ({ tournamentName, tournamentId, runningSessionId, tournamentStatus, tournamentRoom  }: FinishTournamentPopoverProps) => {
   const [result, setResult] = useState<number>(0);
   const finishTournament = useFinishTournament();
   const editBalance = useEditBalance();
