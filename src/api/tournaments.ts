@@ -1,4 +1,10 @@
 import axios from 'axios';
+import type {
+  AddTournamentPayload,
+  AddTournamentResponse,
+  DeleteTournamentPayload,
+  DeleteTournamentResponse, FinishTournamentPayload, FinishTournamentResponse
+} from '@/types/api';
 
 const BASE_URL = 'http://localhost:3000/api/tournament_sessions';
 
@@ -11,15 +17,16 @@ export const fetchTournaments = async ({ sessionId, token}) => {
   return data;
 };
 
-export const deleteTournament = async ({runningSessionId, tournamentId, token}) => {
-  return axios.delete(`${BASE_URL}/${runningSessionId}/tournaments/${tournamentId}`, {
+export const deleteTournament = async ({runningSessionId, tournamentId, token}: DeleteTournamentPayload): Promise<DeleteTournamentResponse> => {
+  const { message } = axios.delete(`${BASE_URL}/${runningSessionId}/tournaments/${tournamentId}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     }
   });
+  return message;
 };
 
-export const addTournament = async ({ body, token }) => {
+export const addTournament = async ({ body, token }: AddTournamentPayload): Promise<AddTournamentResponse> => {
 
   return axios.post(`${BASE_URL}/${body.runningSessionId}/tournaments`, {
     startedAt: new Date().toISOString(),
@@ -35,7 +42,7 @@ export const addTournament = async ({ body, token }) => {
   });
 };
 
-export const finishTournament = async ({ runningSessionId, tournamentId, result, accessToken }) => {
+export const finishTournament = async ({ runningSessionId, tournamentId, result, accessToken }: FinishTournamentPayload): Promise<FinishTournamentResponse> => {
 
   return axios.patch(`${BASE_URL}/${runningSessionId}/tournaments/${tournamentId}/finish_tournament`, {
     finishedAt: new Date().toISOString(),

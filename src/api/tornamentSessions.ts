@@ -1,13 +1,14 @@
 import axios from 'axios';
 import type {
-  AddTournamentSessionResponse,
+  AddTournamentSessionResponse, DeleteTournamentSessionPayload, DeleteTournamentSessionResponse,
   FinishTournamentSessionPayload,
   FinishTournamentSessionResponse
 } from '@/types/api';
+import type { TournamentSession } from '@/types/types';
 
 const BASE_URL = 'http://localhost:3000/api/tournament_sessions';
 
-export const fetchTournamentSessions = async (token) => {
+export const fetchTournamentSessions = async (token): Promise<TournamentSession[]> => {
   const { data } = await axios.get(BASE_URL, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -16,15 +17,16 @@ export const fetchTournamentSessions = async (token) => {
   return data;
 };
 
-export const deleteTournamentSession = async ({ id, token }) => {
+export const deleteTournamentSession = async ({ id, token }: DeleteTournamentSessionPayload): Promise<DeleteTournamentSessionResponse> => {
   if (!token) {
     throw new Error("No access token");
   }
-  return axios.delete(`${BASE_URL}/${id}`, {
+  const { message } = axios.delete(`${BASE_URL}/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
+  return message;
 };
 
 export const addTournamentSession = async (token: string | null): Promise<AddTournamentSessionResponse> => {

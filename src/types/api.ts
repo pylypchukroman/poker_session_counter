@@ -1,6 +1,6 @@
 import type { CashSession, Room, Tokens } from '@/types/types';
 import type { User } from '@/context/AuthContext';
-import { TournamentSession } from '@/types/types';
+import type { SessionTournament, TournamentSession } from '@/types/types';
 
 export type LoginPayload = {
   email: string | File
@@ -101,4 +101,52 @@ export type FinishTournamentSessionPayload = {
 
 export type FinishTournamentSessionResponse = {
   data: TournamentSession
+}
+
+
+export type DeleteTournamentSessionResponse = {
+  message: string
+}
+
+export type DeleteTournamentSessionPayload = {
+  token: string | null
+  id: string
+}
+
+export type TournamentBody = {
+  runningSessionId: string
+  room: string | null
+  name: string
+  buyIn: number
+}
+
+export type AddTournamentPayload = {
+  token: string | null
+  body: TournamentBody
+}
+
+export type AddTournamentResponse = {
+  data: SessionTournament
+}
+
+
+export type DeleteTournamentPayload = {
+  token: string | null
+  runningSessionId: string
+  tournamentId: string
+}
+
+export type DeleteTournamentResponse = {
+  message: string
+}
+
+export type FinishTournamentPayload = {
+  accessToken: string | null
+  runningSessionId: string
+  tournamentId: string
+  result: number
+}
+
+export type FinishTournamentResponse = {
+  data: SessionTournament
 }
