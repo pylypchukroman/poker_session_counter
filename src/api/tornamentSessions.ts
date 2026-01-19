@@ -1,4 +1,9 @@
 import axios from 'axios';
+import type {
+  AddTournamentSessionResponse,
+  FinishTournamentSessionPayload,
+  FinishTournamentSessionResponse
+} from '@/types/api';
 
 const BASE_URL = 'http://localhost:3000/api/tournament_sessions';
 
@@ -22,7 +27,7 @@ export const deleteTournamentSession = async ({ id, token }) => {
   });
 };
 
-export const addTournamentSession = async (token) => {
+export const addTournamentSession = async (token: string | null): Promise<AddTournamentSessionResponse> => {
   if (!token) {
     throw new Error("No access token");
   }
@@ -37,7 +42,7 @@ export const addTournamentSession = async (token) => {
   });
 };
 
-export const finishTournamentSession = async ({ id, token }) => {
+export const finishTournamentSession = async ({ id, token }: FinishTournamentSessionPayload): Promise<FinishTournamentSessionResponse> => {
   if (!token) {
     throw new Error("No access token");
   }

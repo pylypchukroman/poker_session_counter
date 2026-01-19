@@ -1,5 +1,13 @@
 import axios from 'axios';
 import type { Room } from '@/types/types';
+import type {
+  AddBalancePayload,
+  DeleteBalancePayload,
+  DeleteBalanceResponse,
+  EditBalancePayload,
+  EditBalanceResponse
+} from '@/types/api';
+import type { AddBalanceResponse } from '@/types/api';
 
 const BASE_URL = 'http://localhost:3000/api/balances';
 
@@ -13,7 +21,7 @@ export const fetchBalances = async (token: string | null): Promise<Room[]> => {
   return data;
 };
 
-export const editBalance = async ({ id, body, token }) => {
+export const editBalance = async ({ id, body, token }: EditBalancePayload): Promise<EditBalanceResponse> => {
   if (!token) {
     throw new Error("No access token");
   }
@@ -27,19 +35,20 @@ export const editBalance = async ({ id, body, token }) => {
   })
 };
 
-export const deleteBalance = async ({ id, token}) => {
+export const deleteBalance = async ({ id, token}: DeleteBalancePayload): Promise<DeleteBalanceResponse> => {
   if (!token) {
     throw new Error("No access token");
   }
 
-  return axios.delete(`${BASE_URL}/${id}`, {
+  const { message } = axios.delete(`${BASE_URL}/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
+  return message;
 };
 
-export const addBalance = async ({ body, token }) => {
+export const addBalance = async ({ body, token }: AddBalancePayload): Promise<AddBalanceResponse> => {
   if (!token) {
     throw new Error("No access token");
   }

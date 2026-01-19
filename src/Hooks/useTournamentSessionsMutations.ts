@@ -1,5 +1,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { addTournamentSession, deleteTournamentSession, finishTournamentSession } from '@/api/tornamentSessions';
+import type {
+  AddTournamentSessionResponse, FinishTournamentSessionResponse
+} from '@/types/api';
+import type { FinishTournamentSessionPayload } from '@/types/api';
 
 export const useDeleteTournamentSession = () => {
   const queryClient = useQueryClient();
@@ -17,8 +21,8 @@ export const useDeleteTournamentSession = () => {
 export const useAddTournamentSession = () => {
   const queryClient = useQueryClient();
 
-  return useMutation({
-    mutationFn: (token: string | null) => addTournamentSession(token),
+  return useMutation<AddTournamentSessionResponse, Error, string | null>({
+    mutationFn: (token) => addTournamentSession(token),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['tournament_sessions'],
@@ -30,7 +34,7 @@ export const useAddTournamentSession = () => {
 export const useFinishTournamentSession = () => {
   const queryClient = useQueryClient();
 
-  return useMutation({
+  return useMutation<FinishTournamentSessionResponse, Error, FinishTournamentSessionPayload>({
     mutationFn: ({ id, token }) => finishTournamentSession({ id, token }),
     onSuccess: () => {
       queryClient.invalidateQueries({

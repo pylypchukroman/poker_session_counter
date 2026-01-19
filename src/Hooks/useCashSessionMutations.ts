@@ -1,10 +1,18 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { addCashSession, deleteCashSession, finishCashSession } from '@/api/cashSession';
+import type {
+  AddCashSessionPayload,
+  AddCashSessionResponse,
+  DeleteCashSessionPayload,
+  DeleteCashSessionResponse,
+  FinishCashSessionPayload,
+  FinishCashSessionResponse
+} from '@/types/api';
 
 export const useDeleteCashSession = () => {
   const queryClient = useQueryClient();
 
-  return useMutation({
+  return useMutation<DeleteCashSessionResponse, Error, DeleteCashSessionPayload>({
     mutationFn: ({ id, token }) => deleteCashSession({ id, token }),
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -17,7 +25,7 @@ export const useDeleteCashSession = () => {
 export const useAddCashSession = () => {
   const queryClient = useQueryClient();
 
-  return useMutation({
+  return useMutation<AddCashSessionResponse, Error, AddCashSessionPayload>({
     mutationFn: ({ body, token }) => addCashSession({ body, token }),
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -30,7 +38,7 @@ export const useAddCashSession = () => {
 export const useFinishCashSession = () => {
   const queryClient = useQueryClient();
 
-  return useMutation({
+  return useMutation<FinishCashSessionResponse, Error, FinishCashSessionPayload>({
     mutationFn: ({ id, body, token }) => finishCashSession({ id, body, token }),
     onSuccess: () => {
       queryClient.invalidateQueries({

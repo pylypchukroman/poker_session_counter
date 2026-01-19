@@ -19,6 +19,10 @@ export const RoomBalancePopover = ({ roomBalance }: PokerRoomProps ) => {
   const [balance, setBalance] = useState(roomBalance.balance);
   const editBalance = useEditBalance();
   const { accessToken } = useAuth();
+  const body = {
+    name: roomBalance.name,
+    balance: balance
+  }
 
   return (
     <Dialog>
@@ -53,7 +57,7 @@ export const RoomBalancePopover = ({ roomBalance }: PokerRoomProps ) => {
             <Button
               type="button"
               variant="primary"
-              onClick={() => editBalance.mutate({id: roomBalance.id, body: {balance}, token: accessToken})}
+              onClick={() => editBalance.mutate({id: roomBalance.id, body: body, token: accessToken})}
             >
               Confirm
             </Button>

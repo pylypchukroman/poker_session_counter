@@ -1,4 +1,8 @@
 import axios from 'axios';
+import type { AddCashSessionPayload, DeleteCashSessionPayload, FinishCashSessionPayload } from '@/types/api';
+import type { DeleteCashSessionResponse } from '@/types/api';
+import type { AddCashSessionResponse } from '@/types/api';
+import type { FinishCashSessionResponse } from '@/types/api';
 
 const BASE_URL = 'http://localhost:3000/api/cash_sessions';
 
@@ -11,19 +15,20 @@ export const fetchCashSessions = async (token) => {
   return data;
 };
 
-export const deleteCashSession = async ({ id, token}) => {
+export const deleteCashSession = async ({ id, token}: DeleteCashSessionPayload): Promise<DeleteCashSessionResponse> => {
   if (!token) {
     throw new Error("No access token");
   }
 
-  return axios.delete(`${BASE_URL}/${id}`, {
+  const { message } = axios.delete(`${BASE_URL}/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
+  return message;
 };
 
-export const addCashSession = async ({ body, token }) => {
+export const addCashSession = async ({ body, token }: AddCashSessionPayload): Promise<AddCashSessionResponse> => {
   if (!token) {
     throw new Error("No access token");
   }
@@ -40,7 +45,7 @@ export const addCashSession = async ({ body, token }) => {
   });
 };
 
-export const finishCashSession = async ({ id, body, token }) => {
+export const finishCashSession = async ({ id, body, token }: FinishCashSessionPayload): Promise<FinishCashSessionResponse> => {
   if (!token) {
     throw new Error("No access token");
   }
