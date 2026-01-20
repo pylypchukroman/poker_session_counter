@@ -2,7 +2,6 @@ import { formatIsoDate } from '@/helpers/formatIsoDate';
 import { Separator } from '@/Components/ui/separator';
 import { TournamentDetailsPopover } from '@/Components/TournamentDetailsPopover';
 import { calculateTournamentTotal } from '@/helpers/calculateTournamentTotal';
-import { useTournamentSessionData } from '@/Hooks/useTournamentSessionData';
 import { InfoBlock } from '@/Components/InfoBlock';
 import type { TournamentSessionItemProps } from '@/types';
 
@@ -11,8 +10,7 @@ export const TournamentSessionItem = ({ session }: TournamentSessionItemProps) =
   const finishDate = formatIsoDate(session.finishedAt);
   const totalBuyIns = calculateTournamentTotal(session.tournaments, "buyIn");
   const totalResult = calculateTournamentTotal(session.tournaments, "result");
-  const { isSessionRunning } = useTournamentSessionData()
-  const sessionResult = isSessionRunning ? 0 : (totalResult - totalBuyIns);
+  const sessionResult = session.status === "running" ? 0 : (totalResult - totalBuyIns);
 
   return (
     <>
@@ -29,7 +27,7 @@ export const TournamentSessionItem = ({ session }: TournamentSessionItemProps) =
         <InfoBlock label="Start time" value={startDate} />
         <InfoBlock
           label="Finish time"
-          value={isSessionRunning ? "running" : finishDate}
+          value={session.status === "running" ? "running" : finishDate}
         />
         <InfoBlock label="Status" value={session.status} />
         <InfoBlock

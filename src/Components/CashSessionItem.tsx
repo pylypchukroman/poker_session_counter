@@ -1,17 +1,15 @@
 import { Separator } from '@/Components/ui/separator';
 import { formatIsoDate } from '@/helpers/formatIsoDate';
 import { getBalancesSum } from '@/helpers/getBalancesSum';
-import { useCashSessionData } from '@/Hooks/useCashSessionData';
 import { InfoBlock } from '@/Components/InfoBlock';
 import type { CashSessionItemProps } from '@/types';
 
 export const CashSessionItem = ({ session }: CashSessionItemProps) => {
-  const { isSessionRunning } = useCashSessionData();
   const startDate = formatIsoDate(session.startedAt);
   const finishDate = formatIsoDate(session.finishedAt);
   const startSessionBalance = getBalancesSum(session.balancesStart);
   const endSessionBalance = getBalancesSum(session.balancesEnd);
-  const sessionResult: number = isSessionRunning ? 0 : (endSessionBalance - startSessionBalance);
+  const sessionResult: number = session.status === "running" ? 0 : (endSessionBalance - startSessionBalance);
 
   return (
     <>
@@ -28,7 +26,7 @@ export const CashSessionItem = ({ session }: CashSessionItemProps) => {
         <InfoBlock label="Start time" value={startDate} />
         <InfoBlock
           label="Finish time"
-          value={isSessionRunning ? "running" : finishDate}
+          value={session.status === "running" ? "running" : finishDate}
         />
         <InfoBlock label="Status" value={session.status} />
         <InfoBlock label="Start balance" value={`${startSessionBalance} $`} />
