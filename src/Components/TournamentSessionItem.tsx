@@ -4,7 +4,7 @@ import { TournamentDetailsPopover } from '@/Components/TournamentDetailsPopover'
 import { calculateTournamentTotal } from '@/helpers/calculateTournamentTotal';
 import { useTournamentSessionData } from '@/Hooks/useTournamentSessionData';
 import { InfoBlock } from '@/Components/InfoBlock';
-import type { TournamentSessionItemProps } from '@/types/propTypes';
+import type { TournamentSessionItemProps } from '@/types';
 
 export const TournamentSessionItem = ({ session }: TournamentSessionItemProps) => {
   const startDate = formatIsoDate(session.startedAt);

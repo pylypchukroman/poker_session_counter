@@ -8,7 +8,7 @@ import {
 import { Button } from '@/Components/ui/button';
 import { TournamentDetailsList } from '@/Components/TournamentDetailsList';
 import { InfoBlock } from '@/Components/InfoBlock';
-import type { TournamentDetailsPopoverProps } from '@/types/propTypes';
+import type { TournamentDetailsPopoverProps } from '@/types';
 
 export const TournamentDetailsPopover = ({ startDate, finishDate, totalBuyIns, totalResult, sessionResult, tournaments }: TournamentDetailsPopoverProps) => {
 

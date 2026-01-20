@@ -1,4 +1,4 @@
-import type { InfoBlockProps } from '@/types/propTypes';
+import type { InfoBlockProps } from '@/types';
 
 export const InfoBlock = ({ label, value, valueClass = "" }: InfoBlockProps) => (
   <div className="flex flex-col min-w-0">

@@ -1,5 +1,5 @@
 import { roomTournaments } from '@/assets/tournaments';
-import type { Tournament } from '@/types/types';
+import type { Tournament } from '@/types';
 
 export const getRoomTournaments = (room: string | null): Tournament[] => {
   return (

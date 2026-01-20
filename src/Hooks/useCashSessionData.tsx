@@ -1,5 +1,5 @@
 import { useCashSessions } from '@/Hooks/useCashSessions';
-import type { CashSession } from '@/types/types';
+import type { CashSession } from '@/types';
 
 export const useCashSessionData = () => {
   const { data: cashSession, isLoading } = useCashSessions();

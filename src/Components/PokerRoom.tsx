@@ -3,7 +3,7 @@ import { RoomBalancePopover } from '@/Components/RoomBalancePopover';
 import { Button } from '@/Components/ui/button';
 import { useDeleteBalance } from '@/Hooks/useBalanceMutations';
 import { useAuth } from '@/context/AuthContext';
-import type { PokerRoomProps } from '@/types/propTypes';
+import type { PokerRoomProps } from '@/types';
 
 export const PokerRoom = ({ roomBalance }: PokerRoomProps) => {
 const deleteBalance = useDeleteBalance();

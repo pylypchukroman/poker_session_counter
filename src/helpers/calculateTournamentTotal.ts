@@ -1,4 +1,4 @@
-import type { TournamentResult } from '@/types/types';
+import type { TournamentResult } from '@/types';
 
 export const calculateTournamentTotal = (tournaments: TournamentResult[], flag: string) => {
 

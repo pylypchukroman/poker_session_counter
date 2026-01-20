@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label"
 import { useState } from 'react';
 import { useAddBalance } from '@/Hooks/useBalanceMutations';
 import { useAuth } from '@/context/AuthContext';
-import type { RoomBalance } from '@/types/types';
+import type { RoomBalance } from '@/types';
 
 
 export const AddBalancePopover = () => {

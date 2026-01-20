@@ -4,7 +4,7 @@ import { Button } from '@/Components/ui/button';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/Components/ui/command';
 import { Check, ChevronsUpDown } from 'lucide-react';
 import { getRoomTournaments } from '@/helpers/getRoomTournaments';
-import type { TournamentInputProps } from '@/types/propTypes';
+import type { TournamentInputProps } from '@/types';
 
 export const TournamentInput = ({ tournament, setTournament, room}: TournamentInputProps) => {
   const [open, setOpen] = useState<boolean>(false);

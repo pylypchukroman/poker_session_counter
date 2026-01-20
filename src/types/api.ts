@@ -1,152 +1,150 @@
-import type { CashSession, Room, Tokens } from '@/types/types';
-import type { User } from '@/context/AuthContext';
-import type { SessionTournament, TournamentSession } from '@/types/types';
-
-export type LoginPayload = {
-  email: string | File
-  password: string | File
-}
-
-export type LoginResponse = {
-  user: User
-  tokens: Tokens
-}
-
-export type LogoutResponse = {
-  message: string
-}
-
-export type RegisterPayload = {
-  name: string | File
-  email: string | File
-  password: string | File
-}
-
-export type RegisterResponse = {
-  email: string
-  name: string
-}
-
-export type AddBalanceBody = {
-  name: string
-  balance: number
-}
-
-export type AddBalancePayload = {
-  token: string | null
-  body: AddBalanceBody
-}
-
-export type AddBalanceResponse = {
- data: Room
-}
-
-export type DeleteBalancePayload = {
-  token: string | null
-  id: string
-}
-
-export type DeleteBalanceResponse = {
-  message: string
-}
-
-export type EditBalancePayload = {
-  token: string | null
-  body: AddBalanceBody
-  id: string
-}
-
-export type EditBalanceResponse = {
-  data: Room
-}
-
-
-export type DeleteCashSessionPayload = {
-  token: string | null
-  id: string
-}
-
-export type DeleteCashSessionResponse = {
-  message: string
-}
-
-export type AddCashSessionPayload = {
-  token: string | null
-  body: CashSession[]
-}
-
-export type AddCashSessionResponse = {
-  data: CashSession
-}
-
-
-export type FinishCashSessionPayload = {
-  token: string | null
-  body: Room[]
-  id: string
-}
-
-export type FinishCashSessionResponse = {
-  data: CashSession
-}
-
-export type AddTournamentSessionResponse = {
-  data: TournamentSession
-}
-
-export type FinishTournamentSessionPayload = {
-  token: string | null
-  id: string
-}
-
-export type FinishTournamentSessionResponse = {
-  data: TournamentSession
-}
-
-
-export type DeleteTournamentSessionResponse = {
-  message: string
-}
-
-export type DeleteTournamentSessionPayload = {
-  token: string | null
-  id: string
-}
-
-export type TournamentBody = {
-  runningSessionId: string
-  room: string | null
-  name: string
-  buyIn: number
-}
-
-export type AddTournamentPayload = {
-  token: string | null
-  body: TournamentBody
-}
-
-export type AddTournamentResponse = {
-  data: SessionTournament
-}
-
-
-export type DeleteTournamentPayload = {
-  token: string | null
-  runningSessionId: string
-  tournamentId: string
-}
-
-export type DeleteTournamentResponse = {
-  message: string
-}
-
-export type FinishTournamentPayload = {
-  accessToken: string | null
-  runningSessionId: string
-  tournamentId: string
-  result: number
-}
-
-export type FinishTournamentResponse = {
-  data: SessionTournament
-}
+// import type { CashSession, Room, Tokens } from '@/types/types';
+// import type { User } from '@/context/AuthContext';
+// import type { SessionTournament, TournamentSession } from '@/types/types';
+//
+// /* =======================
+//    COMMON
+// ======================= */
+//
+// export type ApiResponse<T> = {
+//   data: T
+// }
+//
+// export type MessageResponse = {
+//   message: string
+// }
+//
+// /* =======================
+//    AUTH
+// ======================= */
+//
+// export type LoginPayload = {
+//   email: string | File
+//   password: string | File
+// }
+//
+// export type LoginResponse = {
+//   user: User
+//   tokens: Tokens
+// }
+//
+// export type RegisterPayload = {
+//   name: string | File
+//   email: string | File
+//   password: string | File
+// }
+//
+// export type RegisterResponse = {
+//   name: string
+//   email: string
+// }
+//
+// export type LogoutResponse = MessageResponse
+//
+// /* =======================
+//    BALANCES
+// ======================= */
+//
+// export type AddBalanceBody = {
+//   name: string
+//   balance: number
+// }
+//
+// export type AddBalancePayload = {
+//   body: AddBalanceBody
+//   token: string | null
+// }
+//
+// export type EditBalancePayload = {
+//   id: string
+//   body: AddBalanceBody
+//   token: string | null
+// }
+//
+// export type DeleteBalancePayload = {
+//   id: string
+//   token: string | null
+// }
+//
+// export type AddBalanceResponse = ApiResponse<Room>
+// export type EditBalanceResponse = ApiResponse<Room>
+// export type DeleteBalanceResponse = MessageResponse
+//
+// /* =======================
+//    CASH SESSIONS
+// ======================= */
+//
+// export type AddCashSessionPayload = {
+//   body: CashSession[]
+//   token: string | null
+// }
+//
+// export type FinishCashSessionPayload = {
+//   id: string
+//   body: Room[]
+//   token: string | null
+// }
+//
+// export type DeleteCashSessionPayload = {
+//   id: string
+//   token: string | null
+// }
+//
+// export type AddCashSessionResponse = ApiResponse<CashSession>
+// export type FinishCashSessionResponse = ApiResponse<CashSession>
+// export type DeleteCashSessionResponse = MessageResponse
+//
+// /* =======================
+//    TOURNAMENT SESSIONS
+// ======================= */
+//
+// export type AddTournamentSessionResponse = ApiResponse<TournamentSession>
+//
+// export type FinishTournamentSessionPayload = {
+//   id: string
+//   token: string | null
+// }
+//
+// export type FinishTournamentSessionResponse = ApiResponse<TournamentSession>
+//
+// export type DeleteTournamentSessionPayload = {
+//   id: string
+//   token: string | null
+// }
+//
+// export type DeleteTournamentSessionResponse = MessageResponse
+//
+// /* =======================
+//    TOURNAMENTS
+// ======================= */
+//
+// export type TournamentBody = {
+//   runningSessionId: string
+//   room: string | null
+//   name: string
+//   buyIn: number
+// }
+//
+// export type AddTournamentPayload = {
+//   body: TournamentBody
+//   token: string | null
+// }
+//
+// export type AddTournamentResponse = ApiResponse<SessionTournament>
+//
+// export type DeleteTournamentPayload = {
+//   runningSessionId: string
+//   tournamentId: string
+//   token: string | null
+// }
+//
+// export type DeleteTournamentResponse = MessageResponse
+//
+// export type FinishTournamentPayload = {
+//   runningSessionId: string
+//   tournamentId: string
+//   result: number
+//   accessToken: string | null
+// }
+//
+// export type FinishTournamentResponse = ApiResponse<SessionTournament>

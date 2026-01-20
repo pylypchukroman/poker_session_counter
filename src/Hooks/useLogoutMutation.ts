@@ -1,7 +1,7 @@
 import { useAuth } from '@/context/AuthContext';
 import { useMutation } from '@tanstack/react-query';
 import { logoutUser } from '@/api/logout';
-import type { LogoutResponse } from '@/types/api';
+import type { LogoutResponse } from '@/types';
 
 export const useLogoutMutation = () => {
   const { logout, accessToken } = useAuth();

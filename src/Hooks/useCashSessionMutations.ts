@@ -7,7 +7,8 @@ import type {
   DeleteCashSessionResponse,
   FinishCashSessionPayload,
   FinishCashSessionResponse
-} from '@/types/api';
+} from '@/types';
+
 
 export const useDeleteCashSession = () => {
   const queryClient = useQueryClient();

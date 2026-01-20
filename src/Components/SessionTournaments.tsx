@@ -2,7 +2,7 @@ import { ScrollArea } from '@/Components/ui/scroll-area';
 import { Separator } from '@/Components/ui/separator';
 import { useTournamentData } from '@/Hooks/useTournamentData';
 import { FinishTournamentPopover } from '@/Components/FinishTournamentPopover';
-import type { AddNewTournamentToSessionProps } from '@/types/propTypes';
+import type { AddNewTournamentToSessionProps } from '@/types';
 
 export const SessionTournaments = ({ runningSessionId }: AddNewTournamentToSessionProps) => {
   const { reversedTournamentSessions } = useTournamentData(runningSessionId);

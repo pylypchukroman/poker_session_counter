@@ -3,8 +3,11 @@ import type {
   AddTournamentPayload,
   AddTournamentResponse,
   DeleteTournamentPayload,
-  DeleteTournamentResponse, FinishTournamentPayload, FinishTournamentResponse
-} from '@/types/api';
+  DeleteTournamentResponse,
+  FinishTournamentPayload,
+  FinishTournamentResponse
+} from '@/types';
+
 
 const BASE_URL = 'http://localhost:3000/api/tournament_sessions';
 

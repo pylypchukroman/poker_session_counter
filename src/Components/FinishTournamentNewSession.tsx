@@ -8,7 +8,7 @@ import {
 } from '@/Components/ui/drawer';
 import { useFinishTournamentSession } from '@/Hooks/useTournamentSessionsMutations';
 import { useAuth } from '@/context/AuthContext';
-import type { AddNewTournamentToSessionProps } from '@/types/propTypes';
+import type { AddNewTournamentToSessionProps } from '@/types';
 
 export const FinishTournamentNewSession = ({ runningSessionId }: AddNewTournamentToSessionProps) => {
   const finishTournamentSession = useFinishTournamentSession();

@@ -1,6 +1,6 @@
-import type { RoomBalance } from '@/types/types';
+import type { BalanceSnapshot } from '@/types';
 
-export const getBalancesSum: (balances: RoomBalance[]) => number = (balances: RoomBalance[]) => {
 
+export const getBalancesSum = (balances: BalanceSnapshot[]): number => {
   return balances.reduce((sum, { balance }) => sum + balance, 0);
-};
+}

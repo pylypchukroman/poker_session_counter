@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { useState } from 'react';
 import { useEditBalance } from '@/Hooks/useBalanceMutations';
 import { useAuth } from '@/context/AuthContext';
-import type { PokerRoomProps } from '@/types/propTypes';
+import type { PokerRoomProps } from '@/types';
 
 export const RoomBalancePopover = ({ roomBalance }: PokerRoomProps ) => {
   const [balance, setBalance] = useState(roomBalance.balance);

@@ -1,10 +1,13 @@
 import axios from 'axios';
 import type {
-  AddTournamentSessionResponse, DeleteTournamentSessionPayload, DeleteTournamentSessionResponse,
+  AddTournamentSessionResponse,
+  DeleteTournamentSessionPayload,
+  DeleteTournamentSessionResponse,
   FinishTournamentSessionPayload,
-  FinishTournamentSessionResponse
-} from '@/types/api';
-import type { TournamentSession } from '@/types/types';
+  FinishTournamentSessionResponse,
+  TournamentSession
+} from '@/types';
+
 
 const BASE_URL = 'http://localhost:3000/api/tournament_sessions';
 

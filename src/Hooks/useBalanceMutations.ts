@@ -1,7 +1,15 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { addBalance, deleteBalance, editBalance } from '@/api/balance';
-import type { AddBalancePayload, AddBalanceResponse, EditBalancePayload, EditBalanceResponse } from '@/types/api';
-import type { DeleteBalancePayload, DeleteBalanceResponse } from '@/types/api';
+import type {
+  AddBalancePayload,
+  AddBalanceResponse,
+  DeleteBalancePayload,
+  DeleteBalanceResponse,
+  EditBalancePayload,
+  EditBalanceResponse,
+  Room
+} from '@/types';
+
 
 export const useEditBalance = () => {
   const queryClient = useQueryClient();
@@ -17,17 +25,19 @@ export const useEditBalance = () => {
 };
 
 export const useDeleteBalance = () => {
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
 
   return useMutation<DeleteBalanceResponse, Error, DeleteBalancePayload>({
-    mutationFn: ({ id, token }) => deleteBalance({ id, token}),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ['balances'],
-      });
+    mutationFn: deleteBalance,
+
+    onSuccess: (_, { id }) => {
+      queryClient.setQueryData<Room[]>(
+        ['balances'],
+        (old) => old?.filter(balance => balance.id !== id)
+      )
     },
-  });
-};
+  })
+}
 
 export const useAddBalance = () => {
   const queryClient = useQueryClient();

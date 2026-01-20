@@ -1,5 +1,5 @@
 import { useBalances } from '@/Hooks/useBalances';
-import type { Room } from '@/types/types';
+import type { Room } from '@/types';
 
 export const useBalanceData = (room?: string | null) => {
   const { data: roomsBalance, isLoading } = useBalances();

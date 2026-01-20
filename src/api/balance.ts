@@ -1,13 +1,14 @@
 import axios from 'axios';
-import type { Room } from '@/types/types';
 import type {
   AddBalancePayload,
+  AddBalanceResponse,
   DeleteBalancePayload,
   DeleteBalanceResponse,
   EditBalancePayload,
-  EditBalanceResponse
-} from '@/types/api';
-import type { AddBalanceResponse } from '@/types/api';
+  EditBalanceResponse,
+  Room
+} from '@/types';
+
 
 const BASE_URL = 'http://localhost:3000/api/balances';
 

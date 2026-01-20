@@ -4,8 +4,10 @@ import type {
   AddTournamentPayload,
   AddTournamentResponse,
   DeleteTournamentPayload,
-  DeleteTournamentResponse, FinishTournamentPayload, FinishTournamentResponse
-} from '@/types/api';
+  DeleteTournamentResponse,
+  FinishTournamentPayload,
+  FinishTournamentResponse
+} from '@/types';
 
 export const useDeleteTournament = () => {
   const queryClient = useQueryClient();

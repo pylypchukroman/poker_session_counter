@@ -1,8 +1,13 @@
 import axios from 'axios';
-import type { AddCashSessionPayload, DeleteCashSessionPayload, FinishCashSessionPayload } from '@/types/api';
-import type { DeleteCashSessionResponse } from '@/types/api';
-import type { AddCashSessionResponse } from '@/types/api';
-import type { FinishCashSessionResponse } from '@/types/api';
+import type {
+  AddCashSessionPayload,
+  AddCashSessionResponse,
+  DeleteCashSessionPayload,
+  DeleteCashSessionResponse,
+  FinishCashSessionPayload,
+  FinishCashSessionResponse
+} from '@/types';
+
 
 const BASE_URL = 'http://localhost:3000/api/cash_sessions';
 

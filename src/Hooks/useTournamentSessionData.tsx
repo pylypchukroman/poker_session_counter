@@ -1,5 +1,5 @@
 import { useTournamentSessions } from '@/Hooks/useTournamentSessions';
-import type { TournamentSession } from '@/types/types';
+import type { TournamentSession } from '@/types';
 
 export const useTournamentSessionData = () => {
   const {data: tournamentSessions, isLoading} = useTournamentSessions();

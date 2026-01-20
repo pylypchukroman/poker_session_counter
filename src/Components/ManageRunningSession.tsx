@@ -9,7 +9,7 @@ import {
 } from '@/Components/ui/drawer';
 import { SessionTournaments } from '@/Components/SessionTournaments';
 import { AddNewTournamentToSession } from '@/Components/AddNewTournamentToSession';
-import type { AddNewTournamentToSessionProps } from '@/types/propTypes';
+import type { AddNewTournamentToSessionProps } from '@/types';
 
 export const ManageRunningSession = ({ runningSessionId }: AddNewTournamentToSessionProps) => {
 

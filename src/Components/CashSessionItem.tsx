@@ -3,8 +3,7 @@ import { formatIsoDate } from '@/helpers/formatIsoDate';
 import { getBalancesSum } from '@/helpers/getBalancesSum';
 import { useCashSessionData } from '@/Hooks/useCashSessionData';
 import { InfoBlock } from '@/Components/InfoBlock';
-import type { SessionBalance } from '@/types/types';
-import type { CashSessionItemProps } from '@/types/propTypes';
+import type { CashSessionItemProps } from '@/types';
 
 export const CashSessionItem = ({ session }: CashSessionItemProps) => {
   const { isSessionRunning } = useCashSessionData();
@@ -12,7 +11,7 @@ export const CashSessionItem = ({ session }: CashSessionItemProps) => {
   const finishDate = formatIsoDate(session.finishedAt);
   const startSessionBalance = getBalancesSum(session.balancesStart);
   const endSessionBalance = getBalancesSum(session.balancesEnd);
-  const sessionResult: SessionBalance | number = isSessionRunning ? 0 : (endSessionBalance - startSessionBalance);
+  const sessionResult: number = isSessionRunning ? 0 : (endSessionBalance - startSessionBalance);
 
   return (
     <>

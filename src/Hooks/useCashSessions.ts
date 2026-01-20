@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import { fetchCashSessions } from '@/api/cashSession';
 import { useAuth } from '@/context/AuthContext';
-import type { CashSession } from '@/types/types';
+import type { CashSession } from '@/types';
+
 
 export const useCashSessions = () => {
   const { accessToken } = useAuth();

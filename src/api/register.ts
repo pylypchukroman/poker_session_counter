@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { RegisterPayload, RegisterResponse } from '@/types/api';
+import type { RegisterPayload, RegisterResponse } from '@/types';
 
 const BASE_URL = 'http://localhost:3000/api/auth/register';
 
