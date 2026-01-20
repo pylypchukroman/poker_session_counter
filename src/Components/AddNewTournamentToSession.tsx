@@ -7,6 +7,7 @@ import { useEditBalance } from '@/Hooks/useBalanceMutations';
 import { useBalanceData } from '@/Hooks/useBalanceData';
 import { useAuth } from '@/context/AuthContext';
 import type { AddNewTournamentToSessionProps, Tournament } from '@/types';
+import { useQueryClient } from '@tanstack/react-query';
 
 export const AddNewTournamentToSession = ({ runningSessionId }: AddNewTournamentToSessionProps) => {
   const initState: Tournament = { name: "", buyIn: 0 };
@@ -17,26 +18,37 @@ export const AddNewTournamentToSession = ({ runningSessionId }: AddNewTournament
   const { currentRoomBalance } = useBalanceData(room);
   const { accessToken } = useAuth();
 
+  const queryClient = useQueryClient();
+
   const click = () => {
-    //balance logic
+    // balance logic
     const newBalance = currentRoomBalance.balance - tournament.buyIn;
     const body = {
       name: currentRoomBalance.name,
       balance: newBalance
     }
-    editBalance.mutate({id: currentRoomBalance.id, body: body, token: accessToken})
-    //balance logic
-    //tournament logic
+
+    editBalance.mutate({ id: currentRoomBalance.id, body, token: accessToken });
+
+    // tournament logic
     const payload = {
-      runningSessionId: runningSessionId,
-      room: room,
+      runningSessionId,
+      room,
       name: tournament.name,
       buyIn: tournament.buyIn,
     };
-    addTournament.mutate({ body: payload, token: accessToken });
-    //tournament logic
-    setTournament(initState);
-    setRoom("");
+
+    addTournament.mutate(
+      { body: payload, token: accessToken },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ['tournament_sessions'] });
+          queryClient.invalidateQueries({ queryKey: ['tournaments'] });
+          setTournament(initState);
+          setRoom("");
+        },
+      }
+    );
   };
 
   return (
