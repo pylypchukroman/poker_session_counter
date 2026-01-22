@@ -17,5 +17,9 @@ export const useLoginMutation = () => {
       toast.success(`Successful login, ${data.user.name}`);
       navigate('/cash');
     },
+    onError: (error) => {
+      toast.error("Email or password wrong")
+      console.log(error, 'error')
+    }
   })
 }
