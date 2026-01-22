@@ -18,6 +18,7 @@ export const RegisterForm = () => {
       email: formData.get("email"),
       password: formData.get("password"),
     };
+
     register.mutate(data);
   };
 

@@ -14,15 +14,13 @@ import { useState } from 'react';
 import { useEditBalance } from '@/Hooks/useBalanceMutations';
 import { useAuth } from '@/context/AuthContext';
 import type { PokerRoomProps } from '@/types';
+import { getBalanceBody } from '@/helpers/getBalanceBody';
 
 export const RoomBalancePopover = ({ roomBalance }: PokerRoomProps ) => {
   const [balance, setBalance] = useState(roomBalance.balance);
   const editBalance = useEditBalance();
   const { accessToken } = useAuth();
-  const body = {
-    name: roomBalance.name,
-    balance: balance
-  }
+  const balanceBody = getBalanceBody(roomBalance.name, balance);
 
   return (
     <Dialog>
@@ -57,7 +55,7 @@ export const RoomBalancePopover = ({ roomBalance }: PokerRoomProps ) => {
             <Button
               type="button"
               variant="primary"
-              onClick={() => editBalance.mutate({id: roomBalance.id, body: body, token: accessToken})}
+              onClick={() => editBalance.mutate({id: roomBalance.id, body: balanceBody, token: accessToken})}
             >
               Confirm
             </Button>

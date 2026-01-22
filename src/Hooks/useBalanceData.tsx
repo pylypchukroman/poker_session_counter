@@ -9,5 +9,7 @@ export const useBalanceData = (room?: string | null) => {
 
   const currentRoomBalance: Room = roomsBalance?.find(b => b.name === room);
 
-  return {roomsBalance, isLoading, totalBalance, currentRoomBalance};
+  const isZeroBalance: boolean = totalBalance === 0;
+
+  return { roomsBalance, isLoading, totalBalance, currentRoomBalance, isZeroBalance };
 };

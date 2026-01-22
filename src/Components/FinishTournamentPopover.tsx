@@ -14,6 +14,7 @@ import { useEditBalance } from '@/Hooks/useBalanceMutations';
 import { useBalanceData } from '@/Hooks/useBalanceData';
 import { useAuth } from '@/context/AuthContext';
 import type { FinishTournamentPopoverProps } from '@/types';
+import { getBalanceBody } from '@/helpers/getBalanceBody';
 
 export const FinishTournamentPopover = ({ tournamentName, tournamentId, runningSessionId, tournamentStatus, tournamentRoom  }: FinishTournamentPopoverProps) => {
   const [result, setResult] = useState<number>(0);
@@ -22,18 +23,13 @@ export const FinishTournamentPopover = ({ tournamentName, tournamentId, runningS
   const { currentRoomBalance } = useBalanceData(tournamentRoom);
   const { accessToken } = useAuth();
 
-  const onClick = () => {
-    //balance logic
+  const onSubmit = () => {
     const newBalance = currentRoomBalance.balance + result;
-    const body = {
-      name: currentRoomBalance.name,
-      balance: newBalance
-    }
-    editBalance.mutate({ id: currentRoomBalance.id, body: body, token: accessToken });
-    //balance logic
-    //tournament logic
-    finishTournament.mutate({runningSessionId, tournamentId, result, accessToken})
-    //tournament logic
+    const balanceBody = getBalanceBody(currentRoomBalance.name, newBalance);
+
+    editBalance.mutate({ id: currentRoomBalance.id, body: balanceBody, token: accessToken });
+
+    finishTournament.mutate({runningSessionId, tournamentId, result, accessToken});
   };
 
   return (
@@ -73,7 +69,7 @@ export const FinishTournamentPopover = ({ tournamentName, tournamentId, runningS
               className="hover:text-amber-50"
               type="button"
               variant="outline"
-              onClick={onClick}
+              onClick={onSubmit}
             >
               Submit
             </Button>

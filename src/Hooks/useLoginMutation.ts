@@ -3,6 +3,7 @@ import { loginUser } from '@/api/login';
 import { useNavigate } from "react-router-dom";
 import { useAuth } from '@/context/AuthContext';
 import type { LoginPayload, LoginResponse } from '@/types';
+import { toast } from 'sonner';
 
 export const useLoginMutation = () => {
   const navigate = useNavigate()
@@ -12,8 +13,9 @@ export const useLoginMutation = () => {
     mutationFn: (data) => loginUser(data),
 
     onSuccess: (data) => {
-      setAuth(data.user, data.tokens.accessToken)
-      navigate('/cash')
+      setAuth(data.user, data.tokens.accessToken);
+      toast.success(`Successful login, ${data.user.name}`);
+      navigate('/cash');
     },
   })
 }

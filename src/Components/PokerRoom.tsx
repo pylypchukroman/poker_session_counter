@@ -7,7 +7,7 @@ import type { PokerRoomProps } from '@/types';
 
 export const PokerRoom = ({ roomBalance }: PokerRoomProps) => {
 const deleteBalance = useDeleteBalance();
-  const { accessToken } = useAuth();
+const { accessToken } = useAuth();
 
   return (
     <Item

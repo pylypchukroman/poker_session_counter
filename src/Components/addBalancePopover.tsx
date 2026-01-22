@@ -14,24 +14,21 @@ import { useState } from 'react';
 import { useAddBalance } from '@/Hooks/useBalanceMutations';
 import { useAuth } from '@/context/AuthContext';
 import type { RoomBalance } from '@/types';
+import { initState } from '@/assets/initBalanceState';
+import { getBalanceBody } from '@/helpers/getBalanceBody';
 
 
 export const AddBalancePopover = () => {
   const { accessToken } = useAuth();
-  const initState: RoomBalance = {
-    name: "",
-    balance: 0
-  };
   const addBalance = useAddBalance();
   const [newBalance, setNewBalance] = useState<RoomBalance>(initState);
+
   const reset = () => {
     setNewBalance(initState)
   };
+
   const onSubmit = () => {
-    const newBalanceBody = {
-      name: newBalance.name,
-      balance: Number(newBalance.balance)
-    }
+    const newBalanceBody = getBalanceBody(newBalance.name, Number(newBalance.balance));
     addBalance.mutate({body: newBalanceBody, token: accessToken});
     reset();
   };

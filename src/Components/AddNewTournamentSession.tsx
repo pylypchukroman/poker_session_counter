@@ -11,15 +11,34 @@ import {
 import { useAddTournamentSession } from '@/Hooks/useTournamentSessionsMutations';
 import { useBalanceData } from '@/Hooks/useBalanceData';
 import { useAuth } from '@/context/AuthContext';
+import { useState } from 'react';
+import { toast } from 'sonner';
 
 export const AddNewTournamentSession = () => {
-  const { roomsBalance, totalBalance } = useBalanceData();
+  const { roomsBalance, totalBalance, isZeroBalance } = useBalanceData();
   const addTournamentSession = useAddTournamentSession();
   const { accessToken } = useAuth();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const onClick = () => {
+    if (isZeroBalance) {
+      toast.info("Add balance to start a new session");
+      setIsOpen(false);
+    } else {
+      setIsOpen(true);
+    }
+  }
 
   return (
-      <Drawer>
-        <DrawerTrigger className="h-[12vh] md:h-[18vh] px-4 py-2 text-white rounded-md bg-neutral-800">
+      <Drawer open={isOpen}>
+        <DrawerTrigger
+          onClick={onClick}
+          className="h-[12vh] md:h-[18vh] px-4 py-2 text-white rounded-md bg-neutral-800"
+          style={{
+            opacity: isZeroBalance ? 0.5 : 1,
+            cursor: isZeroBalance ? "not-allowed" : "pointer",
+          }}
+        >
           Start new tournament session
         </DrawerTrigger>
         <DrawerContent className="h-[34vh] md:h-[38vh] max-w-7xl mx-auto bg-neutral-800 rounded-md p-6 flex flex-col justify-between">
@@ -41,7 +60,10 @@ export const AddNewTournamentSession = () => {
             >
               Start new tournament session
             </DrawerClose>
-            <DrawerClose className="w-1/2 h-1/3 flex items-center justify-center !text-sm !px-2 !py-1 md:!text-base md:!px-4 md:!py-2">
+            <DrawerClose
+              onClick={() => setIsOpen(false)}
+              className="w-1/2 h-1/3 flex items-center justify-center !text-sm !px-2 !py-1 md:!text-base md:!px-4 md:!py-2"
+            >
               Cancel
             </DrawerClose>
           </DrawerFooter>

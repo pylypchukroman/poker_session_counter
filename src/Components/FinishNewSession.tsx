@@ -27,6 +27,7 @@ export const FinishNewSession = () => {
       prev.map(item => (item.id === id ? { ...item, [field]: value } : item))
     );
   };
+
   const handleSubmit = () => {
     finishSession.mutate({id: runningSessionId, body: pokerRoom, token: accessToken});
     pokerRoom.forEach(room => {

@@ -8,11 +8,14 @@ import { useBalanceData } from '@/Hooks/useBalanceData';
 import { useAuth } from '@/context/AuthContext';
 import type { AddNewTournamentToSessionProps, Tournament } from '@/types';
 import { useQueryClient } from '@tanstack/react-query';
+import { getBalanceBody } from '@/helpers/getBalanceBody';
+import { getTournamentPayload } from '@/helpers/getTournamentPayload';
+import { toast } from "sonner"
+import { initTournamentState } from '@/assets/initTournamentState';
 
 export const AddNewTournamentToSession = ({ runningSessionId }: AddNewTournamentToSessionProps) => {
-  const initState: Tournament = { name: "", buyIn: 0 };
   const [room, setRoom] = useState<string | null>(null);
-  const [tournament, setTournament] = useState<Tournament>(initState);
+  const [tournament, setTournament] = useState<Tournament>(initTournamentState);
   const addTournament = useAddTournament();
   const editBalance = useEditBalance();
   const { currentRoomBalance } = useBalanceData(room);
@@ -20,31 +23,25 @@ export const AddNewTournamentToSession = ({ runningSessionId }: AddNewTournament
 
   const queryClient = useQueryClient();
 
-  const click = () => {
-    // balance logic
+  const onSubmit = () => {
     const newBalance = currentRoomBalance.balance - tournament.buyIn;
-    const body = {
-      name: currentRoomBalance.name,
-      balance: newBalance
+
+    if (newBalance < 0) {
+      toast.error(`${room} balance must be bigger that tournament buy-in`)
+      return;
     }
 
+    const body = getBalanceBody(currentRoomBalance.name, newBalance);
     editBalance.mutate({ id: currentRoomBalance.id, body, token: accessToken });
 
-    // tournament logic
-    const payload = {
-      runningSessionId,
-      room,
-      name: tournament.name,
-      buyIn: tournament.buyIn,
-    };
-
+    const payload = getTournamentPayload(runningSessionId, room, tournament.name, tournament.buyIn);
     addTournament.mutate(
       { body: payload, token: accessToken },
       {
         onSuccess: () => {
           queryClient.invalidateQueries({ queryKey: ['tournament_sessions'] });
           queryClient.invalidateQueries({ queryKey: ['tournaments'] });
-          setTournament(initState);
+          setTournament(initTournamentState);
           setRoom("");
         },
       }
@@ -65,7 +62,7 @@ export const AddNewTournamentToSession = ({ runningSessionId }: AddNewTournament
       <Button
         disabled={!room || !tournament.name}
         type="button"
-        onClick={click}
+        onClick={onSubmit}
       >
         Add tournament
       </Button>

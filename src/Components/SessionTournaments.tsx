@@ -47,7 +47,4 @@ export const SessionTournaments = ({ runningSessionId }: AddNewTournamentToSessi
       </ScrollArea>
     </li>
   );
-
-
-
 };

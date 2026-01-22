@@ -8,6 +8,7 @@ import { useLoginMutation } from '@/Hooks/useLoginMutation';
 
 export const LoginForm = () => {
   const login = useLoginMutation();
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -16,6 +17,7 @@ export const LoginForm = () => {
       email: formData.get("email"),
       password: formData.get("password"),
     };
+
     login.mutate(data);
   };
 

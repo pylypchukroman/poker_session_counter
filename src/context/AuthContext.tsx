@@ -5,23 +5,7 @@ import {
   useState,
   ReactNode,
 } from "react";
-
-export type User = {
-  id: string;
-  email: string;
-  name?: string;
-};
-
-type AuthStatus = "loading" | "authenticated" | "unauthenticated";
-
-type AuthContextType = {
-  user: User | null;
-  accessToken: string | null;
-  isAuthenticated: boolean;
-  isLoading: boolean;
-  setAuth: (user: User, token: string) => void;
-  logout: () => void;
-};
+import type { AuthContextType, AuthStatus, User } from '@/types';
 
 export const AuthContext = createContext<AuthContextType | undefined>(
   undefined

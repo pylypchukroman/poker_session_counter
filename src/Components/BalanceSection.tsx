@@ -10,9 +10,6 @@ import { useLogoutMutation } from '@/Hooks/useLogoutMutation';
 
 export const BalanceSection = () => {
   const logout = useLogoutMutation();
-  const click = () => {
-    logout.mutate();
-  }
 
   return (
     <div className="flex justify-between w-xs items-center relative">
@@ -28,7 +25,7 @@ export const BalanceSection = () => {
         <DropdownMenuContent className="w-56" align="start">
           <DropdownMenuItem
             className="bg-neutral-800 text-white"
-            onClick={click}
+            onClick={() => logout.mutate()}
           >
             Log out
           </DropdownMenuItem>
