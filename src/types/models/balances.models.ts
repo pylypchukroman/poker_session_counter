@@ -1,6 +1,6 @@
 export type RoomBalance = {
   name: string
-  balance: number
+  balance: number | string
 }
 
 export type Room = {

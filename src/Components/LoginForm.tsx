@@ -23,30 +23,32 @@ export const LoginForm = () => {
       <div className="flex flex-col gap-6">
         <Card className="bg-neutral-800">
           <CardHeader className="text-center">
-            <CardTitle className="text-xl">Welcome back</CardTitle>
+            <CardTitle className="text-xl text-white">Welcome back</CardTitle>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit}>
               <FieldGroup>
                 <Field>
-                  <FieldLabel htmlFor="email">Email</FieldLabel>
+                  <FieldLabel htmlFor="email" className="text-amber-50">Email</FieldLabel>
                   <Input
                     id="email"
                     type="email"
                     name="email"
                     placeholder="m@example.com"
                     required
+                    className="text-amber-50"
                   />
                 </Field>
                 <Field>
                   <div className="flex items-center">
-                    <FieldLabel htmlFor="password">Password</FieldLabel>
+                    <FieldLabel htmlFor="password" className="text-amber-50">Password</FieldLabel>
                   </div>
                   <Input
                     id="password"
                     type="password"
                     name="password"
                     required
+                    className="text-amber-50"
                   />
                 </Field>
                 <Field>

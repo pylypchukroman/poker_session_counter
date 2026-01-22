@@ -1,9 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/Components/ui/card';
-import { Field, FieldGroup, FieldLabel } from '@/Components/ui/field';
+import { Field, FieldDescription, FieldGroup, FieldLabel } from '@/Components/ui/field';
 import { Button } from '@/Components/ui/button';
 import { Input } from '@/Components/ui/input';
 import { FormEvent } from 'react';
 import { useRegisterMutation } from '@/Hooks/useRegisterMutation';
+import { Link } from 'react-router-dom';
 
 export const RegisterForm = () => {
   const register = useRegisterMutation();
@@ -24,14 +25,15 @@ export const RegisterForm = () => {
     <div className="flex flex-col gap-6">
       <Card className="bg-neutral-800">
         <CardHeader className="text-center">
-          <CardTitle className="text-xl">Register your account</CardTitle>
+          <CardTitle className="text-xl text-white">Register your account</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit}>
             <FieldGroup>
               <Field>
-                <FieldLabel htmlFor="name">Name</FieldLabel>
+                <FieldLabel htmlFor="name" className="text-amber-50">Name</FieldLabel>
                 <Input
+                  className="text-amber-50"
                   id="name"
                   name="name"
                   type="name"
@@ -40,8 +42,9 @@ export const RegisterForm = () => {
                 />
               </Field>
               <Field>
-                <FieldLabel htmlFor="email">Email</FieldLabel>
+                <FieldLabel htmlFor="email" className="text-amber-50">Email</FieldLabel>
                 <Input
+                  className="text-amber-50"
                   id="email"
                   type="email"
                   name="email"
@@ -51,15 +54,24 @@ export const RegisterForm = () => {
               </Field>
               <Field>
                 <div className="flex items-center">
-                  <FieldLabel htmlFor="password">Password</FieldLabel>
+                  <FieldLabel htmlFor="password" className="text-amber-50">Password</FieldLabel>
                 </div>
                 <Input
+                  className="text-amber-50"
                   id="password"
                   name="password"
                   type="password"
                   required
                 />
               </Field>
+              <FieldDescription className="text-center">
+                Already have an account? <Link
+                to="/login"
+                className="text-blue-600 underline hover:text-blue-800"
+              >
+                Log in
+              </Link>
+              </FieldDescription>
               <Field>
                 <Button
                   type="submit"

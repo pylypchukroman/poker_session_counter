@@ -34,7 +34,7 @@ export const RoomBalancePopover = ({ roomBalance }: PokerRoomProps ) => {
           Change
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md bg-black">
+      <DialogContent className="sm:max-w-md bg-neutral-800">
         <DialogHeader>
           <DialogTitle>
             { roomBalance.name }

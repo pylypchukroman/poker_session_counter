@@ -30,7 +30,7 @@ export const AddBalancePopover = () => {
   const onSubmit = () => {
     const newBalanceBody = {
       name: newBalance.name,
-      balance: newBalance.balance
+      balance: Number(newBalance.balance)
     }
     addBalance.mutate({body: newBalanceBody, token: accessToken});
     reset();
@@ -41,7 +41,7 @@ export const AddBalancePopover = () => {
       <DialogTrigger asChild>
         <Button variant="outline" className="hover:text-amber-50">Add Room Balance</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] bg-black">
+      <DialogContent className="sm:max-w-[425px] bg-neutral-800">
         <DialogHeader>
           <DialogTitle>Add room balance</DialogTitle>
           <DialogDescription>
@@ -66,8 +66,20 @@ export const AddBalancePopover = () => {
             </Label>
             <Input
               id="balance"
+              type="text"
+              inputMode="numeric"
+              pattern="[0-9]*"
               value={newBalance.balance}
-              onChange={(e)=> setNewBalance(prev => ({ ...prev, balance: Number(e.target.value) }))}
+              onChange={(e) => {
+                const value = e.target.value;
+
+                if (/^\d*$/.test(value)) {
+                  setNewBalance(prev => ({
+                    ...prev,
+                    balance: value,
+                  }));
+                }
+              }}
               className="col-span-3"
             />
           </div>
