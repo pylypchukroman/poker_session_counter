@@ -8,14 +8,12 @@ import {
 } from '@/Components/ui/drawer';
 import { useAddCashSession } from '@/Hooks/useCashSessionMutations';
 import { useBalanceData } from '@/Hooks/useBalanceData';
-import { useAuth } from '@/context/AuthContext';
 import { toast } from 'sonner';
 import { useState } from 'react';
 
 export const AddNewSession = () => {
   const { roomsBalance, totalBalance, isZeroBalance } = useBalanceData();
   const addCashSession = useAddCashSession();
-  const { accessToken } = useAuth();
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const onClick = () => {
@@ -61,7 +59,7 @@ export const AddNewSession = () => {
         <DrawerFooter className="flex items-center justify-center">
           <DrawerClose
             className="h-1/2 w-1/2 !text-sm !px-2 !py-1 md:!text-base md:!px-4 md:!py-2"
-            onClick={() => addCashSession.mutate({ body: roomsBalance, token: accessToken })}
+            onClick={() => addCashSession.mutate({ body: roomsBalance })}
           >
             Start new cash session
           </DrawerClose>

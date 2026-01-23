@@ -1,12 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
 import { loginUser } from '@/api/login';
-import { useNavigate } from "react-router-dom";
 import { useAuth } from '@/context/AuthContext';
 import type { LoginPayload, LoginResponse } from '@/types';
 import { toast } from 'sonner';
 
 export const useLoginMutation = () => {
-  const navigate = useNavigate();
   const { setAuth } = useAuth();
 
   return useMutation<LoginResponse, Error, LoginPayload>({
@@ -15,7 +13,7 @@ export const useLoginMutation = () => {
     onSuccess: (data) => {
       setAuth(data.user, data.tokens.accessToken);
       toast.success(`Successful login, ${data.user.name}`);
-      navigate("/cash");
+      window.location.href = "/cash";
     },
     onError: () => {
       toast.error("Email or password wrong");

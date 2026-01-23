@@ -15,7 +15,7 @@ export const useEditBalance = () => {
   const queryClient = useQueryClient();
 
   return useMutation<EditBalanceResponse, Error, EditBalancePayload>({
-    mutationFn: ({ id, body, token }) => editBalance({ id, body, token }),
+    mutationFn: ({ id, body }) => editBalance({ id, body }),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['balances'],
@@ -43,7 +43,7 @@ export const useAddBalance = () => {
   const queryClient = useQueryClient();
 
   return useMutation<AddBalanceResponse, Error, AddBalancePayload>({
-    mutationFn: ({ body, token }) => addBalance({ body, token }),
+    mutationFn: ({ body }) => addBalance({ body }),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['balances'],

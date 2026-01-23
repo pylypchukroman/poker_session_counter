@@ -8,17 +8,17 @@ import type {
   FinishTournamentResponse
 } from '@/types';
 
-export const fetchTournaments = async ({ sessionId, token}) => {
+export const fetchTournaments = async ({ sessionId }) => {
   const { data } = await api.get(`/tournament_sessions/${sessionId}/tournaments`);
   return data;
 };
 
-export const deleteTournament = async ({runningSessionId, tournamentId, token}: DeleteTournamentPayload): Promise<DeleteTournamentResponse> => {
+export const deleteTournament = async ({ runningSessionId, tournamentId }: DeleteTournamentPayload): Promise<DeleteTournamentResponse> => {
   const { message } = api.delete(`/tournament_sessions/${runningSessionId}/tournaments/${tournamentId}`);
   return message;
 };
 
-export const addTournament = async ({ body, token }: AddTournamentPayload): Promise<AddTournamentResponse> => {
+export const addTournament = async ({ body }: AddTournamentPayload): Promise<AddTournamentResponse> => {
 
   return api.post(`/tournament_sessions/${body.runningSessionId}/tournaments`, {
     startedAt: new Date().toISOString(),
@@ -30,7 +30,7 @@ export const addTournament = async ({ body, token }: AddTournamentPayload): Prom
   });
 };
 
-export const finishTournament = async ({ runningSessionId, tournamentId, result, accessToken }: FinishTournamentPayload): Promise<FinishTournamentResponse> => {
+export const finishTournament = async ({ runningSessionId, tournamentId, result }: FinishTournamentPayload): Promise<FinishTournamentResponse> => {
 
   return api.patch(`/tournament_sessions/${runningSessionId}/tournaments/${tournamentId}/finish_tournament`, {
     finishedAt: new Date().toISOString(),

@@ -5,8 +5,10 @@ import { Input } from '@/Components/ui/input';
 import { FormEvent } from 'react';
 import { useRegisterMutation } from '@/Hooks/useRegisterMutation';
 import { Link } from 'react-router-dom';
+import { toast } from 'sonner';
 
 export const RegisterForm = () => {
+  const pattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
   const register = useRegisterMutation();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -19,7 +21,11 @@ export const RegisterForm = () => {
       password: formData.get("password"),
     };
 
-    register.mutate(data);
+    if (!pattern.test(data.password as string)) {
+      toast.error('Password must be at least 8 characters and contain letters and numbers');
+    } else {
+      register.mutate(data);
+    }
   };
 
   return (

@@ -1,7 +1,7 @@
 export const DashboardPage = () => {
   return (
-    <div className="w-screen h-lvh">
-      Dashboard
+    <div className="h-lvh flex items-center justify-center">
+      Dashboard in progress
     </div>
   );
 };

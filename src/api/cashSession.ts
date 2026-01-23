@@ -8,28 +8,20 @@ import type {
   FinishCashSessionResponse
 } from '@/types';
 
-
-// const BASE_URL = 'http://localhost:3000/api/cash_sessions';
-
-export const fetchCashSessions = async (token) => {
+export const fetchCashSessions = async () => {
   const { data } = await api.get("/cash_sessions");
   return data;
 };
 
-export const deleteCashSession = async ({ id, token}: DeleteCashSessionPayload): Promise<DeleteCashSessionResponse> => {
-  if (!token) {
-    throw new Error("No access token");
-  }
+export const deleteCashSession = async ({ id }: DeleteCashSessionPayload): Promise<DeleteCashSessionResponse> => {
 
   const { message } = api.delete(`$/cash_sessions/${id}`);
   return message;
 };
 
-export const addCashSession = async ({ body, token }: AddCashSessionPayload): Promise<AddCashSessionResponse> => {
-  if (!token) {
-    throw new Error("No access token");
-  }
+export const addCashSession = async ({ body }: AddCashSessionPayload): Promise<AddCashSessionResponse> => {
   const normalizedBody = body.map(({ id, owner, ...rest }) => rest);
+
   return api.post("/cash_sessions", {
     balancesStart: normalizedBody,
     startedAt: new Date().toISOString(),
@@ -38,11 +30,9 @@ export const addCashSession = async ({ body, token }: AddCashSessionPayload): Pr
   });
 };
 
-export const finishCashSession = async ({ id, body, token }: FinishCashSessionPayload): Promise<FinishCashSessionResponse> => {
-  if (!token) {
-    throw new Error("No access token");
-  }
-  const normalizedBody = body.map(({ id, owner, ...rest }) => rest)
+export const finishCashSession = async ({ id, body }: FinishCashSessionPayload): Promise<FinishCashSessionResponse> => {
+  const normalizedBody = body.map(({ id, owner, ...rest }) => rest);
+
   return api.patch(`/cash_sessions/${id}/session`, {
     balancesEnd: normalizedBody,
     finishedAt: new Date().toISOString(),

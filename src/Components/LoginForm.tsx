@@ -5,8 +5,10 @@ import { Input } from '@/Components/ui/input';
 import { Link } from 'react-router-dom';
 import { FormEvent } from 'react';
 import { useLoginMutation } from '@/Hooks/useLoginMutation';
+import { toast } from 'sonner';
 
 export const LoginForm = () => {
+  const pattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
   const login = useLoginMutation();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -18,7 +20,11 @@ export const LoginForm = () => {
       password: formData.get("password"),
     };
 
-    login.mutate(data);
+    if (!pattern.test(data.password as string)) {
+      toast.success('Password must be at least 8 characters and contain letters and numbers');
+    } else {
+      login.mutate(data);
+    }
   };
 
     return (
@@ -51,6 +57,8 @@ export const LoginForm = () => {
                     name="password"
                     required
                     className="text-amber-50"
+                    // pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                    // title="Password must be at least 8 characters and contain letters and numbers"
                   />
                 </Field>
                 <Field>

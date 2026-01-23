@@ -7,12 +7,10 @@ import {
   DrawerTrigger
 } from '@/Components/ui/drawer';
 import { useFinishTournamentSession } from '@/Hooks/useTournamentSessionsMutations';
-import { useAuth } from '@/context/AuthContext';
 import type { AddNewTournamentToSessionProps } from '@/types';
 
 export const FinishTournamentNewSession = ({ runningSessionId }: AddNewTournamentToSessionProps) => {
   const finishTournamentSession = useFinishTournamentSession();
-  const { accessToken } = useAuth();
 
   return (
       <Drawer>
@@ -26,7 +24,7 @@ export const FinishTournamentNewSession = ({ runningSessionId }: AddNewTournamen
           <DrawerFooter className="flex items-center justify-center">
             <DrawerClose
               className="h-1/2 w-1/2"
-              onClick={() => finishTournamentSession.mutate({ id: runningSessionId, token: accessToken })}
+              onClick={() => finishTournamentSession.mutate({ id: runningSessionId })}
             >
               Finish running session
             </DrawerClose>

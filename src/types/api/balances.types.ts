@@ -7,18 +7,15 @@ export type AddBalanceBody = {
 
 export type AddBalancePayload = {
   body: AddBalanceBody
-  token: string | null
 }
 
 export type EditBalancePayload = {
   id: string
   body: AddBalanceBody
-  token: string | null
 }
 
 export type DeleteBalancePayload = {
   id: string
-  token: string | null
 }
 
 export type AddBalanceResponse = ApiResponse<Room>

@@ -5,6 +5,8 @@ import type { TournamentDetailsListProps } from '@/types';
 
 export const TournamentDetailsList = ({ tournaments }: TournamentDetailsListProps) => {
 
+  const reversedTournaments = tournaments.slice().reverse();
+
   return (
     <ScrollArea className="h-[22rem] w-full">
       <div className="sticky top-0 z-10 bg-neutral-800">
@@ -20,7 +22,7 @@ export const TournamentDetailsList = ({ tournaments }: TournamentDetailsListProp
       </div>
       <div className="max-h-[calc(22rem-2rem)] overflow-y-auto">
         <ul className="pt-1">
-          {tournaments.map((tournament) => {
+          {reversedTournaments.map((tournament) => {
             const result = tournament.result - tournament.buyIn;
 
             return (

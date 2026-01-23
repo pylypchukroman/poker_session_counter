@@ -12,24 +12,31 @@ import { useState } from 'react';
 import { useFinishTournament } from '@/Hooks/useTournamentsMutation';
 import { useEditBalance } from '@/Hooks/useBalanceMutations';
 import { useBalanceData } from '@/Hooks/useBalanceData';
-import { useAuth } from '@/context/AuthContext';
 import type { FinishTournamentPopoverProps } from '@/types';
 import { getBalanceBody } from '@/helpers/getBalanceBody';
+import { useQueryClient } from '@tanstack/react-query';
+
 
 export const FinishTournamentPopover = ({ tournamentName, tournamentId, runningSessionId, tournamentStatus, tournamentRoom  }: FinishTournamentPopoverProps) => {
   const [result, setResult] = useState<number>(0);
   const finishTournament = useFinishTournament();
   const editBalance = useEditBalance();
   const { currentRoomBalance } = useBalanceData(tournamentRoom);
-  const { accessToken } = useAuth();
+  const queryClient = useQueryClient();
 
   const onSubmit = () => {
+
     const newBalance = currentRoomBalance.balance + result;
     const balanceBody = getBalanceBody(currentRoomBalance.name, newBalance);
 
-    editBalance.mutate({ id: currentRoomBalance.id, body: balanceBody, token: accessToken });
+    editBalance.mutate({ id: currentRoomBalance.id, body: balanceBody });
 
-    finishTournament.mutate({runningSessionId, tournamentId, result, accessToken});
+    finishTournament.mutate({ runningSessionId, tournamentId, result },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ['tournament_sessions'] });
+        },
+      });
   };
 
   return (

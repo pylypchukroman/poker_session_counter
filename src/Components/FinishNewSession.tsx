@@ -12,7 +12,6 @@ import { useFinishCashSession } from '@/Hooks/useCashSessionMutations';
 import { useEditBalance } from '@/Hooks/useBalanceMutations';
 import { useBalanceData } from '@/Hooks/useBalanceData';
 import { useCashSessionData } from '@/Hooks/useCashSessionData';
-import { useAuth } from '@/context/AuthContext';
 
 export const FinishNewSession = () => {
   const { runningSessionId } = useCashSessionData();
@@ -20,7 +19,6 @@ export const FinishNewSession = () => {
   const finishSession = useFinishCashSession();
   const editBalance = useEditBalance();
   const [pokerRoom, setPokerRoom] = useState(roomsBalance);
-  const { accessToken } = useAuth();
 
   const handleChange = (id, field, value) => {
     setPokerRoom(prev =>
@@ -29,9 +27,9 @@ export const FinishNewSession = () => {
   };
 
   const handleSubmit = () => {
-    finishSession.mutate({id: runningSessionId, body: pokerRoom, token: accessToken});
+    finishSession.mutate({ id: runningSessionId, body: pokerRoom });
     pokerRoom.forEach(room => {
-      editBalance.mutate({id: room.id, body: {name: room.name ,balance: room.balance}, token: accessToken})
+      editBalance.mutate({id: room.id, body: {name: room.name ,balance: room.balance} })
     })
   }
 
