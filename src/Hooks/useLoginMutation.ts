@@ -6,8 +6,8 @@ import type { LoginPayload, LoginResponse } from '@/types';
 import { toast } from 'sonner';
 
 export const useLoginMutation = () => {
-  const navigate = useNavigate()
-  const { setAuth } = useAuth()
+  const navigate = useNavigate();
+  const { setAuth } = useAuth();
 
   return useMutation<LoginResponse, Error, LoginPayload>({
     mutationFn: (data) => loginUser(data),
@@ -15,11 +15,10 @@ export const useLoginMutation = () => {
     onSuccess: (data) => {
       setAuth(data.user, data.tokens.accessToken);
       toast.success(`Successful login, ${data.user.name}`);
-      navigate('/cash');
+      navigate("/cash");
     },
-    onError: (error) => {
-      toast.error("Email or password wrong")
-      console.log(error, 'error')
-    }
-  })
-}
+    onError: () => {
+      toast.error("Email or password wrong");
+    },
+  });
+};

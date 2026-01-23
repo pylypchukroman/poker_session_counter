@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { api } from "@/api/axios";
 import type {
   AddBalancePayload,
   AddBalanceResponse,
@@ -9,15 +9,8 @@ import type {
   Room
 } from '@/types';
 
-
-const BASE_URL = 'http://localhost:3000/api/balances';
-
 export const fetchBalances = async (token: string | null): Promise<Room[]> => {
-  const { data } = await axios.get(BASE_URL, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    }
-  });
+  const { data } = await api.get("/balances");
 
   return data;
 };
@@ -27,13 +20,9 @@ export const editBalance = async ({ id, body, token }: EditBalancePayload): Prom
     throw new Error("No access token");
   }
 
-  return axios.patch(`${BASE_URL}/${id}/balance`, {
+  return api.patch(`/balances/${id}/balance`, {
     balance: body.balance
-  }, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
+  });
 };
 
 export const deleteBalance = async ({ id, token}: DeleteBalancePayload): Promise<DeleteBalanceResponse> => {
@@ -41,11 +30,7 @@ export const deleteBalance = async ({ id, token}: DeleteBalancePayload): Promise
     throw new Error("No access token");
   }
 
-  const { message } = axios.delete(`${BASE_URL}/${id}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  const { message } = api.delete(`/balances/${id}`);
   return message;
 };
 
@@ -54,13 +39,8 @@ export const addBalance = async ({ body, token }: AddBalancePayload): Promise<Ad
     throw new Error("No access token");
   }
 
-  return axios.post(`${BASE_URL}`, {
+  return api.post("/balances", {
     name: body.name,
     balance: body.balance
-  },
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+  });
 };

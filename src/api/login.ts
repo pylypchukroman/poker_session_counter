@@ -1,13 +1,11 @@
-import axios from 'axios';
-import type { LoginPayload, LoginResponse } from '@/types';
-
-const BASE_URL = 'http://localhost:3000/api/auth/login';
+import { api } from "@/api/axios";
+import type { LoginPayload, LoginResponse } from "@/types";
 
 export const loginUser = async (body: LoginPayload): Promise<LoginResponse> => {
-  const { data } = await axios.post(`${BASE_URL}`, {
+  const { data } = await api.post("/auth/login", {
     email: body.email,
-    password: body.password
-  })
+    password: body.password,
+  });
 
   return data;
 };

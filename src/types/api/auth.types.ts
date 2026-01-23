@@ -34,8 +34,9 @@ export type AuthStatus = "loading" | "authenticated" | "unauthenticated";
 export type AuthContextType = {
   user: User | null;
   accessToken: string | null;
+  status: AuthStatus;
+  setAuth: (userData: User, token: string) => void;
+  logout: () => void;
   isAuthenticated: boolean;
   isLoading: boolean;
-  setAuth: (user: User, token: string) => void;
-  logout: () => void;
 };

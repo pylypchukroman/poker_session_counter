@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { api } from "@/api/axios"; // <-- важливо
 import type {
   AddTournamentSessionResponse,
   DeleteTournamentSessionPayload,
@@ -9,14 +9,10 @@ import type {
 } from '@/types';
 
 
-const BASE_URL = 'http://localhost:3000/api/tournament_sessions';
+// const BASE_URL = 'http://localhost:3000/api/tournament_sessions';
 
 export const fetchTournamentSessions = async (token): Promise<TournamentSession[]> => {
-  const { data } = await axios.get(BASE_URL, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    }
-  });
+  const { data } = await api.get("/tournament_sessions");
   return data;
 };
 
@@ -24,11 +20,7 @@ export const deleteTournamentSession = async ({ id, token }: DeleteTournamentSes
   if (!token) {
     throw new Error("No access token");
   }
-  const { message } = axios.delete(`${BASE_URL}/${id}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  const { message } = api.delete(`/tournament_sessions/${id}`);
   return message;
 };
 
@@ -37,13 +29,9 @@ export const addTournamentSession = async (token: string | null): Promise<AddTou
     throw new Error("No access token");
   }
 
-  return axios.post(`${BASE_URL}`, {
+  return api.post("/tournament_sessions", {
     startedAt: new Date().toISOString(),
     status: "running",
-  }, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
   });
 };
 
@@ -52,12 +40,8 @@ export const finishTournamentSession = async ({ id, token }: FinishTournamentSes
     throw new Error("No access token");
   }
 
-  return axios.patch(`${BASE_URL}/${id}/finish_session`, {
+  return api.patch(`/tournament_sessions/${id}/finish_session`, {
     finishedAt: new Date().toISOString(),
     status: "finished",
-  }, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
   });
 };

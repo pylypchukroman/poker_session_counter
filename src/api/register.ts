@@ -1,10 +1,8 @@
-import axios from 'axios';
+import { api } from "@/api/axios";
 import type { RegisterPayload, RegisterResponse } from '@/types';
 
-const BASE_URL = 'http://localhost:3000/api/auth/register';
-
 export const registerUser = async (body: RegisterPayload): Promise<RegisterResponse> => {
-  const { data } = axios.post(`${BASE_URL}`, {
+  const { data } = api.post("/auth/register", {
     name: body.name,
     email: body.email,
     password: body.password

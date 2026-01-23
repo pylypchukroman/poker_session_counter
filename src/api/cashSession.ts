@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { api } from "@/api/axios"; // <-- важливо
 import type {
   AddCashSessionPayload,
   AddCashSessionResponse,
@@ -9,14 +9,10 @@ import type {
 } from '@/types';
 
 
-const BASE_URL = 'http://localhost:3000/api/cash_sessions';
+// const BASE_URL = 'http://localhost:3000/api/cash_sessions';
 
 export const fetchCashSessions = async (token) => {
-  const { data } = await axios.get(BASE_URL, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    }
-  });
+  const { data } = await api.get("/cash_sessions");
   return data;
 };
 
@@ -25,11 +21,7 @@ export const deleteCashSession = async ({ id, token}: DeleteCashSessionPayload):
     throw new Error("No access token");
   }
 
-  const { message } = axios.delete(`${BASE_URL}/${id}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  const { message } = api.delete(`$/cash_sessions/${id}`);
   return message;
 };
 
@@ -38,15 +30,11 @@ export const addCashSession = async ({ body, token }: AddCashSessionPayload): Pr
     throw new Error("No access token");
   }
   const normalizedBody = body.map(({ id, owner, ...rest }) => rest);
-  return axios.post(`${BASE_URL}`, {
+  return api.post("/cash_sessions", {
     balancesStart: normalizedBody,
     startedAt: new Date().toISOString(),
     status: "running",
     balancesEnd: []
-  }, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
   });
 };
 
@@ -55,13 +43,9 @@ export const finishCashSession = async ({ id, body, token }: FinishCashSessionPa
     throw new Error("No access token");
   }
   const normalizedBody = body.map(({ id, owner, ...rest }) => rest)
-  return axios.patch(`${BASE_URL}/${id}/session`, {
+  return api.patch(`/cash_sessions/${id}/session`, {
     balancesEnd: normalizedBody,
     finishedAt: new Date().toISOString(),
     status: "finished",
-  }, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
   });
 };
