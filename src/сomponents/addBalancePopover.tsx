@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button"
+import { Button } from "@/сomponents/ui/button"
 import {
   Dialog, DialogClose,
   DialogContent,
@@ -7,13 +7,13 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+} from "@/сomponents/ui/dialog"
+import { Input } from "@/сomponents/ui/input"
+import { Label } from "@/сomponents/ui/label"
 import { useState } from 'react';
 import { useAddBalance } from '@/Hooks/useBalanceMutations';
 import { getBalanceBody } from '@/helpers/getBalanceBody';
-import { RoomSelect } from '@/Components/RoomSelect';
+import { RoomSelect } from '@/сomponents/RoomSelect';
 
 
 export const AddBalancePopover = () => {

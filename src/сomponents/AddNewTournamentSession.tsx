@@ -7,7 +7,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger
-} from '@/Components/ui/drawer';
+} from '@/сomponents/ui/drawer';
 import { useAddTournamentSession } from '@/Hooks/useTournamentSessionsMutations';
 import { useBalanceData } from '@/Hooks/useBalanceData';
 import { useAuth } from '@/context/AuthContext';

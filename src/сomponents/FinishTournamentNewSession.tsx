@@ -5,7 +5,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger
-} from '@/Components/ui/drawer';
+} from '@/сomponents/ui/drawer';
 import { useFinishTournamentSession } from '@/Hooks/useTournamentSessionsMutations';
 import type { AddNewTournamentToSessionProps } from '@/types';
 import { useState } from 'react';

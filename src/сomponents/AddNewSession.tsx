@@ -5,7 +5,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger
-} from '@/Components/ui/drawer';
+} from '@/сomponents/ui/drawer';
 import { useAddCashSession } from '@/Hooks/useCashSessionMutations';
 import { useBalanceData } from '@/Hooks/useBalanceData';
 import { toast } from 'sonner';

@@ -1,7 +1,7 @@
 
-import { TournamentSessionsList } from '@/Components/TournamentSessionsList';
-import { AddNewTournamentSession } from '@/Components/AddNewTournamentSession';
-import { RunningTournamentSessionSection } from '@/Components/RunningTournamentSessionSection';
+import { TournamentSessionsList } from '@/сomponents/TournamentSessionsList';
+import { AddNewTournamentSession } from '@/сomponents/AddNewTournamentSession';
+import { RunningTournamentSessionSection } from '@/сomponents/RunningTournamentSessionSection';
 import { useTournamentSessionData } from '@/Hooks/useTournamentSessionData';
 
 export const TournamentsPage = () => {

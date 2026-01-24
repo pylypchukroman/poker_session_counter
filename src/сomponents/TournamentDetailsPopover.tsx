@@ -4,10 +4,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger
-} from '@/Components/ui/dialog';
-import { Button } from '@/Components/ui/button';
-import { TournamentDetailsList } from '@/Components/TournamentDetailsList';
-import { InfoBlock } from '@/Components/InfoBlock';
+} from '@/сomponents/ui/dialog';
+import { Button } from '@/сomponents/ui/button';
+import { TournamentDetailsList } from '@/сomponents/TournamentDetailsList';
+import { InfoBlock } from '@/сomponents/InfoBlock';
 import type { TournamentDetailsPopoverProps } from '@/types';
 
 export const TournamentDetailsPopover = ({ startDate, finishDate, totalBuyIns, totalResult, sessionResult, tournaments }: TournamentDetailsPopoverProps) => {

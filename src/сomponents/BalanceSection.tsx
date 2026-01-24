@@ -1,11 +1,11 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Balance } from '@/Components/Balance';
+import { Avatar, AvatarFallback, AvatarImage } from "@/сomponents/ui/avatar";
+import { Balance } from '@/сomponents/Balance';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger
-} from '@/Components/ui/dropdown-menu';
+} from '@/сomponents/ui/dropdown-menu';
 import { useLogoutMutation } from '@/Hooks/useLogoutMutation';
 
 export const BalanceSection = () => {

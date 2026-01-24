@@ -1,5 +1,5 @@
-import { ScrollArea } from '@/Components/ui/scroll-area';
-import { Separator } from '@/Components/ui/separator';
+import { ScrollArea } from '@/сomponents/ui/scroll-area';
+import { Separator } from '@/сomponents/ui/separator';
 import type { TournamentDetailsListProps } from '@/types';
 
 

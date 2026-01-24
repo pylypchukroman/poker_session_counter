@@ -1,7 +1,7 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/Components/ui/card';
-import { Button } from '@/Components/ui/button';
-import { Field, FieldDescription, FieldGroup, FieldLabel } from '@/Components/ui/field';
-import { Input } from '@/Components/ui/input';
+import { Card, CardContent, CardHeader, CardTitle } from '@/сomponents/ui/card';
+import { Button } from '@/сomponents/ui/button';
+import { Field, FieldDescription, FieldGroup, FieldLabel } from '@/сomponents/ui/field';
+import { Input } from '@/сomponents/ui/input';
 import { Link } from 'react-router-dom';
 import { FormEvent } from 'react';
 import { useLoginMutation } from '@/Hooks/useLoginMutation';

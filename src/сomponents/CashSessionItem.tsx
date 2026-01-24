@@ -1,7 +1,7 @@
-import { Separator } from '@/Components/ui/separator';
+import { Separator } from '@/сomponents/ui/separator';
 import { formatIsoDate } from '@/helpers/formatIsoDate';
 import { getBalancesSum } from '@/helpers/getBalancesSum';
-import { InfoBlock } from '@/Components/InfoBlock';
+import { InfoBlock } from '@/сomponents/InfoBlock';
 import type { CashSessionItemProps } from '@/types';
 
 export const CashSessionItem = ({ session }: CashSessionItemProps) => {

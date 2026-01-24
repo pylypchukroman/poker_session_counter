@@ -6,10 +6,10 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet"
-import { Button } from '@/Components/ui/button';
-import { PokerRoom } from '@/Components/PokerRoom';
-import { AddBalancePopover } from '@/Components/addBalancePopover';
+} from "@/сomponents/ui/sheet"
+import { Button } from '@/сomponents/ui/button';
+import { PokerRoom } from '@/сomponents/PokerRoom';
+import { AddBalancePopover } from '@/сomponents/addBalancePopover';
 import { useBalanceData } from '@/Hooks/useBalanceData';
 
 export const Balance = () => {

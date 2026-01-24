@@ -5,8 +5,8 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger
-} from '@/Components/ui/drawer';
-import { Input } from '@/Components/ui/input';
+} from '@/сomponents/ui/drawer';
+import { Input } from '@/сomponents/ui/input';
 import { useState } from 'react';
 import { useFinishCashSession } from '@/Hooks/useCashSessionMutations';
 import { useEditBalance } from '@/Hooks/useBalanceMutations';

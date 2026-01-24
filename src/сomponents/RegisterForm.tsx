@@ -1,7 +1,7 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/Components/ui/card';
-import { Field, FieldDescription, FieldGroup, FieldLabel } from '@/Components/ui/field';
-import { Button } from '@/Components/ui/button';
-import { Input } from '@/Components/ui/input';
+import { Card, CardContent, CardHeader, CardTitle } from '@/сomponents/ui/card';
+import { Field, FieldDescription, FieldGroup, FieldLabel } from '@/сomponents/ui/field';
+import { Button } from '@/сomponents/ui/button';
+import { Input } from '@/сomponents/ui/input';
 import { FormEvent } from 'react';
 import { useRegisterMutation } from '@/Hooks/useRegisterMutation';
 import { Link } from 'react-router-dom';

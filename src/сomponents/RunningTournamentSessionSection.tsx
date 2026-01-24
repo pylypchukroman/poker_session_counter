@@ -1,5 +1,5 @@
-import { FinishTournamentNewSession } from '@/Components/FinishTournamentNewSession';
-import { ManageRunningSession } from '@/Components/ManageRunningSession';
+import { FinishTournamentNewSession } from '@/сomponents/FinishTournamentNewSession';
+import { ManageRunningSession } from '@/сomponents/ManageRunningSession';
 import type { AddNewTournamentToSessionProps } from '@/types';
 
 export const RunningTournamentSessionSection = ({ runningSessionId }: AddNewTournamentToSessionProps) => {

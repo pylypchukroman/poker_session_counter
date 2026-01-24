@@ -1,7 +1,7 @@
-import { RoomInput } from '@/Components/RoomInput';
+import { RoomInput } from '@/сomponents/RoomInput';
 import { useState } from 'react';
-import { TournamentInput } from '@/Components/TournamentInput';
-import { Button } from '@/Components/ui/button';
+import { TournamentInput } from '@/сomponents/TournamentInput';
+import { Button } from '@/сomponents/ui/button';
 import { useAddTournament } from '@/Hooks/useTournamentsMutation';
 import { useEditBalance } from '@/Hooks/useBalanceMutations';
 import { useBalanceData } from '@/Hooks/useBalanceData';

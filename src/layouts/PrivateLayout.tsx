@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { Header } from '@/Components/Header';
+import { Header } from '@/сomponents/Header';
 
 export const PrivateLayout = () => {
   return (

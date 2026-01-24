@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Popover, PopoverContent, PopoverTrigger } from '@/Components/ui/popover';
-import { Button } from '@/Components/ui/button';
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/Components/ui/command';
+import { Popover, PopoverContent, PopoverTrigger } from '@/сomponents/ui/popover';
+import { Button } from '@/сomponents/ui/button';
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/сomponents/ui/command';
 import { Check, ChevronsUpDown } from 'lucide-react';
 import { getRoomTournaments } from '@/helpers/getRoomTournaments';
 import type { TournamentInputProps } from '@/types';

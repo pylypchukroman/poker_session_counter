@@ -5,9 +5,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger
-} from '@/Components/ui/dialog';
-import { Button } from '@/Components/ui/button';
-import { Input } from '@/Components/ui/input';
+} from '@/сomponents/ui/dialog';
+import { Button } from '@/сomponents/ui/button';
+import { Input } from '@/сomponents/ui/input';
 import { useState } from 'react';
 import { useFinishTournament } from '@/Hooks/useTournamentsMutation';
 import { useEditBalance } from '@/Hooks/useBalanceMutations';

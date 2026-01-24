@@ -1,5 +1,5 @@
-import { ScrollArea } from '@/Components/ui/scroll-area';
-import { TournamentSessionItem } from '@/Components/TournamentSessionItem';
+import { ScrollArea } from '@/сomponents/ui/scroll-area';
+import { TournamentSessionItem } from '@/сomponents/TournamentSessionItem';
 import type { TournamentSessionsListProps } from '@/types';
 
 export const TournamentSessionsList = ({ tournamentSessions }: TournamentSessionsListProps) => {

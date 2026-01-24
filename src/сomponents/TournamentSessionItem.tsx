@@ -1,8 +1,8 @@
 import { formatIsoDate } from '@/helpers/formatIsoDate';
-import { Separator } from '@/Components/ui/separator';
-import { TournamentDetailsPopover } from '@/Components/TournamentDetailsPopover';
+import { Separator } from '@/сomponents/ui/separator';
+import { TournamentDetailsPopover } from '@/сomponents/TournamentDetailsPopover';
 import { calculateTournamentTotal } from '@/helpers/calculateTournamentTotal';
-import { InfoBlock } from '@/Components/InfoBlock';
+import { InfoBlock } from '@/сomponents/InfoBlock';
 import type { TournamentSessionItemProps } from '@/types';
 
 export const TournamentSessionItem = ({ session }: TournamentSessionItemProps) => {

@@ -6,9 +6,9 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger
-} from '@/Components/ui/drawer';
-import { SessionTournaments } from '@/Components/SessionTournaments';
-import { AddNewTournamentToSession } from '@/Components/AddNewTournamentToSession';
+} from '@/сomponents/ui/drawer';
+import { SessionTournaments } from '@/сomponents/SessionTournaments';
+import { AddNewTournamentToSession } from '@/сomponents/AddNewTournamentToSession';
 import type { AddNewTournamentToSessionProps } from '@/types';
 
 export const ManageRunningSession = ({ runningSessionId }: AddNewTournamentToSessionProps) => {

@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@/сomponents/ui/button";
 import {
   Dialog,
   DialogClose,
@@ -8,8 +8,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
+} from "@/сomponents/ui/dialog";
+import { Input } from "@/сomponents/ui/input";
 import { useState } from 'react';
 import { useEditBalance } from '@/Hooks/useBalanceMutations';
 import { useAuth } from '@/context/AuthContext';

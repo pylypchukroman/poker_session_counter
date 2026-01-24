@@ -1,6 +1,6 @@
-import { Item, ItemActions } from '@/Components/ui/item';
-import { RoomBalancePopover } from '@/Components/RoomBalancePopover';
-import { Button } from '@/Components/ui/button';
+import { Item, ItemActions } from '@/сomponents/ui/item';
+import { RoomBalancePopover } from '@/сomponents/RoomBalancePopover';
+import { Button } from '@/сomponents/ui/button';
 import { useDeleteBalance } from '@/Hooks/useBalanceMutations';
 import type { PokerRoomProps } from '@/types';
 

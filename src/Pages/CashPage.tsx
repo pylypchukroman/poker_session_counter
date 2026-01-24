@@ -1,6 +1,6 @@
-import { CashSessionsList } from '@/Components/CashSessionsList';
-import { AddNewSession } from '@/Components/AddNewSession';
-import { FinishNewSession } from '@/Components/FinishNewSession';
+import { CashSessionsList } from '@/сomponents/CashSessionsList';
+import { AddNewSession } from '@/сomponents/AddNewSession';
+import { FinishNewSession } from '@/сomponents/FinishNewSession';
 import { useCashSessionData } from '@/Hooks/useCashSessionData';
 
 export const  CashPage = () => {
