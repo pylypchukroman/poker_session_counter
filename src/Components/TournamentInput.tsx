@@ -25,27 +25,41 @@ export const TournamentInput = ({ tournament, setTournament, room}: TournamentIn
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[230px] p-0">
-        <Command>
-          <CommandInput className="text-white" placeholder="Search tournament..." />
-          <CommandList className="bg-neutral-800">
+      <PopoverContent
+        className="w-[230px] p-0 max-h-[300px] overflow-hidden"
+      >
+        <Command className="h-full">
+          <CommandInput
+            className="text-white"
+            placeholder="Search tournament..."
+          />
+          <CommandList
+            className="h-full overflow-y-auto bg-neutral-800"
+            onWheel={(e) => {
+              e.stopPropagation()
+            }}
+          >
             <CommandEmpty>No tournament found.</CommandEmpty>
             <CommandGroup>
-              {tournaments?.map((r) => (
+              {tournaments.map((r) => (
                 <CommandItem
-                  className="text-white"
                   key={r.name}
                   value={r.name}
+                  className="text-white"
                   onSelect={() => {
-                    setTournament(prev =>
-                      prev.name === r.name ? { name: "", buyIn: 0 } : { name: r.name, buyIn: r.buyIn }
-                    );
+                    setTournament(
+                      tournament.name === r.name
+                        ? { name: "", buyIn: 0 }
+                        : { name: r.name, buyIn: r.buyIn }
+                    )
                     setOpen(false)
                   }}
                 >
                   <Check
                     className={`mr-2 h-4 w-4 ${
-                      tournament.name === r.name ? "opacity-100" : "opacity-0"
+                      tournament.name === r.name
+                        ? "opacity-100"
+                        : "opacity-0"
                     }`}
                   />
                   {r.name}

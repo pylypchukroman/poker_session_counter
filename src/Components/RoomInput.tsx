@@ -27,8 +27,13 @@ export const RoomInput = ({ selectedRoom, setSelectedRoom }: RoomInputProps) => 
       </PopoverTrigger>
       <PopoverContent className="w-[230px] p-0">
         <Command>
-          <CommandInput className="text-white" placeholder="Search framework..." />
-          <CommandList className="bg-neutral-800">
+          <CommandInput className="text-white" placeholder="Search room..." />
+          <CommandList
+            onWheel={(e) => {
+              e.stopPropagation()
+            }}
+            className="bg-neutral-800"
+          >
             <CommandEmpty>No framework found.</CommandEmpty>
             <CommandGroup>
               {roomsList?.map((room) => (
