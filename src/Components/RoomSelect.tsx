@@ -4,13 +4,13 @@ import { Button } from '@/Components/ui/button';
 import { Check, ChevronsUpDown } from 'lucide-react';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/Components/ui/command';
 import type { RoomInputProps } from '@/types';
-import { getFilteredRoomsList } from '@/helpers/getFilteredRoomsList';
 import { useBalanceData } from '@/Hooks/useBalanceData';
+import { getUniqRoomsList } from '@/helpers/getUniqRoomsList';
 
-export const RoomInput = ({ selectedRoom, setSelectedRoom }: RoomInputProps) => {
-  const balance = useBalanceData();
+export const RoomSelect = ({ selectedRoom, setSelectedRoom }: RoomInputProps) => {
   const [open, setOpen] = useState<boolean>(false);
-  const roomsList = getFilteredRoomsList(balance);
+  const balance = useBalanceData()
+  const roomsList = getUniqRoomsList(balance);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -19,7 +19,7 @@ export const RoomInput = ({ selectedRoom, setSelectedRoom }: RoomInputProps) => 
           variant="secondary"
           role="combobox"
           aria-expanded={open}
-          className="w=[180px] md:w-[230px] justify-between text-white overflow-hidden text-xs"
+          className="col-span-3 justify-between text-white overflow-hidden text-xs"
         >
           {selectedRoom ? selectedRoom : "Select room..."}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -27,7 +27,7 @@ export const RoomInput = ({ selectedRoom, setSelectedRoom }: RoomInputProps) => 
       </PopoverTrigger>
       <PopoverContent className="w-[230px] p-0">
         <Command>
-          <CommandInput className="text-white" placeholder="Search framework..." />
+          <CommandInput className="text-white" placeholder="Search room..." />
           <CommandList className="bg-neutral-800">
             <CommandEmpty>No framework found.</CommandEmpty>
             <CommandGroup>

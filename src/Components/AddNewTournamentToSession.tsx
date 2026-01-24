@@ -49,8 +49,8 @@ export const AddNewTournamentToSession = ({ runningSessionId }: AddNewTournament
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 items-center gap-2 md:gap-12">
       <RoomInput
-        room={room}
-        setRoom={setRoom}
+        selectedRoom={room}
+        setSelectedRoom={setRoom}
       />
       <TournamentInput
         tournament={tournament}

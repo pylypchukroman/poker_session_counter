@@ -12,21 +12,23 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useState } from 'react';
 import { useAddBalance } from '@/Hooks/useBalanceMutations';
-import type { RoomBalance } from '@/types';
-import { initState } from '@/assets/initBalanceState';
 import { getBalanceBody } from '@/helpers/getBalanceBody';
+import { RoomSelect } from '@/Components/RoomSelect';
 
 
 export const AddBalancePopover = () => {
   const addBalance = useAddBalance();
-  const [newBalance, setNewBalance] = useState<RoomBalance>(initState);
+  const [newBalance, setNewBalance] = useState<string>("");
+  const [selectedRoom, setSelectedRoom] = useState<string | undefined>(undefined);
 
   const reset = () => {
-    setNewBalance(initState)
+    setNewBalance("");
+    setSelectedRoom(undefined);
   };
 
   const onSubmit = () => {
-    const newBalanceBody = getBalanceBody(newBalance.name, Number(newBalance.balance));
+    if (!selectedRoom || !newBalance) return;
+    const newBalanceBody = getBalanceBody(selectedRoom, Number(newBalance));
     addBalance.mutate({ body: newBalanceBody });
     reset();
   };
@@ -40,19 +42,17 @@ export const AddBalancePopover = () => {
         <DialogHeader>
           <DialogTitle>Add room balance</DialogTitle>
           <DialogDescription>
-            Enter name and balance for new poker room.
+            Select room and enter balance for new poker room
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="name" className="text-right">
-              Name
+              Room
             </Label>
-            <Input
-              id="name"
-              value={newBalance.name}
-              onChange={(e) => setNewBalance(prev => ({ ...prev, name: e.target.value }))}
-              className="col-span-3"
+            <RoomSelect
+              selectedRoom={selectedRoom}
+              setSelectedRoom={setSelectedRoom}
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
@@ -64,15 +64,12 @@ export const AddBalancePopover = () => {
               type="text"
               inputMode="numeric"
               pattern="[0-9]*"
-              value={newBalance.balance}
+              value={newBalance}
               onChange={(e) => {
                 const value = e.target.value;
 
                 if (/^\d*$/.test(value)) {
-                  setNewBalance(prev => ({
-                    ...prev,
-                    balance: value,
-                  }));
+                  setNewBalance(value);
                 }
               }}
               className="col-span-3"
