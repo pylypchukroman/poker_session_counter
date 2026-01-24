@@ -1,5 +1,4 @@
 import { Outlet } from "react-router-dom";
-import { Toaster } from "@/components/ui/sonner.tsx"
 
 export const PublicLayout = () => {
   return (
@@ -7,7 +6,6 @@ export const PublicLayout = () => {
       <main className="max-w-7xl mx-auto">
         <Outlet />
       </main>
-      <Toaster position="top-center" />
     </div>
   );
 };
