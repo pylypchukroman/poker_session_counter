@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { Header } from '@/Components/Header';
-import { Toaster } from "@/components/ui/sonner.ts"
+import { Toaster } from "@/components/ui/sonner.tsx"
 
 export const PrivateLayout = () => {
   return (

@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { Toaster } from "@/components/ui/sonner.ts"
+import { Toaster } from "@/components/ui/sonner.tsx"
 
 export const PublicLayout = () => {
   return (
