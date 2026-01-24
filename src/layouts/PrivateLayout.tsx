@@ -9,7 +9,7 @@ export const PrivateLayout = () => {
       <main className="max-w-7xl mx-auto">
         <Outlet />
       </main>
-      <Toaster />
+      <Toaster position="top-center" />
     </div>
   );
 };

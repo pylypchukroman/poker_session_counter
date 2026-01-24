@@ -7,5 +7,7 @@ export const useTournamentData = (runningSessionId?: string) => {
 
   const reversedTournamentSessions: SessionTournament[] = sessionTournaments?.slice().reverse();
 
-  return { sessionTournaments, isLoading, reversedTournamentSessions };
+  const isAllTournamentsFinished = reversedTournamentSessions?.some(t => t.status === "running");
+
+  return { sessionTournaments, isLoading, reversedTournamentSessions, isAllTournamentsFinished };
 }
