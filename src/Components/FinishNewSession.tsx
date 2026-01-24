@@ -45,7 +45,7 @@ export const FinishNewSession = () => {
             <ul className='flex items-center justify-center gap-x-4'>
               {pokerRoom?.map((room) => (
                 <li key={room.id} className="flex items-center justify-center mt-4">
-                  <DrawerDescription className="text-white-900 text-xs md:text-sm">{room.name} Balance:
+                  <DrawerDescription className="text-white-900 text-xs md:text-sm">{room.name}
                     <span className="flex mt-2">
                       <Input
                         className="h-7 md:h-9"

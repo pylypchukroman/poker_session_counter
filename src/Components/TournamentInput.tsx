@@ -27,9 +27,9 @@ export const TournamentInput = ({ tournament, setTournament, room}: TournamentIn
       </PopoverTrigger>
       <PopoverContent className="w-[230px] p-0">
         <Command>
-          <CommandInput className="text-white" placeholder="Search framework..." />
+          <CommandInput className="text-white" placeholder="Search tournament..." />
           <CommandList className="bg-neutral-800">
-            <CommandEmpty>No framework found.</CommandEmpty>
+            <CommandEmpty>No tournament found.</CommandEmpty>
             <CommandGroup>
               {tournaments?.map((r) => (
                 <CommandItem
