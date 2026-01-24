@@ -7,7 +7,7 @@ export const HomeRedirect = () => {
   if (isLoading) return <h1>Loading...</h1>;
 
   return isAuthenticated ? (
-    <Navigate to="/dashboard" replace />
+    <Navigate to="/cash" replace />
   ) : (
     <Navigate to="/login" replace />
   );
