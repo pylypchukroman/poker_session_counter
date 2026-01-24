@@ -11,9 +11,10 @@ import { Button } from '@/сomponents/ui/button';
 import { PokerRoom } from '@/сomponents/PokerRoom';
 import { AddBalancePopover } from '@/сomponents/addBalancePopover';
 import { useBalanceData } from '@/Hooks/useBalanceData';
+import { Loader } from '@/сomponents/Loader';
 
 export const Balance = () => {
-  const { roomsBalance, totalBalance } = useBalanceData();
+  const { roomsBalance, totalBalance, isLoading } = useBalanceData();
 
   if (!roomsBalance) return;
 
@@ -44,6 +45,9 @@ export const Balance = () => {
                 </li>
               ))}
             </ul>
+          {/*<div className="border rounded-sm h-[70px] flex items-center justify-center">*/}
+          {/*  <Loader />*/}
+          {/*</div>*/}
         </div>
         <SheetFooter>
           <AddBalancePopover />

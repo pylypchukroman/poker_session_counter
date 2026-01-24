@@ -4,7 +4,7 @@ import { FinishNewSession } from '@/сomponents/FinishNewSession';
 import { useCashSessionData } from '@/Hooks/useCashSessionData';
 
 export const  CashPage = () => {
-  const { reversedCashSessions, isSessionRunning } = useCashSessionData();
+  const { reversedCashSessions, isSessionRunning, isLoading } = useCashSessionData();
 
   return (
     <div className="flex flex-col gap-y-4">
