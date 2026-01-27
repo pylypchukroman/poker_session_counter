@@ -8,6 +8,17 @@ The application is built using modern React patterns, TypeScript, and a componen
 
 ---
 
+## Demo Account
+
+To make it easy for recruiters to test the app, a demo account is available:
+
+Email: demo@demo.com  
+Password: demo1234
+
+> Note: This demo account is intended for testing only and has limited access.
+
+---
+
 ## Tech Stack
 
 - **React** (TypeScript)

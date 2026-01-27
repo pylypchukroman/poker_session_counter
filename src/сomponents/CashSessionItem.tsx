@@ -9,7 +9,7 @@ export const CashSessionItem = ({ session }: CashSessionItemProps) => {
   const finishDate = formatIsoDate(session.finishedAt);
   const startSessionBalance = getBalancesSum(session.balancesStart);
   const endSessionBalance = getBalancesSum(session.balancesEnd);
-  const sessionResult: number = session.status === "running" ? 0 : (endSessionBalance - startSessionBalance);
+  const sessionResult: number | string = session.status === "running" ? 0 : (Number(endSessionBalance - startSessionBalance).toFixed(1));
 
   return (
     <>
