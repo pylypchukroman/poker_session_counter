@@ -7,6 +7,7 @@ export type AddNewTournamentToSessionProps = {
 
 export type TournamentSessionsListProps = {
   tournamentSessions: TournamentSession[]
+  isLoading: boolean
 }
 
 export type TournamentSessionItemProps = {

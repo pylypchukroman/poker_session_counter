@@ -11,6 +11,7 @@ import { getBalanceBody } from '@/helpers/getBalanceBody';
 import { getTournamentPayload } from '@/helpers/getTournamentPayload';
 import { toast } from "sonner"
 import { initTournamentState } from '@/assets/initTournamentState';
+import { Spinner } from '@/сomponents/ui/spinner';
 
 export const AddNewTournamentToSession = ({ runningSessionId }: AddNewTournamentToSessionProps) => {
   const [room, setRoom] = useState<string | null>(null);
@@ -61,8 +62,10 @@ export const AddNewTournamentToSession = ({ runningSessionId }: AddNewTournament
         disabled={!room || !tournament.name}
         type="button"
         onClick={onSubmit}
+        className="flex flex-row justify-center items-center"
       >
         Add tournament
+        {addTournament.isPending ? <Spinner className="md:size-6 size-4 ml-6 " /> : null}
       </Button>
     </div>
   );

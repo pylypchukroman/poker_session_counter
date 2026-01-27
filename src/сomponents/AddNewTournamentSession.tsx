@@ -13,6 +13,7 @@ import { useBalanceData } from '@/Hooks/useBalanceData';
 import { useAuth } from '@/context/AuthContext';
 import { useState } from 'react';
 import { toast } from 'sonner';
+import { Spinner } from '@/сomponents/ui/spinner';
 
 export const AddNewTournamentSession = () => {
   const { roomsBalance, totalBalance, isZeroBalance } = useBalanceData();
@@ -55,10 +56,11 @@ export const AddNewTournamentSession = () => {
           </DrawerHeader>
           <DrawerFooter className="flex items-center justify-center">
             <DrawerClose
-              className="h-1/2 w-1/2 !text-sm !px-2 !py-1 md:!text-base md:!px-4 md:!py-2"
+              className="h-1/2 w-1/2 !text-sm !px-2 !py-1 md:!text-base md:!px-4 md:!py-2 flex flex-row justify-center items-center"
               onClick={() => addTournamentSession.mutate(accessToken)}
             >
               Start new tournament session
+              {addTournamentSession.isPending ? <Spinner className="md:size-6 size-4 ml-6 " /> : null}
             </DrawerClose>
             <DrawerClose
               onClick={() => setIsOpen(false)}

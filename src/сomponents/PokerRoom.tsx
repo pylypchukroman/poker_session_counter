@@ -14,7 +14,7 @@ const deleteBalance = useDeleteBalance();
     >
       <div className=" grid grid-cols-[1fr_1fr_1fr] items-center px-2 text-sm">
         <span>{roomBalance.name}</span>
-        <span>{roomBalance.balance} $</span>
+        <span>{Number(roomBalance.balance.toFixed(1))} $</span>
       <ItemActions>
         <RoomBalancePopover roomBalance={roomBalance}/>
         <Button

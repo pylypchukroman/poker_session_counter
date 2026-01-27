@@ -12,14 +12,13 @@ import {
 import { Input } from "@/сomponents/ui/input";
 import { useState } from 'react';
 import { useEditBalance } from '@/Hooks/useBalanceMutations';
-import { useAuth } from '@/context/AuthContext';
 import type { PokerRoomProps } from '@/types';
 import { getBalanceBody } from '@/helpers/getBalanceBody';
 
 export const RoomBalancePopover = ({ roomBalance }: PokerRoomProps ) => {
-  const [balance, setBalance] = useState(roomBalance.balance);
+  const currentBalance = Number(roomBalance.balance.toFixed(1));
+  const [balance, setBalance] = useState(currentBalance);
   const editBalance = useEditBalance();
-  const { accessToken } = useAuth();
   const balanceBody = getBalanceBody(roomBalance.name, balance);
 
   return (
@@ -45,7 +44,7 @@ export const RoomBalancePopover = ({ roomBalance }: PokerRoomProps ) => {
           <div className="grid flex-1 gap-2">
             <Input
               id="link"
-              defaultValue={roomBalance.balance}
+              defaultValue={currentBalance}
               onChange={(e) =>setBalance(Number(e.target.value))}
             />
           </div>
@@ -55,7 +54,7 @@ export const RoomBalancePopover = ({ roomBalance }: PokerRoomProps ) => {
             <Button
               type="button"
               variant="primary"
-              onClick={() => editBalance.mutate({id: roomBalance.id, body: balanceBody, token: accessToken})}
+              onClick={() => editBalance.mutate({id: roomBalance.id, body: balanceBody})}
             >
               Confirm
             </Button>

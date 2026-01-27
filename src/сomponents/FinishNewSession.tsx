@@ -12,6 +12,7 @@ import { useFinishCashSession } from '@/Hooks/useCashSessionMutations';
 import { useEditBalance } from '@/Hooks/useBalanceMutations';
 import { useBalanceData } from '@/Hooks/useBalanceData';
 import { useCashSessionData } from '@/Hooks/useCashSessionData';
+import { Spinner } from '@/сomponents/ui/spinner';
 
 export const FinishNewSession = () => {
   const { runningSessionId } = useCashSessionData();
@@ -35,8 +36,9 @@ export const FinishNewSession = () => {
 
   return (
       <Drawer>
-        <DrawerTrigger className="h-[12vh] md:h-[18vh] text-white px-4 py-2 rounded-md bg-neutral-800">
+        <DrawerTrigger className="h-[12vh] md:h-[18vh] text-white px-4 py-2 rounded-md bg-neutral-800 flex flex-row justify-center items-center">
           Finish running session
+          {finishSession.isPending ? <Spinner className="md:size-6 size-4 ml-6 " /> : null}
         </DrawerTrigger>
         <DrawerContent className="h-[38vh] md:h-[46vh] max-w-7xl mx-auto bg-neutral-800 rounded-md p-6 flex flex-col justify-between">
           <DrawerHeader>

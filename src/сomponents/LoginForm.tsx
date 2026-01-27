@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { FormEvent } from 'react';
 import { useLoginMutation } from '@/Hooks/useLoginMutation';
 import { toast } from 'sonner';
+import { Spinner } from '@/сomponents/ui/spinner';
 
 export const LoginForm = () => {
   const pattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
@@ -57,12 +58,15 @@ export const LoginForm = () => {
                     name="password"
                     required
                     className="text-amber-50"
-                    // pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
-                    // title="Password must be at least 8 characters and contain letters and numbers"
                   />
                 </Field>
                 <Field>
-                  <Button type="submit">Login</Button>
+                  <Button
+                    type="submit"
+                  >
+                    Login
+                    {login.isPending ? <Spinner className="md:size-6 size-4 ml-6 " /> : null}
+                  </Button>
                   <FieldDescription className="text-center">
                     Don&apos;t have an account? <Link
                     to="/register"

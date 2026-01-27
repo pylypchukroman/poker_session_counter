@@ -8,7 +8,7 @@ export const  CashPage = () => {
 
   return (
     <div className="flex flex-col gap-y-4">
-      <CashSessionsList cashSession={reversedCashSessions} />
+      <CashSessionsList cashSession={reversedCashSessions} isLoading={isLoading} />
       {isSessionRunning ? <FinishNewSession /> : <AddNewSession />}
     </div>
   );

@@ -10,6 +10,7 @@ import { useAddCashSession } from '@/Hooks/useCashSessionMutations';
 import { useBalanceData } from '@/Hooks/useBalanceData';
 import { toast } from 'sonner';
 import { useState } from 'react';
+import { Spinner } from '@/сomponents/ui/spinner';
 
 export const AddNewSession = () => {
   const { roomsBalance, totalBalance, isZeroBalance } = useBalanceData();
@@ -58,10 +59,11 @@ export const AddNewSession = () => {
 
         <DrawerFooter className="flex items-center justify-center">
           <DrawerClose
-            className="h-1/2 w-1/2 !text-sm !px-2 !py-1 md:!text-base md:!px-4 md:!py-2"
+            className="h-1/2 w-1/2 !text-sm !px-2 !py-1 md:!text-base md:!px-4 md:!py-2 flex flex-row justify-center items-center"
             onClick={() => addCashSession.mutate({ body: roomsBalance })}
           >
             Start new cash session
+            {addCashSession.isPending ? <Spinner className="md:size-6 size-4 ml-6 " /> : null}
           </DrawerClose>
 
           <DrawerClose

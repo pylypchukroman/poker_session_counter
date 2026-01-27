@@ -15,6 +15,7 @@ import { useBalanceData } from '@/Hooks/useBalanceData';
 import type { FinishTournamentPopoverProps } from '@/types';
 import { getBalanceBody } from '@/helpers/getBalanceBody';
 import { useQueryClient } from '@tanstack/react-query';
+import { Spinner } from '@/сomponents/ui/spinner';
 
 
 export const FinishTournamentPopover = ({ tournamentName, tournamentId, runningSessionId, tournamentStatus, tournamentRoom  }: FinishTournamentPopoverProps) => {
@@ -44,11 +45,12 @@ export const FinishTournamentPopover = ({ tournamentName, tournamentId, runningS
       <DialogTrigger asChild>
         <Button
           disabled={tournamentStatus !== "running"}
-          className="text-amber-50 hover:text-amber-50 !px-14"
+          className="text-amber-50 hover:text-amber-50 !px-19"
           size="sm"
           variant="outline"
         >
           Finish tournament
+          {finishTournament.isPending ? <Spinner className="md:size-6 size-4 " /> : null}
         </Button>
       </DialogTrigger>
       <DialogContent className="bg-neutral-800">

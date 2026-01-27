@@ -14,6 +14,7 @@ import { useState } from 'react';
 import { useAddBalance } from '@/Hooks/useBalanceMutations';
 import { getBalanceBody } from '@/helpers/getBalanceBody';
 import { RoomSelect } from '@/сomponents/RoomSelect';
+import { Spinner } from '@/сomponents/ui/spinner';
 
 
 export const AddBalancePopover = () => {
@@ -36,7 +37,13 @@ export const AddBalancePopover = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" className="hover:text-amber-50">Add Room Balance</Button>
+        <Button
+          variant="outline"
+          className="hover:text-amber-50 flex flex-row justify-center items-center"
+        >
+          Add Room Balance
+          {addBalance.isPending ? <Spinner className="md:size-6 size-4 ml-6 " /> : null}
+        </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] bg-neutral-800">
         <DialogHeader>

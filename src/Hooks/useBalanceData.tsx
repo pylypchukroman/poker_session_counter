@@ -4,8 +4,8 @@ import type { Room } from '@/types';
 export const useBalanceData = (room?: string | null) => {
   const { data: roomsBalance, isLoading } = useBalances();
 
-  const totalBalance: number | undefined = roomsBalance?.reduce(
-    (acc, room) => acc + Number(room.balance), 0);
+  const totalBalance: number | undefined = Number(roomsBalance?.reduce(
+    (acc, room) => acc + room.balance, 0).toFixed(1));
 
   const currentRoomBalance: Room = roomsBalance?.find(b => b.name === room);
 
