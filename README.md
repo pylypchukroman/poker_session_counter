@@ -1,73 +1,120 @@
-# React + TypeScript + Vite
+# Session-Based Balance Tracker – Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+This repository contains the frontend client for **Session-Based Balance Tracker**, a web application that allows users to track their balance across different session types (e.g., cash-style and tournament-style sessions). The frontend communicates with a REST API backend to manage sessions, balances, and user authentication.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The application is built using modern React patterns, TypeScript, and a component-driven UI, with a focus on clean state management and UX.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+- **React** (TypeScript)
+- **Vite**
+- **Tailwind CSS**
+- **shadcn/ui** (UI components)
+- **React Query** (data fetching & caching)
+- **Axios** (HTTP client)
+- **JWT authentication** with refresh token flow
+- **Axios interceptor** for token refresh
+- **Refresh token stored in cookies** (secure & HttpOnly)
+- **Protected routes** with React Router
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Core Features
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- User registration and login
+- Protected routes for authenticated users
+- Session creation (cash-style and tournament-style)
+- Balance tracking and updates based on sessions
+- Automatic token refresh using cookies + Axios interceptor
+- Clean UI with responsive layout
+- Real-time UI updates using React Query cache invalidation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## Project Structure
+
+```text
+src/
+ ├── api/           # Axios instance and API request functions
+ ├── assets/        # Images, icons, and static data
+ ├── components/    # Reusable UI components
+ ├── context/       # Auth context & global providers
+ ├── helpers/       # Helper functions (e.g., filtering)
+ ├── hooks/         # Custom hooks (React Query hooks, loaders)
+ ├── layouts/       # App layouts (e.g., main layout, auth layout)
+ ├── lib/           # External libraries and UI frameworks (shadcn)
+ ├── pages/         # Route pages
+ ├── routes/        # Route configuration
+ ├── types/         # Shared TypeScript types
+ ├── App.tsx        # Main app component with routes
+ ├── main.tsx       # App entry point
+ └── index.css      # Global styles
+```
+## Getting Started
+
+### Prerequisites
+- Node.js (v18+ recommended)
+
+### Installation
+
+```bash
+git clone https://github.com/pylypchukroman/poker_session_counter.git
+cd poker_session_counter
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Environment Variables
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Create a .env file in the root directory:
+```bash
+VITE_API_BASE_URL=http://localhost:3000
 ```
+
+### Run the App
+
+```bash
+npm run dev
+```
+
+## Authentication Flow
+
+- The app uses **JWT access tokens** for authentication.
+- **Refresh tokens are stored securely** in **HttpOnly cookies**.
+- An **Axios interceptor** automatically refreshes the access token when it expires.
+- **Protected routes** require a valid access token and will redirect to the login page if the user is not authenticated.
+
+---
+
+## What This Project Demonstrates
+
+This frontend demonstrates:
+
+- Building a modern client using **React and TypeScript**
+- **Secure authentication** using JWT and refresh tokens
+- **Axios interceptor** implementation for token refresh
+- Clean API integration using **React Query**
+- **Responsive UI** and component-driven architecture using Tailwind and shadcn/ui
+- Production-ready project structure and state management
+
+---
+
+## Future Improvements
+
+Potential enhancements:
+
+- Unit and integration tests
+- Improved UI/UX (charts, filters, analytics)
+- Offline support and advanced caching strategies
+- Dockerized deployment
+
+---
+
+## Author
+
+**Roman Pylypchuk**
+
+This project is part of a personal portfolio and was built to demonstrate frontend engineering skills for real-world applications.
