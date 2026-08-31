@@ -3,7 +3,7 @@ import { Button } from '@/сomponents/ui/button';
 import { Field, FieldDescription, FieldGroup, FieldLabel } from '@/сomponents/ui/field';
 import { Input } from '@/сomponents/ui/input';
 import { Link } from 'react-router-dom';
-import { FormEvent } from 'react';
+import type { FormEvent } from 'react';
 import { useLoginMutation } from '@/Hooks/useLoginMutation';
 import { toast } from 'sonner';
 import { Spinner } from '@/сomponents/ui/spinner';
@@ -33,6 +33,15 @@ export const LoginForm = () => {
         <Card className="bg-neutral-800">
           <CardHeader className="text-center">
             <CardTitle className="text-xl text-white">Welcome back</CardTitle>
+            <FieldDescription className="mt-2 space-y-0.5 text-amber-50/80">
+              <p>Demo account</p>
+              <p>
+                Email: <span className="text-amber-50">demo@demo.com</span>
+              </p>
+              <p>
+                Password: <span className="text-amber-50">demo1234</span>
+              </p>
+            </FieldDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit}>

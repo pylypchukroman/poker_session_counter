@@ -3,7 +3,7 @@ import { CashSessionItem } from '@/сomponents/CashSessionItem';
 import type { CashSessionsListProps } from '@/types';
 import { Loader } from '@/сomponents/Loader';
 
-export const CashSessionsList = ({ cashSession, isLoading }: CashSessionsListProps) => {
+export const CashSessionsList = ({ cashSessions, isLoading }: CashSessionsListProps) => {
 
   return (
     <section className="max-w-full overflow-x-hidden">
@@ -15,7 +15,7 @@ export const CashSessionsList = ({ cashSession, isLoading }: CashSessionsListPro
         :
         (<ScrollArea className="h-[65vh] w-full max-w-full rounded-md bg-neutral-800 py-4 overflow-x-hidden">
           <ul className="p-4 space-y-2">
-            {cashSession?.map((session) => (
+            {cashSessions?.map((session) => (
               <CashSessionItem
                 key={session.id}
                 session={session}
